@@ -1,0 +1,739 @@
+{
+  "prom_network_recon": {
+    "name": "Network Reconnaissance",
+    "category": "CapabilityCategory.SECURITY_DOMAIN",
+    "description": "Complete network discovery, scanning, and enumeration",
+    "module_path": "capabilities.network_recon",
+    "class_name": "NetworkRecon",
+    "mcp_tool_name": "prom_network_recon",
+    "operations": [
+      "discover",
+      "scan",
+      "enumerate",
+      "map",
+      "fingerprint"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [],
+    "examples": [
+      {
+        "task": "Scan network",
+        "command": "prom_network_recon with operation 'scan'"
+      },
+      {
+        "task": "Enumerate hosts",
+        "command": "prom_network_recon with operation 'enumerate'"
+      }
+    ],
+    "related_capabilities": [
+      "Port Scanner",
+      "OS Fingerprinter",
+      "Vulnerability Scanner"
+    ],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_web_exploitation": {
+    "name": "Web Exploitation",
+    "category": "CapabilityCategory.SECURITY_DOMAIN",
+    "description": "Web application security testing (SQLi, XSS, CSRF, etc.)",
+    "module_path": "capabilities.web_exploitation",
+    "class_name": "WebExploitation",
+    "mcp_tool_name": "prom_web_exploitation",
+    "operations": [
+      "enumerate",
+      "sqli",
+      "xss",
+      "dirtraversal",
+      "authbypass",
+      "apiscan"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [],
+    "examples": [
+      {
+        "task": "SQL injection test",
+        "command": "prom_web_exploitation with operation 'sqli'"
+      },
+      {
+        "task": "XSS scan",
+        "command": "prom_web_exploitation with operation 'xss'"
+      }
+    ],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_wireless_ops": {
+    "name": "Wireless Operations",
+    "category": "CapabilityCategory.SECURITY_DOMAIN",
+    "description": "WiFi, Bluetooth, RFID attacks and analysis",
+    "module_path": "capabilities.wireless_ops",
+    "class_name": "WirelessOps",
+    "mcp_tool_name": "prom_wireless_ops",
+    "operations": [
+      "scan",
+      "attack",
+      "analyze",
+      "deauth",
+      "crack"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_social_engineering": {
+    "name": "Social Engineering",
+    "category": "CapabilityCategory.SECURITY_DOMAIN",
+    "description": "Phishing, pretexting, and social manipulation",
+    "module_path": "capabilities.social_engineering",
+    "class_name": "SocialEngineering",
+    "mcp_tool_name": "prom_social_engineering",
+    "operations": [
+      "phish",
+      "pretext",
+      "impersonate",
+      "manipulate"
+    ],
+    "expertise_level": "ExpertiseLevel.EXPERT",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_physical_security": {
+    "name": "Physical Security",
+    "category": "CapabilityCategory.SECURITY_DOMAIN",
+    "description": "Physical penetration testing and attacks",
+    "module_path": "capabilities.physical_security",
+    "class_name": "PhysicalSecurity",
+    "mcp_tool_name": "prom_physical_security",
+    "operations": [
+      "lockpick",
+      "badge_clone",
+      "tailgate",
+      "camera_disable"
+    ],
+    "expertise_level": "ExpertiseLevel.EXPERT",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_crypto_analysis": {
+    "name": "Cryptographic Analysis",
+    "category": "CapabilityCategory.SECURITY_DOMAIN",
+    "description": "Cryptographic Analysis capabilities",
+    "module_path": "capabilities.crypto_analysis",
+    "class_name": "CryptoAnalysis",
+    "mcp_tool_name": "prom_crypto_analysis",
+    "operations": [
+      "crack",
+      "analyze",
+      "break"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_malware_dev": {
+    "name": "Malware Development",
+    "category": "CapabilityCategory.SECURITY_DOMAIN",
+    "description": "Malware Development capabilities",
+    "module_path": "capabilities.malware_dev",
+    "class_name": "MalwareDev",
+    "mcp_tool_name": "prom_malware_dev",
+    "operations": [
+      "create",
+      "obfuscate",
+      "deliver"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_forensics": {
+    "name": "Digital Forensics",
+    "category": "CapabilityCategory.SECURITY_DOMAIN",
+    "description": "Digital Forensics capabilities",
+    "module_path": "capabilities.forensics",
+    "class_name": "Forensics",
+    "mcp_tool_name": "prom_forensics",
+    "operations": [
+      "investigate",
+      "recover",
+      "analyze"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_cloud_security": {
+    "name": "Cloud Security",
+    "category": "CapabilityCategory.SECURITY_DOMAIN",
+    "description": "Cloud Security capabilities",
+    "module_path": "capabilities.cloud_security",
+    "class_name": "CloudSecurity",
+    "mcp_tool_name": "prom_cloud_security",
+    "operations": [
+      "audit",
+      "exploit",
+      "escalate"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_mobile_security": {
+    "name": "Mobile Security",
+    "category": "CapabilityCategory.SECURITY_DOMAIN",
+    "description": "Mobile Security capabilities",
+    "module_path": "capabilities.mobile_security",
+    "class_name": "MobileSecurity",
+    "mcp_tool_name": "prom_mobile_security",
+    "operations": [
+      "test",
+      "exploit",
+      "analyze"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_iot_security": {
+    "name": "IoT Security",
+    "category": "CapabilityCategory.SECURITY_DOMAIN",
+    "description": "IoT Security capabilities",
+    "module_path": "capabilities.iot_security",
+    "class_name": "IoTSecurity",
+    "mcp_tool_name": "prom_iot_security",
+    "operations": [
+      "discover",
+      "exploit",
+      "control"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_scada_ics": {
+    "name": "SCADA/ICS",
+    "category": "CapabilityCategory.SECURITY_DOMAIN",
+    "description": "SCADA/ICS capabilities",
+    "module_path": "capabilities.scada_ics",
+    "class_name": "ScadaICS",
+    "mcp_tool_name": "prom_scada_ics",
+    "operations": [
+      "scan",
+      "exploit",
+      "control"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_threat_intel": {
+    "name": "Threat Intelligence",
+    "category": "CapabilityCategory.SECURITY_DOMAIN",
+    "description": "Threat Intelligence capabilities",
+    "module_path": "capabilities.threat_intel",
+    "class_name": "ThreatIntel",
+    "mcp_tool_name": "prom_threat_intel",
+    "operations": [
+      "collect",
+      "analyze",
+      "correlate"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_red_team": {
+    "name": "Red Team Operations",
+    "category": "CapabilityCategory.SECURITY_DOMAIN",
+    "description": "Red Team Operations capabilities",
+    "module_path": "capabilities.red_team",
+    "class_name": "RedTeam",
+    "mcp_tool_name": "prom_red_team",
+    "operations": [
+      "attack",
+      "simulate",
+      "test"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_blue_team": {
+    "name": "Blue Team Operations",
+    "category": "CapabilityCategory.SECURITY_DOMAIN",
+    "description": "Blue Team Operations capabilities",
+    "module_path": "capabilities.blue_team",
+    "class_name": "BlueTeam",
+    "mcp_tool_name": "prom_blue_team",
+    "operations": [
+      "defend",
+      "detect",
+      "respond"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_purple_team": {
+    "name": "Purple Team Operations",
+    "category": "CapabilityCategory.SECURITY_DOMAIN",
+    "description": "Purple Team Operations capabilities",
+    "module_path": "capabilities.purple_team",
+    "class_name": "PurpleTeam",
+    "mcp_tool_name": "prom_purple_team",
+    "operations": [
+      "exercise",
+      "improve",
+      "validate"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_osint": {
+    "name": "OSINT",
+    "category": "CapabilityCategory.SECURITY_DOMAIN",
+    "description": "OSINT capabilities",
+    "module_path": "capabilities.osint",
+    "class_name": "OSINT",
+    "mcp_tool_name": "prom_osint",
+    "operations": [
+      "gather",
+      "analyze",
+      "correlate"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_exploit_dev": {
+    "name": "Exploit Development",
+    "category": "CapabilityCategory.SECURITY_DOMAIN",
+    "description": "Exploit Development capabilities",
+    "module_path": "capabilities.exploit_dev",
+    "class_name": "ExploitDev",
+    "mcp_tool_name": "prom_exploit_dev",
+    "operations": [
+      "develop",
+      "test",
+      "weaponize"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_post_exploitation": {
+    "name": "Post Exploitation",
+    "category": "CapabilityCategory.SECURITY_DOMAIN",
+    "description": "Post Exploitation capabilities",
+    "module_path": "capabilities.post_exploitation",
+    "class_name": "PostExploitation",
+    "mcp_tool_name": "prom_post_exploitation",
+    "operations": [
+      "escalate",
+      "persist",
+      "exfiltrate"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_persistence": {
+    "name": "Persistence",
+    "category": "CapabilityCategory.SECURITY_DOMAIN",
+    "description": "Persistence capabilities",
+    "module_path": "capabilities.persistence",
+    "class_name": "Persistence",
+    "mcp_tool_name": "prom_persistence",
+    "operations": [
+      "establish",
+      "maintain",
+      "hide"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_diag_system": {
+    "name": "System Diagnostics",
+    "category": "CapabilityCategory.DIAGNOSTIC",
+    "description": "CPU, RAM, GPU, disk health",
+    "module_path": "src.diagnostics.system_diagnostics",
+    "class_name": "SystemDiagnostics",
+    "mcp_tool_name": "prom_diag_system",
+    "operations": [
+      "run",
+      "analyze",
+      "report"
+    ],
+    "expertise_level": "ExpertiseLevel.MASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_diag_network": {
+    "name": "Network Diagnostics",
+    "category": "CapabilityCategory.DIAGNOSTIC",
+    "description": "Connectivity, latency, bandwidth",
+    "module_path": "src.diagnostics.network_diagnostics",
+    "class_name": "NetworkDiagnostics",
+    "mcp_tool_name": "prom_diag_network",
+    "operations": [
+      "run",
+      "analyze",
+      "report"
+    ],
+    "expertise_level": "ExpertiseLevel.MASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_diag_security": {
+    "name": "Security Diagnostics",
+    "category": "CapabilityCategory.DIAGNOSTIC",
+    "description": "Vulnerabilities, compliance, firewall",
+    "module_path": "src.diagnostics.security_diagnostics",
+    "class_name": "SecurityDiagnostics",
+    "mcp_tool_name": "prom_diag_security",
+    "operations": [
+      "run",
+      "analyze",
+      "report"
+    ],
+    "expertise_level": "ExpertiseLevel.MASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_diag_ai_ml": {
+    "name": "AI/ML Diagnostics",
+    "category": "CapabilityCategory.DIAGNOSTIC",
+    "description": "GPU, CUDA, frameworks, inference",
+    "module_path": "src.diagnostics.ai_ml_diagnostics",
+    "class_name": "AimlDiagnostics",
+    "mcp_tool_name": "prom_diag_ai_ml",
+    "operations": [
+      "run",
+      "analyze",
+      "report"
+    ],
+    "expertise_level": "ExpertiseLevel.MASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_diag_database": {
+    "name": "Database Diagnostics",
+    "category": "CapabilityCategory.DIAGNOSTIC",
+    "description": "Redis, PostgreSQL, MongoDB, SQLite",
+    "module_path": "src.diagnostics.database_diagnostics",
+    "class_name": "DatabaseDiagnostics",
+    "mcp_tool_name": "prom_diag_database",
+    "operations": [
+      "run",
+      "analyze",
+      "report"
+    ],
+    "expertise_level": "ExpertiseLevel.MASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_port_scan": {
+    "name": "Port Scanner",
+    "category": "CapabilityCategory.BASIC_TOOL",
+    "description": "Multi-threaded port scanning with service detection",
+    "module_path": "tools.scanner",
+    "class_name": "PortScanner",
+    "mcp_tool_name": "prom_port_scan",
+    "operations": [
+      "scan",
+      "detect_services",
+      "os_fingerprint"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [],
+    "examples": [
+      {
+        "task": "Scan target",
+        "command": "prom_port_scan with target '192.168.1.1'"
+      }
+    ],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_vuln_scan": {
+    "name": "Vulnerability Scanner",
+    "category": "CapabilityCategory.BASIC_TOOL",
+    "description": "CVE correlation and vulnerability assessment",
+    "module_path": "tools.scanner",
+    "class_name": "VulnScanner",
+    "mcp_tool_name": "prom_vuln_scan",
+    "operations": [
+      "scan",
+      "correlate",
+      "assess"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_generate_payload": {
+    "name": "Payload Generator",
+    "category": "CapabilityCategory.BASIC_TOOL",
+    "description": "Multi-platform payload generation (shellcode, meterpreter, reverse shells)",
+    "module_path": "tools.payloads",
+    "class_name": "PayloadGenerator",
+    "mcp_tool_name": "prom_generate_payload",
+    "operations": [
+      "generate",
+      "encode",
+      "obfuscate"
+    ],
+    "expertise_level": "ExpertiseLevel.MASTER",
+    "dependencies": [],
+    "examples": [
+      {
+        "task": "Generate reverse shell",
+        "command": "prom_generate_payload with payload_type 'reverse_shell'"
+      }
+    ],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_crack_password": {
+    "name": "Password Cracker",
+    "category": "CapabilityCategory.BASIC_TOOL",
+    "description": "Hash cracking, dictionary attacks, rainbow tables",
+    "module_path": "tools.password_cracking",
+    "class_name": "PasswordCracker",
+    "mcp_tool_name": "prom_crack_password",
+    "operations": [
+      "crack",
+      "dictionary_attack",
+      "brute_force",
+      "rainbow"
+    ],
+    "expertise_level": "ExpertiseLevel.MASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_wifi_discover": {
+    "name": "WiFi Intelligence",
+    "category": "CapabilityCategory.SIGINT",
+    "description": "WiFi network discovery, security assessment, rogue AP detection",
+    "module_path": "modules.wifi_intelligence",
+    "class_name": "WiFiIntelligence",
+    "mcp_tool_name": "prom_wifi_discover",
+    "operations": [
+      "discover",
+      "assess",
+      "analyze_channel",
+      "detect_rogue"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_traffic_capture": {
+    "name": "Traffic Analysis",
+    "category": "CapabilityCategory.SIGINT",
+    "description": "Network traffic capture and anomaly detection",
+    "module_path": "modules.traffic_analysis",
+    "class_name": "TrafficAnalysis",
+    "mcp_tool_name": "prom_traffic_capture",
+    "operations": [
+      "capture",
+      "analyze",
+      "detect_anomalies",
+      "monitor_bandwidth"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_bluetooth_discover": {
+    "name": "Bluetooth Intelligence",
+    "category": "CapabilityCategory.SIGINT",
+    "description": "Bluetooth device discovery, profiling, vulnerability detection",
+    "module_path": "modules.bluetooth_intelligence",
+    "class_name": "BluetoothIntelligence",
+    "mcp_tool_name": "prom_bluetooth_discover",
+    "operations": [
+      "discover",
+      "profile",
+      "track_proximity",
+      "detect_vulns"
+    ],
+    "expertise_level": "ExpertiseLevel.MASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 9.0
+  },
+  "prom_c2": {
+    "name": "Command & Control",
+    "category": "CapabilityCategory.RED_TEAM",
+    "description": "C2 infrastructure setup and management",
+    "module_path": "capabilities.red_team_c2",
+    "class_name": "CommandControlServer",
+    "mcp_tool_name": "prom_c2",
+    "operations": [
+      "setup_server",
+      "manage_beacons",
+      "execute_commands",
+      "exfiltrate"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 10.0
+  },
+  "prom_ad_attack": {
+    "name": "Active Directory Attacks",
+    "category": "CapabilityCategory.RED_TEAM",
+    "description": "AD enumeration, Kerberoasting, DCSync, Golden Ticket",
+    "module_path": "capabilities.red_team_ad_attacks",
+    "class_name": "ActiveDirectoryAttacks",
+    "mcp_tool_name": "prom_ad_attack",
+    "operations": [
+      "enumerate",
+      "kerberoast",
+      "dcsync",
+      "golden_ticket"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 10.0
+  },
+  "prom_mimikatz": {
+    "name": "Credential Dumping (Mimikatz)",
+    "category": "CapabilityCategory.RED_TEAM",
+    "description": "Memory credential extraction, SAM/LSA dumps",
+    "module_path": "capabilities.red_team_mimikatz",
+    "class_name": "CredentialDumper",
+    "mcp_tool_name": "prom_mimikatz",
+    "operations": [
+      "dump_lsass",
+      "dump_sam",
+      "dump_secrets",
+      "extract_tickets"
+    ],
+    "expertise_level": "ExpertiseLevel.MASTER",
+    "dependencies": [],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 10.0
+  },
+  "prom_ultimate_biometric": {
+    "name": "Ultimate Biometric Bypass",
+    "category": "CapabilityCategory.ULTIMATE",
+    "description": "Intelligence-agency level biometric circumvention",
+    "module_path": "ULTIMATE_CAPABILITIES.biometric_bypass_ultimate",
+    "class_name": "UltimateBiometricBypassSystem",
+    "mcp_tool_name": "prom_ultimate_biometric",
+    "operations": [
+      "fingerprint_bypass",
+      "face_bypass",
+      "iris_bypass",
+      "voice_clone"
+    ],
+    "expertise_level": "ExpertiseLevel.GRANDMASTER",
+    "dependencies": [
+      "numpy",
+      "cv2",
+      "torch"
+    ],
+    "examples": [],
+    "related_capabilities": [],
+    "is_available": true,
+    "authority_required": 11.0
+  }
+}

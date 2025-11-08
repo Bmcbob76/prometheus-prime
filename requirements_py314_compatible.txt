@@ -1,0 +1,76 @@
+# Prometheus Prime Ultimate - Python 3.14 Compatible Dependencies
+# Authority Level: 11.0
+# Use this file if you encounter numba/librosa compatibility issues
+
+# Configuration & Environment
+python-dotenv==1.0.0
+
+# Core Web Framework
+flask==3.0.0
+flask-cors==4.0.0
+requests==2.31.0
+urllib3==2.1.0
+httpx>=0.24.1
+
+# AI/LLM APIs
+anthropic>=0.18.0
+openai>=1.12.0
+google-generativeai>=0.3.0
+cohere>=4.40
+
+# Voice/Audio (BASIC - without librosa/numba)
+elevenlabs>=0.2.27
+# pyaudio>=0.2.13  # Uncomment if needed, may require system libraries
+SpeechRecognition>=3.10.0
+pydub>=0.25.1
+noisereduce>=3.0.0
+vosk>=0.3.45
+# librosa>=0.10.0  # REMOVED - requires numba which doesn't support Python 3.14 yet
+
+# Vision/Image (for vision system)
+opencv-python>=4.8.0
+face-recognition>=1.3.0
+pytesseract>=0.3.10
+pillow>=10.0.0
+mss>=9.0.1
+screeninfo>=0.8.1
+
+# System Monitoring
+psutil>=5.9.5
+
+# Networking/Security
+scapy>=2.5.0
+
+# Databases
+pymysql==1.1.0
+redis>=5.0.0
+psycopg2-binary>=2.9.7
+pymongo>=4.5.0
+
+# OSINT Integrations
+twilio==8.10.0
+dnspython==2.4.2
+
+# Web Scraping & Parsing
+beautifulsoup4==4.12.2
+lxml==4.9.3
+
+# MCP Protocol
+mcp==0.9.0
+
+# Security & Cryptography
+cryptography==41.0.7
+
+# Additional Utilities
+python-dateutil==2.8.2
+pytz==2023.3
+aiohttp>=3.9.0
+pyyaml>=6.0.1
+
+# NOTES:
+# - librosa removed due to numba Python 3.14 incompatibility
+# - Advanced audio spectral analysis features will be limited
+# - All core Prometheus functionality remains operational
+# - Voice synthesis (ElevenLabs) works fine
+# - Speech recognition (Vosk, SpeechRecognition) works fine
+# - Only affects advanced audio feature extraction

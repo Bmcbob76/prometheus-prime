@@ -211,15 +211,47 @@ REM Install Dependencies
     echo echo ========================================================================
     echo echo.
     echo cd /d P:\ECHO_PRIME\prometheus_prime_new
-    echo echo [1/2] Installing core dependencies...
+    echo.
+    echo REM Detect Python version
+    echo echo Detecting Python version...
+    echo for /f "tokens=2" %%%%v in ^('python --version 2^^^>^^^&1'^) do set PYVER=%%%%v
+    echo echo Python version: %%PYVER%%
+    echo echo.
+    echo.
+    echo REM Check if Python 3.14+
+    echo echo %%PYVER%% ^| findstr /C:"3.14" ^>nul
+    echo if %%errorlevel%%==0 ^(
+    echo     echo [INFO] Python 3.14 detected - using compatible requirements
+    echo     echo [INFO] Note: librosa/numba not compatible with Python 3.14 yet
+    echo     echo [INFO] See PYTHON_314_COMPATIBILITY.md for details
+    echo     set REQUIREMENTS_FILE=requirements_py314_compatible.txt
+    echo ^) else ^(
+    echo     echo [INFO] Using full requirements including audio analysis
+    echo     set REQUIREMENTS_FILE=requirements.txt
+    echo ^)
+    echo echo.
+    echo echo [1/3] Installing core dependencies...
     echo pip install anthropic openai elevenlabs python-dotenv
     echo echo.
-    echo echo [2/2] Installing all dependencies...
-    echo pip install pyaudio SpeechRecognition pydub noisereduce vosk librosa opencv-python face-recognition pytesseract pillow mss screeninfo psutil scapy httpx redis
+    echo echo [2/3] Installing from %%REQUIREMENTS_FILE%%...
+    echo pip install -r %%REQUIREMENTS_FILE%%
+    echo echo.
+    echo echo [3/3] Verifying installation...
+    echo python -c "from prometheus_expert_knowledge import PrometheusExpertise; print^('✅ Expert system OK'^)"
+    echo python -c "from prometheus_api_integration import PrometheusAPIIntegration; print^('✅ API integration OK'^)"
     echo echo.
     echo echo ========================================================================
     echo echo    Dependencies installation complete!
     echo echo ========================================================================
+    echo echo.
+    echo echo %%PYVER%% ^| findstr /C:"3.14" ^>nul
+    echo if %%errorlevel%%==0 ^(
+    echo     echo [NOTE] You are using Python 3.14
+    echo     echo [NOTE] Advanced audio analysis ^(librosa^) not available
+    echo     echo [NOTE] All other features ^(209 tools, GUI, autonomous, etc.^) work perfectly
+    echo     echo [NOTE] See PYTHON_314_COMPATIBILITY.md for more info
+    echo ^)
+    echo echo.
     echo pause
 ) > "P:\ECHO_PRIME\prometheus_prime_new\INSTALL_DEPENDENCIES.bat"
 

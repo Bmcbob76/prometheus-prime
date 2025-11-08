@@ -1,0 +1,45 @@
+# Prometheus Prime - Example Lab Scope File
+# Define authorized targets for lab-only operations. All actions are blocked
+# outside of the targets below when hard_block_out_of_scope is true in default.yaml.
+
+scope:
+  # Authorized IPv4/IPv6 CIDRs for scanning/operations
+  cidrs:
+    - "10.0.0.0/24"
+    - "192.168.56.0/24"
+    - "fc00:1::/64"   # example ULA IPv6 lab range
+
+  # Authorized domain suffixes (e.g., any host ending with these)
+  domains:
+    - "lab.local"
+    - "corp.lab"
+
+  # Explicit hosts (IPs or FQDNs) that are always allowed
+  hosts:
+    - "10.0.0.5"
+    - "dc01.lab.local"
+
+  # Optional: restrict ports (strings to allow ranges)
+  allowed_ports:
+    - "1-65535"
+
+  # Optional: restrict protocols; if empty, default to safe TCP/UDP
+  protocols:
+    - "tcp"
+    - "udp"
+
+  # Optional: outbound egress controls for payload callbacks/C2 (lab-only)
+  egress:
+    allow_to_cidrs:
+      - "10.0.0.0/8"
+      - "192.168.0.0/16"
+    allow_to_domains:
+      - "lab.local"
+      - "corp.lab"
+
+policy:
+  # Require user confirmation before executing an action within scope
+  require_confirmation: true
+  banner: "LAB-ONLY. Authorized testing only. All actions are monitored and logged."
+  # Block if target is not in scope; set false to warn-only (not recommended)
+  hard_block_out_of_scope: true

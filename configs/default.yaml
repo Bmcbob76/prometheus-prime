@@ -1,0 +1,84 @@
+# Prometheus Prime - Default Configuration (Lab-Only)
+# Fill in configs/example_scope.yaml with your lab CIDRs/domains.
+# All operational features are gated by both feature flags and scope validation.
+
+agent:
+  name: PROMETHEUS-PRIME
+  authority_level: 9.9
+  voice_character: BREE
+  commander_name: Commander Bobby Don McWilliams II
+
+lab:
+  # Absolute path or relative to this config directory
+  scope_file: configs/example_scope.yaml
+  require_scope_confirmation: true
+  # Hard block if a target is outside defined scope
+  hard_block_out_of_scope: true
+
+features:
+  # Family A (initial focus): Recon/Vuln-Scan + AD Attacks + Reporting/Exports
+  enable_recon: true
+  enable_vuln_scan: true
+  enable_ad_attacks: false      # Set true only after installing required deps/tools
+  enable_reporting: true
+
+  # Family B
+  enable_payload_dev: false
+  enable_c2: false
+  enable_post_exploitation: false
+
+  # Family C
+  enable_lateral_movement: true
+  enable_privesc: false
+  enable_exfiltration: false
+
+  # Family D
+  enable_web_exploits: false
+  enable_phishing: false
+  enable_password_attacks: true
+
+paths:
+  base_dir: .
+  logs_dir: logs
+  reports_dir: reports
+  sessions_dir: sessions
+  payloads_dir: payloads
+  osint_db_path: osint_db/prime.sqlite
+
+logging:
+  level: INFO
+  file: logs/prometheus_prime.log
+  format: "[%(asctime)s] %(levelname)s %(name)s - %(message)s"
+  rotate: false
+
+tools:
+  # If these are blank, code will attempt to find them on PATH
+  nmap_path: ""
+  msfconsole_path: ""
+  hashcat_path: ""          # Optional; if blank, will use PATH
+  impacket_scripts_dir: ""  # e.g., C:/Python39/Lib/site-packages/impacket/examples (Windows)
+  bloodhound_path: ""       # Optional
+  ldap3_enabled: false
+
+recon:
+  nmap:
+    default_args:
+      - "-sS"
+      - "-sV"
+      - "-T4"
+      - "--top-ports"
+      - "1000"
+    host_timeout: "30m"
+    max_retries: 2
+  dns:
+    servers: []        # If empty, system DNS is used
+    brute_force: false
+  http:
+    user_agent: "PrometheusPrime/1.0 (Lab-Only)"
+    request_timeout_seconds: 10
+
+reporting:
+  default_format: "markdown"  # markdown | json
+  include_mitre_mapping: true
+  include_ioc_list: true
+  redact_sensitive_fields: true

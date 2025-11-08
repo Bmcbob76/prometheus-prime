@@ -1,0 +1,29 @@
+﻿# Sensitive data
+*.key
+*.pem
+*_private*
+api_keys.json
+credentials.json
+
+# Logs
+*.log
+logs/
+sessions/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+
+# Research data
+research/malware_samples/
+osint_db/breaches/
+crypto/keys/
+
+# Temporary
+*.tmp
+*.bak
+.DS_Store

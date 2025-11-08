@@ -1,0 +1,140 @@
+{
+  "name": "prometheus-prime",
+  "display_name": "🎯 Prometheus Prime - Complete Offensive/Defensive",
+  "description": "Full-spectrum security operations: OSINT, network scanning, mobile control, web security, and exploitation frameworks",
+  "version": "3.0.0",
+  "authority_level": 11.0,
+  "category": "offensive_defensive_security",
+  "capabilities": [
+    "phone_intelligence",
+    "social_osint",
+    "domain_intelligence",
+    "email_intelligence",
+    "ip_intelligence",
+    "network_scanning",
+    "port_scanning",
+    "vulnerability_detection",
+    "mobile_device_control",
+    "android_control",
+    "ios_control",
+    "web_security_testing",
+    "sql_injection_testing",
+    "xss_testing",
+    "directory_bruteforce",
+    "exploitation_framework",
+    "payload_generation",
+    "metasploit_integration",
+    "breach_detection",
+    "reputation_scoring",
+    "phoenix_healing"
+  ],
+  "protocols": {
+    "mcp": {
+      "enabled": true,
+      "command": "H:\\Tools\\python.exe",
+      "args": ["prometheus_prime_mcp.py"],
+      "cwd": "P:\\ECHO_PRIME\\MLS_CLEAN\\PRODUCTION\\GATEWAYS\\PROMETHEUS_PRIME"
+    },
+    "http": {
+      "enabled": true,
+      "port": 8343,
+      "command": "H:\\Tools\\python.exe",
+      "args": ["osint_api_server.py"],
+      "cwd": "P:\\ECHO_PRIME\\MLS_CLEAN\\PRODUCTION\\GATEWAYS\\PROMETHEUS_PRIME"
+    }
+  },
+  "dependencies": {
+    "python_modules": [
+      "flask",
+      "flask-cors",
+      "requests",
+      "python-dotenv",
+      "twilio",
+      "dnspython",
+      "mcp",
+      "beautifulsoup4",
+      "pymysql"
+    ],
+    "external_tools": [
+      "nmap",
+      "adb",
+      "libimobiledevice",
+      "metasploit-framework",
+      "searchsploit"
+    ],
+    "api_keys": [
+      "TWILIO_ACCOUNT_SID",
+      "TWILIO_AUTH_TOKEN",
+      "REDDIT_CLIENT_ID",
+      "REDDIT_CLIENT_SECRET",
+      "WHOISXML_API_KEY",
+      "HIBP_API_KEY",
+      "VIRUSTOTAL_API_KEY",
+      "SHODAN_API_KEY",
+      "ABUSEIPDB_API_KEY"
+    ]
+  },
+  "integrations": {
+    "gs343": true,
+    "phoenix_healing": true,
+    "crystal_memory": false,
+    "voice_system": false,
+    "metasploit": true,
+    "nmap": true,
+    "adb": true,
+    "libimobiledevice": true
+  },
+  "tool_categories": {
+    "osint": [
+      "prom_phone_lookup",
+      "prom_social_search",
+      "prom_domain_lookup",
+      "prom_email_analyze",
+      "prom_ip_analyze",
+      "prom_osint_full"
+    ],
+    "network_security": [
+      "prom_port_scan",
+      "prom_nmap_scan",
+      "prom_vulnerability_scan",
+      "prom_subnet_scan",
+      "prom_service_banner"
+    ],
+    "mobile_control": [
+      "prom_android_devices",
+      "prom_android_info",
+      "prom_android_shell",
+      "prom_android_screenshot",
+      "prom_android_apps",
+      "prom_ios_devices",
+      "prom_ios_info",
+      "prom_ios_screenshot"
+    ],
+    "web_security": [
+      "prom_web_headers",
+      "prom_sql_injection",
+      "prom_xss_test",
+      "prom_dir_bruteforce",
+      "prom_web_crawl",
+      "prom_ssl_scan",
+      "prom_tech_detect",
+      "prom_web_comprehensive"
+    ],
+    "exploitation": [
+      "prom_search_exploits",
+      "prom_generate_payload",
+      "prom_list_payloads",
+      "prom_pattern_create",
+      "prom_msf_search"
+    ],
+    "utility": [
+      "prom_health",
+      "prom_healing_stats"
+    ]
+  },
+  "total_tools": 43,
+  "status": "operational",
+  "auto_start": false,
+  "health_check_interval": 60,
+  "security_notice": "AUTHORIZED USE ONLY - Requires explicit permission for offensive operations"
+}

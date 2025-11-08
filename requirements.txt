@@ -1,0 +1,48 @@
+# Prometheus Prime v3.0.0 - Complete Offensive/Defensive Platform
+# Python Dependencies
+
+# Core Web Framework
+flask==3.0.0
+flask-cors==4.0.0
+requests==2.31.0
+urllib3==2.1.0
+
+# Configuration & Environment
+python-dotenv==1.0.0
+
+# OSINT Integrations
+twilio==8.10.0
+dnspython==2.4.2
+
+# Web Scraping & Parsing
+beautifulsoup4==4.12.2
+lxml==4.9.3
+
+# Database
+pymysql==1.1.0
+
+# MCP Protocol
+mcp==0.9.0
+
+# Security & Cryptography
+cryptography==41.0.7
+
+# Additional Utilities
+python-dateutil==2.8.2
+pytz==2023.3
+
+# Optional - For enhanced functionality
+# ftplib (built-in)
+# socket (built-in)
+# ssl (built-in)
+# subprocess (built-in)
+# concurrent.futures (built-in)
+# json (built-in)
+# pathlib (built-in)
+# datetime (built-in)
+# typing (built-in)
+# re (built-in)
+# hashlib (built-in)
+# base64 (built-in)
+# os (built-in)
+# sys (built-in)

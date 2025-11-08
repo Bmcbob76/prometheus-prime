@@ -75,6 +75,90 @@ from modules.wifi_intelligence import WiFiIntelligence
 from modules.traffic_analysis import TrafficAnalysis
 from modules.bluetooth_intelligence import BluetoothIntelligence
 
+# Import RED TEAM Advanced Modules (selective imports for available modules)
+RED_TEAM_MODULES = {}
+try:
+    from capabilities.red_team_c2 import CommandControlServer
+    RED_TEAM_MODULES['c2'] = CommandControlServer
+except ImportError:
+    pass
+
+try:
+    from capabilities.red_team_ad_attacks import ActiveDirectoryAttacks
+    RED_TEAM_MODULES['ad_attacks'] = ActiveDirectoryAttacks
+except ImportError:
+    pass
+
+try:
+    from capabilities.red_team_mimikatz import CredentialDumper
+    RED_TEAM_MODULES['mimikatz'] = CredentialDumper
+except ImportError:
+    pass
+
+try:
+    from capabilities.red_team_metasploit import MetasploitFramework
+    RED_TEAM_MODULES['metasploit'] = MetasploitFramework
+except ImportError:
+    pass
+
+try:
+    from capabilities.red_team_evasion import EvasionTactics
+    RED_TEAM_MODULES['evasion_adv'] = EvasionTactics
+except ImportError:
+    pass
+
+try:
+    from capabilities.red_team_exfil import ExfiltrationMethods
+    RED_TEAM_MODULES['exfil'] = ExfiltrationMethods
+except ImportError:
+    pass
+
+# Import ULTIMATE Capabilities (with correct class names)
+ULTIMATE_MODULES = {}
+try:
+    from ULTIMATE_CAPABILITIES.biometric_bypass_ultimate import UltimateBiometricBypassSystem
+    ULTIMATE_MODULES['biometric'] = UltimateBiometricBypassSystem
+except ImportError:
+    pass
+
+try:
+    from ULTIMATE_CAPABILITIES.cloud_exploits_ultimate import UltimateCloudExploit
+    ULTIMATE_MODULES['cloud'] = UltimateCloudExploit
+except ImportError:
+    pass
+
+try:
+    from ULTIMATE_CAPABILITIES.network_exploitation_ultimate import UltimateNetworkDomination
+    ULTIMATE_MODULES['network'] = UltimateNetworkDomination
+except ImportError:
+    pass
+
+# Import New Domain Capabilities (selective)
+NEW_DOMAIN_MODULES = {}
+try:
+    from crypto.crypto_exploits import CryptoAttacks
+    NEW_DOMAIN_MODULES['crypto'] = CryptoAttacks
+except ImportError:
+    pass
+
+try:
+    from quantum.quantum_exploits import QuantumCrypto
+    NEW_DOMAIN_MODULES['quantum'] = QuantumCrypto
+except ImportError:
+    pass
+
+try:
+    from ics_scada.ics_core import IndustrialControl
+    NEW_DOMAIN_MODULES['ics'] = IndustrialControl
+except ImportError:
+    pass
+
+try:
+    from osint_db.osint_core import OSINTCore
+    NEW_DOMAIN_MODULES['osint_db'] = OSINTCore
+except ImportError:
+    pass
+
 # Import advanced attack/defense modules
 from tools.advanced_attacks import (
     AIModelPoisoning, QuantumCryptoAttacks, SupplyChainAttacks,
@@ -226,6 +310,33 @@ class PrometheusMCPServer:
             "bluetooth_intel": BluetoothIntelligence()
         }
 
+        # Initialize RED TEAM Advanced modules (only available ones)
+        self.red_team_advanced = {}
+        for name, ModuleClass in RED_TEAM_MODULES.items():
+            try:
+                self.red_team_advanced[name] = ModuleClass()
+                logger.info(f"✅ RED TEAM module loaded: {name}")
+            except Exception as e:
+                logger.warning(f"⚠️  Could not initialize {name}: {e}")
+
+        # Initialize ULTIMATE Capabilities (only available ones)
+        self.ultimate_capabilities = {}
+        for name, ModuleClass in ULTIMATE_MODULES.items():
+            try:
+                self.ultimate_capabilities[name] = ModuleClass()
+                logger.info(f"✅ ULTIMATE capability loaded: {name}")
+            except Exception as e:
+                logger.warning(f"⚠️  Could not initialize ULTIMATE {name}: {e}")
+
+        # Initialize New Domain Capabilities (only available ones)
+        self.new_domains = {}
+        for name, ModuleClass in NEW_DOMAIN_MODULES.items():
+            try:
+                self.new_domains[name] = ModuleClass()
+                logger.info(f"✅ New domain loaded: {name}")
+            except Exception as e:
+                logger.warning(f"⚠️  Could not initialize domain {name}: {e}")
+
         # Setup MCP handlers
         self._setup_handlers()
 
@@ -242,7 +353,10 @@ class PrometheusMCPServer:
             len(self.advanced_attacks_2) +
             len(self.advanced_defenses_1) +
             len(self.advanced_defenses_2) +
-            len(self.sigint_phase2)
+            len(self.sigint_phase2) +
+            len(self.red_team_advanced) +
+            len(self.ultimate_capabilities) +
+            len(self.new_domains)
         )
 
     def _setup_handlers(self):

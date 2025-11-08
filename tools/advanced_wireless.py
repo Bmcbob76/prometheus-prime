@@ -501,3 +501,16 @@ if __name__ == "__main__":
         print("\n✅ Advanced wireless attacks test complete")
 
     asyncio.run(test())
+
+# Wrapper class for MCP integration
+class AdvancedWireless:
+    """Wrapper class for advanced wireless attacks"""
+
+    def __init__(self):
+        self.wifi = AdvancedWiFiAttacks()
+        self.bluetooth = BluetoothAttacks()
+        self.rfid = RFIDAttacks()
+        self.zigbee = ZigbeeAttacks()
+        import logging
+        self.logger = logging.getLogger(__name__)
+        self.logger.info("📡 Advanced Wireless wrapper initialized")

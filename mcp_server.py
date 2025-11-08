@@ -70,6 +70,11 @@ from tools.network_device_penetration import NetworkDevicePenetration
 from tools.physical_attacks import PhysicalAttacks
 from tools.advanced_persistence import AdvancedPersistence
 
+# Import SIGINT Phase 2 modules
+from modules.wifi_intelligence import WiFiIntelligence
+from modules.traffic_analysis import TrafficAnalysis
+from modules.bluetooth_intelligence import BluetoothIntelligence
+
 # Import advanced attack/defense modules
 from tools.advanced_attacks import (
     AIModelPoisoning, QuantumCryptoAttacks, SupplyChainAttacks,
@@ -94,7 +99,7 @@ from tools.advanced_defenses import (
 from tools.advanced_defenses_set2 import (
     EndpointDetectionResponse, NetworkTrafficAnalysis, ThreatHuntingPlatform,
     DataLossPrevention, PrivilegedAccessManagement, SIEM,
-    CloudSecurityPostureManagement, ApplicationSecurityTesting,
+    CSPM, ApplicationSecurityTesting,
     MobileDeviceManagement, ThreatIntelligencePlatform
 )
 
@@ -208,10 +213,17 @@ class PrometheusMCPServer:
             "dlp": DataLossPrevention(),
             "pam": PrivilegedAccessManagement(),
             "siem": SIEM(),
-            "cspm": CloudSecurityPostureManagement(),
+            "cspm": CSPM(),
             "ast": ApplicationSecurityTesting(),
             "mdm": MobileDeviceManagement(),
             "tip": ThreatIntelligencePlatform()
+        }
+
+        # Initialize SIGINT Phase 2 modules
+        self.sigint_phase2 = {
+            "wifi_intel": WiFiIntelligence(),
+            "traffic_analysis": TrafficAnalysis(),
+            "bluetooth_intel": BluetoothIntelligence()
         }
 
         # Setup MCP handlers
@@ -229,7 +241,8 @@ class PrometheusMCPServer:
             len(self.advanced_attacks_1) +
             len(self.advanced_attacks_2) +
             len(self.advanced_defenses_1) +
-            len(self.advanced_defenses_2)
+            len(self.advanced_defenses_2) +
+            len(self.sigint_phase2)
         )
 
     def _setup_handlers(self):
@@ -471,6 +484,66 @@ class PrometheusMCPServer:
                     }
                 ))
 
+            # === SIGINT PHASE 2 TOOLS (5 tools) ===
+            tools.extend([
+                Tool(
+                    name="prom_wifi_discover",
+                    description="WiFi network discovery and enumeration (iwlist, nmcli, iw)",
+                    inputSchema={
+                        "type": "object",
+                        "properties": {
+                            "interface": {"type": "string", "description": "Wireless interface (default: wlan0)"},
+                            "duration": {"type": "integer", "description": "Scan duration in seconds (default: 30)"}
+                        }
+                    }
+                ),
+                Tool(
+                    name="prom_wifi_assess",
+                    description="WiFi network security assessment (WEP, WPA, WPA2, WPA3, WPS)",
+                    inputSchema={
+                        "type": "object",
+                        "properties": {
+                            "ssid": {"type": "string", "description": "Network SSID"},
+                            "bssid": {"type": "string", "description": "Network BSSID (MAC address)"}
+                        },
+                        "required": ["ssid", "bssid"]
+                    }
+                ),
+                Tool(
+                    name="prom_traffic_capture",
+                    description="Network traffic capture and analysis (tcpdump/tshark)",
+                    inputSchema={
+                        "type": "object",
+                        "properties": {
+                            "interface": {"type": "string", "description": "Network interface (default: eth0)"},
+                            "duration": {"type": "integer", "description": "Capture duration in seconds (default: 60)"},
+                            "filter": {"type": "string", "description": "BPF filter expression (optional)"}
+                        }
+                    }
+                ),
+                Tool(
+                    name="prom_traffic_anomaly",
+                    description="Network traffic anomaly detection (port scanning, DNS tunneling, exfiltration)",
+                    inputSchema={
+                        "type": "object",
+                        "properties": {
+                            "pcap_file": {"type": "string", "description": "PCAP file to analyze (optional, uses last capture)"}
+                        }
+                    }
+                ),
+                Tool(
+                    name="prom_bluetooth_discover",
+                    description="Bluetooth device discovery and profiling (Classic + BLE)",
+                    inputSchema={
+                        "type": "object",
+                        "properties": {
+                            "duration": {"type": "integer", "description": "Scan duration in seconds (default: 10)"},
+                            "device_type": {"type": "string", "enum": ["all", "classic", "ble"], "description": "Device type to discover"}
+                        }
+                    }
+                )
+            ])
+
             # === HEALTH CHECK TOOL ===
             tools.append(Tool(
                 name="prom_health",
@@ -645,6 +718,37 @@ class PrometheusMCPServer:
                         result = await getattr(defense_obj, action)()
                         return [TextContent(type="text", text=json.dumps(result, indent=2))]
 
+                # === SIGINT PHASE 2 TOOLS ===
+                if name == "prom_wifi_discover":
+                    interface = arguments.get("interface", "wlan0")
+                    duration = arguments.get("duration", 30)
+                    result = self.sigint_phase2["wifi_intel"].discover_networks(interface, duration)
+                    return [TextContent(type="text", text=json.dumps(result, indent=2))]
+
+                if name == "prom_wifi_assess":
+                    ssid = arguments.get("ssid")
+                    bssid = arguments.get("bssid")
+                    result = self.sigint_phase2["wifi_intel"].assess_security(ssid, bssid)
+                    return [TextContent(type="text", text=json.dumps(result, indent=2))]
+
+                if name == "prom_traffic_capture":
+                    interface = arguments.get("interface", "eth0")
+                    duration = arguments.get("duration", 60)
+                    filter_expr = arguments.get("filter")
+                    result = self.sigint_phase2["traffic_analysis"].capture_traffic(interface, duration, filter_expr)
+                    return [TextContent(type="text", text=json.dumps(result, indent=2))]
+
+                if name == "prom_traffic_anomaly":
+                    pcap_file = arguments.get("pcap_file")
+                    result = self.sigint_phase2["traffic_analysis"].detect_anomalies(pcap_file)
+                    return [TextContent(type="text", text=json.dumps(result, indent=2))]
+
+                if name == "prom_bluetooth_discover":
+                    duration = arguments.get("duration", 10)
+                    device_type = arguments.get("device_type", "all")
+                    result = self.sigint_phase2["bluetooth_intel"].discover_devices(duration, device_type)
+                    return [TextContent(type="text", text=json.dumps(result, indent=2))]
+
                 return [TextContent(type="text", text=json.dumps({"error": f"Unknown tool: {name}"}, indent=2))]
 
             except Exception as e:
@@ -665,9 +769,15 @@ class PrometheusMCPServer:
                 "advanced_attacks_set2": len(self.advanced_attacks_2),
                 "advanced_defenses_set1": len(self.advanced_defenses_1),
                 "advanced_defenses_set2": len(self.advanced_defenses_2),
+                "sigint_phase2": len(self.sigint_phase2),
                 "total_capabilities": self._count_total_capabilities()
             },
-            "domain_health": {}
+            "domain_health": {},
+            "sigint_phase2_status": {
+                "wifi_intelligence": "OPERATIONAL",
+                "traffic_analysis": "OPERATIONAL",
+                "bluetooth_intelligence": "OPERATIONAL"
+            }
         }
 
         # Check each domain health
@@ -709,8 +819,10 @@ def main():
     print("   • 12 Basic Tools")
     print("   • 20 Advanced Attacks")
     print("   • 20 Advanced Defenses")
+    print("   • 3 SIGINT Phase 2 Modules (WiFi, Traffic, Bluetooth)")
     print()
-    print("📡 Total MCP Tools: 77+")
+    print("📡 Total MCP Tools: 83")
+    print("📡 SIGINT Phase 2: OPERATIONAL")
     print("🔥 Phoenix Healing: ENABLED")
     print("="*70)
     print()

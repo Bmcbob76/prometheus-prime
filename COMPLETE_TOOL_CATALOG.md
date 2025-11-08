@@ -19,8 +19,9 @@ Last Updated: 2025-11-08
 | **Advanced Attacks (Set 2)** | 10 | `prom_attack_{name}` |
 | **Advanced Defenses (Set 1)** | 10 | `prom_defense_{name}` |
 | **Advanced Defenses (Set 2)** | 10 | `prom_defense_{name}` |
+| **SIGINT Phase 2** | 5 | `prom_wifi_*`, `prom_traffic_*`, `prom_bluetooth_*` |
 | **System Health** | 1 | `prom_health` |
-| **TOTAL** | **78** | All via natural language |
+| **TOTAL** | **83** | All via natural language |
 
 ---
 
@@ -479,6 +480,186 @@ Use prom_search_exploits with query "windows smb"
 
 ---
 
+## 📡 SIGINT PHASE 2 (5 Tools)
+
+### WiFi Intelligence (2 tools)
+
+**prom_wifi_discover** - WiFi network discovery and enumeration
+```
+Use prom_wifi_discover with interface "wlan0" and duration 30
+```
+
+**Capabilities:**
+- Multi-method WiFi scanning (iwlist, nmcli, iw)
+- Network discovery with SSID/BSSID
+- Security protocol detection (WEP, WPA, WPA2, WPA3)
+- Signal strength analysis (RSSI)
+- Channel utilization monitoring
+- Hidden SSID detection
+- Security breakdown statistics
+
+**Output:**
+```json
+{
+  "total_networks": 15,
+  "security_breakdown": {
+    "OPEN": 2,
+    "WEP": 1,
+    "WPA2": 10,
+    "WPA3": 2
+  },
+  "networks": [...]
+}
+```
+
+---
+
+**prom_wifi_assess** - WiFi security assessment
+```
+Use prom_wifi_assess with ssid "MyNetwork" and bssid "AA:BB:CC:DD:EE:FF"
+```
+
+**Capabilities:**
+- Comprehensive security scoring (0-100)
+- Vulnerability detection (WEP, WPA weaknesses)
+- WPS vulnerability assessment
+- Rogue AP detection
+- Signal strength anomaly detection
+- Security recommendations
+
+**Output:**
+```json
+{
+  "security_score": 75,
+  "vulnerabilities": [
+    {
+      "type": "WPS Enabled",
+      "severity": "HIGH",
+      "cvss_score": 8.0
+    }
+  ],
+  "recommendations": [...]
+}
+```
+
+---
+
+### Traffic Analysis (2 tools)
+
+**prom_traffic_capture** - Network traffic capture
+```
+Use prom_traffic_capture with interface "eth0", duration 60, and filter "tcp port 80"
+```
+
+**Capabilities:**
+- Real-time packet capture (tcpdump)
+- BPF filter support
+- Protocol distribution analysis (tshark)
+- Top talkers identification
+- Bandwidth monitoring
+- Session tracking
+- DNS/HTTP traffic analysis
+
+**Output:**
+```json
+{
+  "capture_file": "/tmp/capture_20250108.pcap",
+  "total_packets": 15234,
+  "duration_seconds": 60,
+  "file_size_mb": 12.5
+}
+```
+
+---
+
+**prom_traffic_anomaly** - Traffic anomaly detection
+```
+Use prom_traffic_anomaly with pcap_file "/tmp/capture.pcap"
+```
+
+**Capabilities:**
+- Port scanning detection
+- DNS tunneling detection
+- Data exfiltration detection
+- Suspicious protocol detection
+- Unusual traffic pattern analysis
+- Severity scoring
+
+**Anomaly Types Detected:**
+- Port scanning (high port count from single IP)
+- DNS tunneling (long DNS queries)
+- Data exfiltration (large outbound transfers)
+- Suspicious protocols (non-standard ports)
+- Unusual traffic patterns
+
+**Output:**
+```json
+{
+  "total_anomalies": 2,
+  "anomalies": [
+    {
+      "type": "Port Scanning",
+      "source_ip": "192.168.1.100",
+      "unique_ports_accessed": 45,
+      "severity": "HIGH"
+    },
+    {
+      "type": "DNS Tunneling",
+      "dns_query": "aGVsbG8ud29ybGQ...",
+      "query_length": 150,
+      "severity": "HIGH"
+    }
+  ]
+}
+```
+
+---
+
+### Bluetooth Intelligence (1 tool)
+
+**prom_bluetooth_discover** - Bluetooth device discovery
+```
+Use prom_bluetooth_discover with duration 10 and device_type "all"
+```
+
+**Capabilities:**
+- Classic Bluetooth discovery (hcitool)
+- BLE (Bluetooth Low Energy) discovery
+- Device profiling and fingerprinting
+- Manufacturer identification (OUI lookup)
+- Proximity tracking (RSSI-based)
+- Distance estimation
+- Security assessment
+- Vulnerability detection (BlueBorne, BlueSmack)
+
+**Output:**
+```json
+{
+  "total_devices": 12,
+  "classic_devices": 5,
+  "ble_devices": 7,
+  "devices": [
+    {
+      "mac_address": "AA:BB:CC:DD:EE:FF",
+      "name": "iPhone 12",
+      "type": "BLE",
+      "manufacturer": "Apple",
+      "signal_dbm": -55,
+      "approximate_distance_meters": 3.5
+    }
+  ]
+}
+```
+
+**Advanced Features:**
+- Device class analysis
+- Service enumeration
+- BLE advertising data analysis
+- Connection monitoring
+- Security posture assessment
+
+---
+
 ## ❤️ SYSTEM HEALTH
 
 ### prom_health
@@ -594,6 +775,9 @@ Claude: Configuring EDR behavioral monitoring...
 | **Generate Payload** | `Use prom_generate_payload with payload_type "reverse_shell"` |
 | **OSINT Lookup** | `Use prom_osint with operation "phone_lookup"` |
 | **Threat Detection** | `Use prom_defense_ai_threat with action "analyze_behavior"` |
+| **WiFi Discovery** | `Use prom_wifi_discover with interface "wlan0"` |
+| **Traffic Capture** | `Use prom_traffic_capture with interface "eth0"` |
+| **Bluetooth Scan** | `Use prom_bluetooth_discover with duration 10` |
 
 ---
 
@@ -626,8 +810,10 @@ Claude: Configuring EDR behavioral monitoring...
 ---
 
 **Authority Level:** 11.0
-**Total Tools:** 78
+**Total Tools:** 83
 **Status:** OPERATIONAL
+**SIGINT Phase 2:** OPERATIONAL
 **All Systems:** READY
 
 🔥 **PROMETHEUS PRIME ULTIMATE** 🔥
+📡 **SIGINT PHASE 2 INTEGRATED** 📡

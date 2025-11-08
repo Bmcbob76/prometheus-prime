@@ -481,3 +481,17 @@ if __name__ == "__main__":
         print("\n✅ Physical attacks test complete")
 
     asyncio.run(test())
+
+# Wrapper class for MCP integration
+class PhysicalAttacks:
+    """Wrapper class for physical attacks"""
+
+    def __init__(self):
+        self.usb = USBAttacks()
+        self.dma = DMAAttacks()
+        self.cold_boot = ColdBootAttacks()
+        self.hardware_implants = HardwareImplants()
+        self.evil_maid = EvilMaidAttacks()
+        import logging
+        self.logger = logging.getLogger(__name__)
+        self.logger.info("🔨 Physical Attacks wrapper initialized")

@@ -559,3 +559,16 @@ if __name__ == "__main__":
         print("\n✅ Network device penetration test complete")
 
     asyncio.run(test())
+
+# Wrapper class for MCP integration
+class NetworkDevicePenetration:
+    """Wrapper class for network device exploitation"""
+
+    def __init__(self):
+        self.router = RouterExploit()
+        self.switch = SwitchExploit()
+        self.iot = IoTExploit()
+        self.ics = IndustrialControlExploit()
+        import logging
+        self.logger = logging.getLogger(__name__)
+        self.logger.info("🔌 Network Device Penetration wrapper initialized")

@@ -379,6 +379,22 @@ PROMETHEUS_PRIME/
 
 ---
 
+## 🛠️ ARSENAL TOOLKIT
+
+**Orange Cyberdefense Arsenal** integrated for quick command reference:
+- **150+ cheatsheets** covering all major pentest tools
+- Active Directory (Bloodhound, Impacket, Kerberos, Mimikatz)
+- Network tools (Nmap, Chisel, Socat)
+- Password cracking (Hashcat, John)
+- Web exploitation (SQLMap, Burp Suite)
+- Mobile testing (ADB, APKTool, Frida)
+- Protocol testing (SMB, LDAP, RDP, SSH)
+
+**Location:** `tools/arsenal/`  
+**Usage:** Quick command lookup and execution templates
+
+---
+
 ## 🔥 PHOENIX HEALING
 
 All operations feature GS343 Phoenix healing:

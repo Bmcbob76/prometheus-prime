@@ -27,6 +27,7 @@ from mobile_control import MobileControl
 from web_security import WebSecurity
 from exploitation_framework import ExploitationFramework
 from gs343_gateway import gs343, with_phoenix_retry
+from vault_addon import PromethianVault
 
 # MCP SDK
 try:
@@ -52,6 +53,14 @@ mobile_ctrl = MobileControl()
 web_sec = WebSecurity()
 exploit_fw = ExploitationFramework()
 print("✅ Security modules ready")
+
+print("🔧 Initializing Promethian Vault...")
+try:
+    vault = PromethianVault()
+    print("✅ Promethian Vault ready (Pentagon-level encryption)")
+except Exception as e:
+    print(f"⚠️  Vault initialization warning: {e}")
+    vault = None
 
 # Create MCP server
 app = Server("prometheus-prime")
@@ -415,6 +424,130 @@ async def list_tools() -> List[Tool]:
             name="prom_healing_stats",
             description="Phoenix healing statistics",
             inputSchema={"type": "object", "properties": {}, "required": []}
+        ),
+
+        # ========== PROMETHIAN VAULT TOOLS ==========
+        Tool(
+            name="prom_vault_status",
+            description="🔐 Get Promethian Vault status and statistics (Pentagon-level encrypted vault)",
+            inputSchema={"type": "object", "properties": {}, "required": []}
+        ),
+        Tool(
+            name="prom_vault_store",
+            description="🔐 Store encrypted secret in vault (API keys, passwords, crypto wallets, etc.)",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "name": {"type": "string", "description": "Secret name/identifier"},
+                    "value": {"type": "string", "description": "Secret value to encrypt"},
+                    "secret_type": {
+                        "type": "string",
+                        "enum": ["api_key", "password", "crypto_wallet", "crypto_seed", "crypto_private_key", "ssh_private_key", "ssh_public_key", "certificate", "token", "credential"],
+                        "description": "Type of secret",
+                        "default": "credential"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {"type": "string"},
+                        "description": "Optional tags for organization"
+                    }
+                },
+                "required": ["name", "value"]
+            }
+        ),
+        Tool(
+            name="prom_vault_retrieve",
+            description="🔐 Retrieve and decrypt secret from vault",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "name": {"type": "string", "description": "Secret name"}
+                },
+                "required": ["name"]
+            }
+        ),
+        Tool(
+            name="prom_vault_list",
+            description="🔐 List all secrets in vault (metadata only, no values)",
+            inputSchema={"type": "object", "properties": {}, "required": []}
+        ),
+        Tool(
+            name="prom_vault_delete",
+            description="🔐 Securely delete secret from vault (with overwrite)",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "name": {"type": "string", "description": "Secret name to delete"}
+                },
+                "required": ["name"]
+            }
+        ),
+        Tool(
+            name="prom_vault_store_api_key",
+            description="🔐 Store API key with automatic naming (service_api_key)",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "service": {"type": "string", "description": "Service name (e.g., openai, anthropic, github)"},
+                    "api_key": {"type": "string", "description": "API key value"},
+                    "tags": {"type": "array", "items": {"type": "string"}}
+                },
+                "required": ["service", "api_key"]
+            }
+        ),
+        Tool(
+            name="prom_vault_store_password",
+            description="🔐 Store password with service and username",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "service": {"type": "string", "description": "Service name"},
+                    "username": {"type": "string", "description": "Username/email"},
+                    "password": {"type": "string", "description": "Password"}
+                },
+                "required": ["service", "username", "password"]
+            }
+        ),
+        Tool(
+            name="prom_vault_store_crypto",
+            description="🔐 Store cryptocurrency wallet (seed phrase or private key)",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "wallet_name": {"type": "string", "description": "Wallet identifier"},
+                    "seed_phrase": {"type": "string", "description": "12/24 word seed phrase"},
+                    "private_key": {"type": "string", "description": "Private key (alternative to seed)"},
+                    "blockchain": {"type": "string", "description": "Blockchain (ethereum, bitcoin, etc.)", "default": "ethereum"}
+                },
+                "required": ["wallet_name"]
+            }
+        ),
+        Tool(
+            name="prom_vault_backup",
+            description="🔐 Create encrypted backup of vault",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "backup_path": {"type": "string", "description": "Optional backup file path"}
+                },
+                "required": []
+            }
+        ),
+        Tool(
+            name="prom_vault_audit_log",
+            description="🔐 Get vault audit log (all access events)",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "limit": {"type": "integer", "description": "Max entries", "default": 100}
+                },
+                "required": []
+            }
+        ),
+        Tool(
+            name="prom_vault_intrusion_log",
+            description="🔐 Get intrusion detection log (security events)",
+            inputSchema={"type": "object", "properties": {}, "required": []}
         )
     ]
 
@@ -434,10 +567,12 @@ async def call_tool(name: str, arguments: Dict[str, Any]) -> List[TextContent]:
                     'network_security': True,
                     'mobile_control': True,
                     'web_security': True,
-                    'exploitation': True
+                    'exploitation': True,
+                    'promethian_vault': vault is not None
                 },
-                'tools_available': 43,
-                'phoenix_healing': True
+                'tools_available': 54,  # 43 original + 11 vault tools
+                'phoenix_healing': True,
+                'vault_status': 'active' if vault else 'disabled'
             }
         
         # ========== OSINT TOOLS ==========
@@ -573,7 +708,92 @@ async def call_tool(name: str, arguments: Dict[str, Any]) -> List[TextContent]:
             result = results
         elif name == "prom_healing_stats":
             result = gs343.get_healing_stats()
-        
+
+        # ========== PROMETHIAN VAULT TOOLS ==========
+        elif name == "prom_vault_status":
+            if vault:
+                result = vault.status()
+            else:
+                result = {"error": "Vault not initialized"}
+
+        elif name == "prom_vault_store":
+            if vault:
+                result = vault.store(
+                    name=arguments['name'],
+                    value=arguments['value'],
+                    secret_type=arguments.get('secret_type', 'credential'),
+                    tags=arguments.get('tags', [])
+                )
+            else:
+                result = {"error": "Vault not initialized"}
+
+        elif name == "prom_vault_retrieve":
+            if vault:
+                result = vault.retrieve(name=arguments['name'])
+            else:
+                result = {"error": "Vault not initialized"}
+
+        elif name == "prom_vault_list":
+            if vault:
+                result = vault.list()
+            else:
+                result = {"error": "Vault not initialized"}
+
+        elif name == "prom_vault_delete":
+            if vault:
+                result = vault.delete(name=arguments['name'])
+            else:
+                result = {"error": "Vault not initialized"}
+
+        elif name == "prom_vault_store_api_key":
+            if vault:
+                result = vault.store_api_key(
+                    service=arguments['service'],
+                    api_key=arguments['api_key'],
+                    tags=arguments.get('tags')
+                )
+            else:
+                result = {"error": "Vault not initialized"}
+
+        elif name == "prom_vault_store_password":
+            if vault:
+                result = vault.store_password(
+                    service=arguments['service'],
+                    username=arguments['username'],
+                    password=arguments['password']
+                )
+            else:
+                result = {"error": "Vault not initialized"}
+
+        elif name == "prom_vault_store_crypto":
+            if vault:
+                result = vault.store_crypto_wallet(
+                    wallet_name=arguments['wallet_name'],
+                    seed_phrase=arguments.get('seed_phrase'),
+                    private_key=arguments.get('private_key'),
+                    blockchain=arguments.get('blockchain', 'ethereum')
+                )
+            else:
+                result = {"error": "Vault not initialized"}
+
+        elif name == "prom_vault_backup":
+            if vault:
+                result = vault.backup(backup_path=arguments.get('backup_path'))
+            else:
+                result = {"error": "Vault not initialized"}
+
+        elif name == "prom_vault_audit_log":
+            if vault:
+                result = vault.get_audit_log(limit=arguments.get('limit', 100))
+            else:
+                result = {"error": "Vault not initialized"}
+
+        elif name == "prom_vault_intrusion_log":
+            if vault:
+                result = vault.get_intrusion_log()
+            else:
+                result = {"error": "Vault not initialized"}
+
         else:
             result = {"error": f"Unknown tool: {name}"}
         

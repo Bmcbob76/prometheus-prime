@@ -27,3 +27,6 @@ crypto/keys/
 *.tmp
 *.bak
 .DS_Store
+~/
+*.db
+.promethian_vault/

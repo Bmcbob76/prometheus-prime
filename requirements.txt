@@ -13,6 +13,7 @@ python-dotenv==1.0.0
 # OSINT Integrations
 twilio==8.10.0
 dnspython==2.4.2
+python-whois==0.8.0
 
 # Web Scraping & Parsing
 beautifulsoup4==4.12.2
@@ -31,6 +32,33 @@ cryptography==41.0.7
 python-dateutil==2.8.2
 pytz==2023.3
 
+# SSH/Network Access
+paramiko==3.4.0
+pywinrm==0.4.3
+impacket==0.11.0
+
+# Image Processing & Vision
+opencv-python==4.9.0.80
+face-recognition==1.3.0
+pytesseract==0.3.10
+easyocr==1.7.0
+pillow==10.2.0
+pyzbar==0.1.9
+mss==9.0.1
+numpy==1.26.3
+
+# Audio Processing & Hearing
+SpeechRecognition==3.10.1
+openai-whisper==20231117
+pvporcupine==3.0.2
+pyaudio==0.2.14
+pyannote.audio==3.1.1
+webrtcvad==2.0.10
+pydub==0.25.1
+
+# Voice Synthesis (already exists)
+elevenlabs==1.0.0
+
 # Optional - For enhanced functionality
 # ftplib (built-in)
 # socket (built-in)
@@ -46,3 +74,7 @@ pytz==2023.3
 # base64 (built-in)
 # os (built-in)
 # sys (built-in)
+# zlib (built-in)
+# smtplib (built-in)
+# email (built-in)
+# uuid (built-in)

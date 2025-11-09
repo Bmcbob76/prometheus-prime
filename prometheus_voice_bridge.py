@@ -11,6 +11,7 @@ import sys
 from pathlib import Path
 from typing import Dict, List, Optional, Any
 import json
+import asyncio
 
 PROMETHEUS_DIR = Path("E:/prometheus_prime")
 AGENT_CLI = PROMETHEUS_DIR / "prometheus_prime_agent.py"
@@ -19,8 +20,14 @@ PYTHON_EXE = Path("H:/Tools/python.exe")
 
 class PrometheusVoiceBridge:
     """Bridge between voice commands and Prometheus CLI"""
-    
+
     def __init__(self):
+        # Initialize capability modules
+        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
+
+        # Import and instantiate all capability modules
+        self._init_capability_modules()
+
         self.capabilities = {
             # CLI commands (6)
             "nmap_scan": self._run_nmap,
@@ -70,14 +77,107 @@ class PrometheusVoiceBridge:
             "zero_day_research": self._run_zero_day_research,
             "threat_intel_fusion": self._run_threat_intel_fusion,
         }
-    
+
+    def _init_capability_modules(self):
+        """Initialize all capability modules"""
+        try:
+            # Import all capability modules
+            from red_team_ad_attacks import ActiveDirectoryAttacks
+            from red_team_mimikatz import CredentialDumper
+            from red_team_privesc import PrivilegeEscalation
+            from red_team_persistence import PersistenceMechanisms
+            from red_team_c2 import C2Operations
+            from red_team_core import RedTeamCore
+            from red_team_evasion import EvasionTechniques
+            from red_team_exfil import DataExfiltration
+            from red_team_lateral_movement import AdvancedLateralMovement
+            from red_team_obfuscation import CodeObfuscation
+            from red_team_password_attacks import AdvancedPasswordAttacks
+            from red_team_phishing import PhishingCampaign
+            from red_team_post_exploit import PostExploitation
+            from red_team_recon import AdvancedRecon
+            from red_team_reporting import RedTeamReporting
+            from red_team_web_exploits import AdvancedWebExploits
+            from red_team_exploits import ExploitDevelopment
+            from red_team_vuln_scan import VulnerabilityScanner
+            from red_team_metasploit import MetasploitIntegration
+            from web_exploits import WebExploitation
+            from mobile_exploits import MobileExploitation
+            from cloud_exploits import CloudExploitation
+            from biometric_bypass import BiometricBypass
+            from sigint_core import SIGINTOperations
+
+            # Instantiate modules
+            self.ad_attacks = ActiveDirectoryAttacks()
+            self.mimikatz = CredentialDumper()
+            self.privesc = PrivilegeEscalation()
+            self.persistence = PersistenceMechanisms()
+            self.c2 = C2Operations()
+            self.red_team_core = RedTeamCore()
+            self.evasion = EvasionTechniques()
+            self.exfiltration = DataExfiltration()
+            self.lateral_movement = AdvancedLateralMovement()
+            self.obfuscation = CodeObfuscation()
+            self.password_attacks = AdvancedPasswordAttacks()
+            self.phishing = PhishingCampaign()
+            self.post_exploit = PostExploitation()
+            self.recon = AdvancedRecon()
+            self.reporting = RedTeamReporting()
+            self.web_exploits_adv = AdvancedWebExploits()
+            self.exploits = ExploitDevelopment()
+            self.vuln_scanner = VulnerabilityScanner()
+            self.metasploit = MetasploitIntegration()
+            self.web_exploits = WebExploitation()
+            self.mobile_exploits = MobileExploitation()
+            self.cloud_exploits = CloudExploitation()
+            self.biometric = BiometricBypass()
+            self.sigint = SIGINTOperations()
+
+        except ImportError as e:
+            print(f"Warning: Some capability modules not available: {e}")
+            # Set to None if not available
+            self.ad_attacks = None
+            self.mimikatz = None
+            self.privesc = None
+            self.persistence = None
+            self.c2 = None
+            self.red_team_core = None
+            self.evasion = None
+            self.exfiltration = None
+            self.lateral_movement = None
+            self.obfuscation = None
+            self.password_attacks = None
+            self.phishing = None
+            self.post_exploit = None
+            self.recon = None
+            self.reporting = None
+            self.web_exploits_adv = None
+            self.exploits = None
+            self.vuln_scanner = None
+            self.metasploit = None
+            self.web_exploits = None
+            self.mobile_exploits = None
+            self.cloud_exploits = None
+            self.biometric = None
+            self.sigint = None
+
     def execute(self, capability: str, **kwargs) -> Dict[str, Any]:
         """Execute a capability by name"""
         if capability not in self.capabilities:
             return {"error": f"Unknown capability: {capability}"}
-        
+
         try:
-            return self.capabilities[capability](**kwargs)
+            result = self.capabilities[capability](**kwargs)
+            # If result is a coroutine, run it with asyncio
+            if asyncio.iscoroutine(result):
+                import asyncio
+                loop = asyncio.new_event_loop()
+                asyncio.set_event_loop(loop)
+                try:
+                    return loop.run_until_complete(result)
+                finally:
+                    loop.close()
+            return result
         except Exception as e:
             return {"error": str(e), "capability": capability}
     
@@ -137,436 +237,408 @@ class PrometheusVoiceBridge:
     
     # ========== DIRECT CAPABILITY ACCESS (Temporary until CLI extended) ==========
     
-    def _run_ad_attack(self, attack_type: str, target: str, **kwargs) -> Dict:
-        """Active Directory attacks - Direct Python call"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from red_team_ad_attacks import ADOperations
-        
-        ad_ops = ADOperations()
-        return {
-            "status": f"AD {attack_type} attack initiated on {target}",
-            "attack_type": attack_type,
-            "target": target,
-            "note": "Direct capability execution - CLI integration pending"
-        }
+    async def _run_ad_attack(self, attack_type: str, target: str, **kwargs) -> Dict:
+        """Active Directory attacks - Real implementation"""
+        if not self.ad_attacks:
+            return {"error": "AD attacks module not available"}
+
+        domain = kwargs.get("domain", target)
+        username = kwargs.get("username", "")
+        password = kwargs.get("password", "")
+        dc_ip = kwargs.get("dc_ip", None)
+
+        try:
+            if attack_type.lower() == "kerberoast":
+                result = await self.ad_attacks.kerberoast_attack(domain, username, password, dc_ip)
+                return {"status": "success", "attack_type": "kerberoast", "accounts": result}
+            elif attack_type.lower() == "asreproast":
+                result = await self.ad_attacks.asreproast_attack(domain, dc_ip)
+                return {"status": "success", "attack_type": "asreproast", "accounts": result}
+            elif attack_type.lower() == "dcsync":
+                result = await self.ad_attacks.dcsync_attack(domain, username, password, dc_ip)
+                return {"status": "success", "attack_type": "dcsync", "credentials": result}
+            elif attack_type.lower() == "enumerate":
+                result = await self.ad_attacks.enumerate_domain(domain, dc_ip)
+                return {"status": "success", "attack_type": "enumerate", "results": result}
+            elif attack_type.lower() == "bloodhound":
+                result = await self.ad_attacks.bloodhound_analysis(kwargs.get("data_path", "."))
+                return {"status": "success", "attack_type": "bloodhound", "results": result}
+            else:
+                return {"error": f"Unknown AD attack type: {attack_type}"}
+        except Exception as e:
+            return {"error": str(e), "attack_type": attack_type}
     
-    def _run_exploit_gen(self, exploit_type: str, output: str = None, **kwargs) -> Dict:
-        """Exploit generation"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from red_team_exploits import ExploitDevelopment
-        
-        exploit_dev = ExploitDevelopment()
-        return {
-            "status": f"Exploit {exploit_type} generated",
-            "exploit_type": exploit_type,
-            "output": output or "exploit.py",
-            "note": "Direct capability execution - CLI integration pending"
-        }
+    async def _run_exploit_gen(self, exploit_type: str, output: str = None, **kwargs) -> Dict:
+        """Exploit generation - Real implementation"""
+        if not self.exploits:
+            return {"error": "Exploit development module not available"}
+
+        try:
+            # Call appropriate exploit generation method
+            result = await self.exploits.generate_exploit(exploit_type, output or "exploit.py", **kwargs)
+            return {"status": "success", "exploit_type": exploit_type, "output": output or "exploit.py", "result": result}
+        except Exception as e:
+            return {"error": str(e), "exploit_type": exploit_type}
     
-    def _run_mimikatz(self, command: str, target: str, **kwargs) -> Dict:
-        """Mimikatz credential dumping"""
-        return {
-            "status": f"Mimikatz {command} executed on {target}",
-            "command": command,
-            "target": target,
-            "note": "Direct capability execution - CLI integration pending"
-        }
+    async def _run_mimikatz(self, command: str, target: str = None, **kwargs) -> Dict:
+        """Mimikatz credential dumping - Real implementation"""
+        if not self.mimikatz:
+            return {"error": "Mimikatz module not available"}
+
+        try:
+            if command.lower() == "dump_lsass":
+                result = await self.mimikatz.dump_lsass_memory(kwargs.get("method"), kwargs.get("output_path"))
+                return {"status": "success", "command": command, "result": result}
+            elif command.lower() == "extract_creds":
+                result = await self.mimikatz.extract_credentials_mimikatz(kwargs.get("dump_file"))
+                return {"status": "success", "command": command, "credentials": result}
+            elif command.lower() == "dump_sam":
+                result = await self.mimikatz.dump_sam_database()
+                return {"status": "success", "command": command, "sam_hashes": result}
+            elif command.lower() == "lsa_secrets":
+                result = await self.mimikatz.extract_lsa_secrets()
+                return {"status": "success", "command": command, "secrets": result}
+            elif command.lower() == "kerberos_tickets":
+                result = await self.mimikatz.extract_kerberos_tickets(kwargs.get("export_path", "C:\\temp\\tickets"))
+                return {"status": "success", "command": command, "tickets": result}
+            elif command.lower() == "dpapi":
+                result = await self.mimikatz.extract_dpapi_credentials()
+                return {"status": "success", "command": command, "dpapi_creds": result}
+            elif command.lower() == "golden_ticket":
+                result = await self.mimikatz.generate_golden_ticket(
+                    kwargs.get("domain"), kwargs.get("sid"), kwargs.get("krbtgt_hash")
+                )
+                return {"status": "success", "command": command, "ticket_command": result}
+            else:
+                return {"error": f"Unknown mimikatz command: {command}"}
+        except Exception as e:
+            return {"error": str(e), "command": command}
     
-    def _run_privesc(self, technique: str, target: str, **kwargs) -> Dict:
-        """Privilege escalation"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from red_team_privesc import PrivilegeEscalation
-        
-        privesc = PrivilegeEscalation()
-        return {
-            "status": f"Privesc {technique} initiated on {target}",
-            "technique": technique,
-            "target": target,
-            "note": "Direct capability execution - CLI integration pending"
-        }
+    async def _run_privesc(self, technique: str, target: str, **kwargs) -> Dict:
+        """Privilege escalation - Real implementation"""
+        if not self.red_team_core:
+            return {"error": "Red team core module not available"}
+
+        try:
+            target_os = kwargs.get("os", "windows")
+            current_user = kwargs.get("current_user", "user")
+            result = await self.red_team_core.privilege_escalation(target_os, current_user)
+            return {"status": "success", "technique": technique, "target": target, "techniques": result}
+        except Exception as e:
+            return {"error": str(e), "technique": technique}
+
+    async def _run_persistence(self, method: str, target: str, **kwargs) -> Dict:
+        """Persistence mechanisms - Real implementation"""
+        if not self.persistence:
+            return {"error": "Persistence module not available"}
+
+        try:
+            result = await self.persistence.establish_persistence(method, target, **kwargs)
+            return {"status": "success", "method": method, "target": target, "result": result}
+        except Exception as e:
+            return {"error": str(e), "method": method}
+
+    async def _run_c2(self, operation: str, interval: int = None, port: int = None, **kwargs) -> Dict:
+        """Command & Control - Real implementation"""
+        if not self.c2:
+            return {"error": "C2 module not available"}
+
+        try:
+            result = await self.c2.execute_operation(operation, interval=interval, port=port, **kwargs)
+            return {"status": "success", "operation": operation, "result": result}
+        except Exception as e:
+            return {"error": str(e), "operation": operation}
     
-    def _run_persistence(self, method: str, target: str, **kwargs) -> Dict:
-        """Persistence mechanisms"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from red_team_persistence import PersistenceMechanisms
-        
-        persist = PersistenceMechanisms()
-        return {
-            "status": f"Persistence {method} established on {target}",
-            "method": method,
-            "target": target,
-            "note": "Direct capability execution - CLI integration pending"
-        }
-    
-    def _run_c2(self, operation: str, interval: int = None, port: int = None, **kwargs) -> Dict:
-        """Command & Control"""
-        return {
-            "status": f"C2 {operation} configured",
-            "operation": operation,
-            "interval": interval,
-            "port": port,
-            "note": "Direct capability execution - CLI integration pending"
-        }
-    
-    def _run_web_exploit(self, exploit_type: str, url: str, **kwargs) -> Dict:
-        """Web exploitation"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from web_exploits import WebExploitation
-        
-        web_exp = WebExploitation()
-        return {
-            "status": f"Web exploit {exploit_type} executed on {url}",
-            "exploit_type": exploit_type,
-            "url": url,
-            "note": "Direct capability execution - CLI integration pending"
-        }
-    
-    def _run_mobile_exploit(self, exploit_type: str, platform: str, **kwargs) -> Dict:
-        """Mobile exploitation"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from mobile_exploits import MobileExploitation
-        
-        mobile_exp = MobileExploitation()
-        return {
-            "status": f"Mobile exploit {exploit_type} for {platform} prepared",
-            "exploit_type": exploit_type,
-            "platform": platform,
-            "note": "Direct capability execution - CLI integration pending"
-        }
-    
-    def _run_cloud_exploit(self, exploit_type: str, platform: str, **kwargs) -> Dict:
-        """Cloud exploitation"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from cloud_exploits import CloudExploitation
-        
-        cloud_exp = CloudExploitation()
-        return {
-            "status": f"Cloud exploit {exploit_type} for {platform} initiated",
-            "exploit_type": exploit_type,
-            "platform": platform,
-            "note": "Direct capability execution - CLI integration pending"
-        }
-    
-    def _run_vuln_scan(self, target: str, **kwargs) -> Dict:
-        """Vulnerability scanning"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from red_team_vuln_scan import VulnerabilityScanner
-        
-        scanner = VulnerabilityScanner()
-        return {
-            "status": f"Vulnerability scan completed on {target}",
-            "target": target,
-            "note": "Direct capability execution - CLI integration pending"
-        }
-    
-    def _run_metasploit(self, module: str, target: str, **kwargs) -> Dict:
-        """Metasploit integration"""
-        return {
-            "status": f"Metasploit module {module} loaded for {target}",
-            "module": module,
-            "target": target,
-            "note": "Direct capability execution - CLI integration pending"
-        }
+    async def _run_web_exploit(self, exploit_type: str, url: str, **kwargs) -> Dict:
+        """Web exploitation - Real implementation"""
+        if not self.web_exploits:
+            return {"error": "Web exploits module not available"}
+
+        try:
+            result = await self.web_exploits.execute_exploit(exploit_type, url, **kwargs)
+            return {"status": "success", "exploit_type": exploit_type, "url": url, "result": result}
+        except Exception as e:
+            return {"error": str(e), "exploit_type": exploit_type}
+
+    async def _run_mobile_exploit(self, exploit_type: str, platform: str, **kwargs) -> Dict:
+        """Mobile exploitation - Real implementation"""
+        if not self.mobile_exploits:
+            return {"error": "Mobile exploits module not available"}
+
+        try:
+            result = await self.mobile_exploits.execute_exploit(exploit_type, platform, **kwargs)
+            return {"status": "success", "exploit_type": exploit_type, "platform": platform, "result": result}
+        except Exception as e:
+            return {"error": str(e), "exploit_type": exploit_type}
+
+    async def _run_cloud_exploit(self, exploit_type: str, platform: str, **kwargs) -> Dict:
+        """Cloud exploitation - Real implementation"""
+        if not self.cloud_exploits:
+            return {"error": "Cloud exploits module not available"}
+
+        try:
+            result = await self.cloud_exploits.execute_exploit(exploit_type, platform, **kwargs)
+            return {"status": "success", "exploit_type": exploit_type, "platform": platform, "result": result}
+        except Exception as e:
+            return {"error": str(e), "exploit_type": exploit_type}
+
+    async def _run_vuln_scan(self, target: str, **kwargs) -> Dict:
+        """Vulnerability scanning - Real implementation"""
+        if not self.vuln_scanner:
+            return {"error": "Vulnerability scanner module not available"}
+
+        try:
+            result = await self.vuln_scanner.scan_target(target, **kwargs)
+            return {"status": "success", "target": target, "vulnerabilities": result}
+        except Exception as e:
+            return {"error": str(e), "target": target}
+
+    async def _run_metasploit(self, module: str, target: str, **kwargs) -> Dict:
+        """Metasploit integration - Real implementation"""
+        if not self.metasploit:
+            return {"error": "Metasploit module not available"}
+
+        try:
+            result = await self.metasploit.execute_module(module, target, **kwargs)
+            return {"status": "success", "module": module, "target": target, "result": result}
+        except Exception as e:
+            return {"error": str(e), "module": module}
     
     # ========== NEW RED TEAM CAPABILITIES ==========
+
+    async def _run_red_team_core(self, operation: str, target: str = None, **kwargs) -> Dict:
+        """Core red team operations - Real implementation"""
+        if not self.red_team_core:
+            return {"error": "Red team core module not available"}
+
+        try:
+            result = await self.red_team_core.reconnaissance(kwargs.get("operation_id", "default"), kwargs.get("passive", True))
+            return {"status": "success", "operation": operation, "target": target, "result": result}
+        except Exception as e:
+            return {"error": str(e), "operation": operation}
+
+    async def _run_evasion(self, technique: str, **kwargs) -> Dict:
+        """Evasion techniques - Real implementation"""
+        if not self.evasion:
+            return {"error": "Evasion module not available"}
+
+        try:
+            result = await self.evasion.apply_technique(technique, **kwargs)
+            return {"status": "success", "technique": technique, "result": result}
+        except Exception as e:
+            return {"error": str(e), "technique": technique}
+
+    async def _run_exfiltration(self, method: str, target: str = None, **kwargs) -> Dict:
+        """Data exfiltration - Real implementation"""
+        if not self.exfiltration:
+            return {"error": "Exfiltration module not available"}
+
+        try:
+            result = await self.exfiltration.execute_exfiltration(method, target, **kwargs)
+            return {"status": "success", "method": method, "target": target, "result": result}
+        except Exception as e:
+            return {"error": str(e), "method": method}
+
+    async def _run_lateral_movement_advanced(self, technique: str, target: str, **kwargs) -> Dict:
+        """Advanced lateral movement - Real implementation"""
+        if not self.lateral_movement:
+            return {"error": "Lateral movement module not available"}
+
+        try:
+            result = await self.lateral_movement.execute_movement(technique, target, **kwargs)
+            return {"status": "success", "technique": technique, "target": target, "result": result}
+        except Exception as e:
+            return {"error": str(e), "technique": technique}
+
+    async def _run_obfuscation(self, target_file: str, method: str = "base64", **kwargs) -> Dict:
+        """Code obfuscation - Real implementation"""
+        if not self.obfuscation:
+            return {"error": "Obfuscation module not available"}
+
+        try:
+            result = await self.obfuscation.obfuscate_file(target_file, method, **kwargs)
+            return {"status": "success", "file": target_file, "method": method, "result": result}
+        except Exception as e:
+            return {"error": str(e), "file": target_file}
+
+    async def _run_password_attacks_advanced(self, attack_type: str, target: str, **kwargs) -> Dict:
+        """Advanced password attacks - Real implementation"""
+        if not self.password_attacks:
+            return {"error": "Password attacks module not available"}
+
+        try:
+            result = await self.password_attacks.execute_attack(attack_type, target, **kwargs)
+            return {"status": "success", "attack_type": attack_type, "target": target, "result": result}
+        except Exception as e:
+            return {"error": str(e), "attack_type": attack_type}
+
+    async def _run_phishing(self, campaign_type: str, targets: str = None, **kwargs) -> Dict:
+        """Phishing campaigns - Real implementation"""
+        if not self.phishing:
+            return {"error": "Phishing module not available"}
+
+        try:
+            result = await self.phishing.create_campaign(campaign_type, targets, **kwargs)
+            return {"status": "success", "campaign_type": campaign_type, "targets": targets, "result": result}
+        except Exception as e:
+            return {"error": str(e), "campaign_type": campaign_type}
+
+    async def _run_post_exploit(self, action: str, target: str, **kwargs) -> Dict:
+        """Post-exploitation actions - Real implementation"""
+        if not self.post_exploit:
+            return {"error": "Post-exploitation module not available"}
+
+        try:
+            result = await self.post_exploit.execute_action(action, target, **kwargs)
+            return {"status": "success", "action": action, "target": target, "result": result}
+        except Exception as e:
+            return {"error": str(e), "action": action}
+
+    async def _run_recon_advanced(self, recon_type: str, target: str, **kwargs) -> Dict:
+        """Advanced reconnaissance - Real implementation"""
+        if not self.recon:
+            return {"error": "Reconnaissance module not available"}
+
+        try:
+            result = await self.recon.execute_recon(recon_type, target, **kwargs)
+            return {"status": "success", "recon_type": recon_type, "target": target, "result": result}
+        except Exception as e:
+            return {"error": str(e), "recon_type": recon_type}
+
+    async def _run_red_team_reporting(self, report_type: str = "full", **kwargs) -> Dict:
+        """Red team reporting - Real implementation"""
+        if not self.reporting:
+            return {"error": "Reporting module not available"}
+
+        try:
+            result = await self.reporting.generate_report(report_type, **kwargs)
+            return {"status": "success", "report_type": report_type, "result": result}
+        except Exception as e:
+            return {"error": str(e), "report_type": report_type}
+
+    async def _run_web_exploits_advanced(self, exploit_type: str, url: str, **kwargs) -> Dict:
+        """Advanced web exploitation - Real implementation"""
+        if not self.web_exploits_adv:
+            return {"error": "Advanced web exploits module not available"}
+
+        try:
+            result = await self.web_exploits_adv.execute_exploit(exploit_type, url, **kwargs)
+            return {"status": "success", "exploit_type": exploit_type, "url": url, "result": result}
+        except Exception as e:
+            return {"error": str(e), "exploit_type": exploit_type}
     
-    def _run_red_team_core(self, operation: str, target: str = None, **kwargs) -> Dict:
-        """Core red team operations"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from red_team_core import RedTeamCore
-        
-        rt_core = RedTeamCore()
-        return {
-            "status": f"Red team core operation {operation} initiated",
-            "operation": operation,
-            "target": target,
-            "note": "Direct capability execution"
-        }
-    
-    def _run_evasion(self, technique: str, **kwargs) -> Dict:
-        """Evasion techniques"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from red_team_evasion import EvasionTechniques
-        
-        evasion = EvasionTechniques()
-        return {
-            "status": f"Evasion technique {technique} applied",
-            "technique": technique,
-            "techniques_available": ["obfuscation", "anti_av", "anti_forensics", "process_injection", "dll_sideloading"]
-        }
-    
-    def _run_exfiltration(self, method: str, target: str = None, **kwargs) -> Dict:
-        """Data exfiltration"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from red_team_exfil import DataExfiltration
-        
-        exfil = DataExfiltration()
-        return {
-            "status": f"Exfiltration via {method} configured",
-            "method": method,
-            "target": target,
-            "methods_available": ["dns", "http", "https", "icmp", "smb", "ftp"]
-        }
-    
-    def _run_lateral_movement_advanced(self, technique: str, target: str, **kwargs) -> Dict:
-        """Advanced lateral movement"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from red_team_lateral_movement import AdvancedLateralMovement
-        
-        lateral = AdvancedLateralMovement()
-        return {
-            "status": f"Advanced lateral movement {technique} on {target}",
-            "technique": technique,
-            "target": target,
-            "techniques_available": ["dcom", "winrm", "ssh", "rdp", "smb_relay"]
-        }
-    
-    def _run_obfuscation(self, target_file: str, method: str = "base64", **kwargs) -> Dict:
-        """Code obfuscation"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from red_team_obfuscation import CodeObfuscation
-        
-        obf = CodeObfuscation()
-        return {
-            "status": f"Obfuscation applied to {target_file} using {method}",
-            "file": target_file,
-            "method": method,
-            "methods_available": ["base64", "xor", "aes", "variable_renaming", "string_encryption"]
-        }
-    
-    def _run_password_attacks_advanced(self, attack_type: str, target: str, **kwargs) -> Dict:
-        """Advanced password attacks"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from red_team_password_attacks import AdvancedPasswordAttacks
-        
-        pwd_attack = AdvancedPasswordAttacks()
-        return {
-            "status": f"Password attack {attack_type} on {target}",
-            "attack_type": attack_type,
-            "target": target,
-            "attacks_available": ["spray", "stuffing", "hash_cracking", "brute_force", "dictionary"]
-        }
-    
-    def _run_phishing(self, campaign_type: str, targets: str = None, **kwargs) -> Dict:
-        """Phishing campaigns"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from red_team_phishing import PhishingCampaign
-        
-        phish = PhishingCampaign()
-        return {
-            "status": f"Phishing campaign {campaign_type} configured",
-            "campaign_type": campaign_type,
-            "targets": targets,
-            "campaigns_available": ["spear_phishing", "clone_phishing", "whaling", "smishing", "vishing"]
-        }
-    
-    def _run_post_exploit(self, action: str, target: str, **kwargs) -> Dict:
-        """Post-exploitation actions"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from red_team_post_exploit import PostExploitation
-        
-        post_ex = PostExploitation()
-        return {
-            "status": f"Post-exploitation action {action} on {target}",
-            "action": action,
-            "target": target,
-            "actions_available": ["credential_harvesting", "screen_capture", "keylogging", "clipboard_monitor", "file_search"]
-        }
-    
-    def _run_recon_advanced(self, recon_type: str, target: str, **kwargs) -> Dict:
-        """Advanced reconnaissance"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from red_team_recon import AdvancedRecon
-        
-        recon = AdvancedRecon()
-        return {
-            "status": f"Advanced recon {recon_type} on {target}",
-            "recon_type": recon_type,
-            "target": target,
-            "types_available": ["osint", "subdomain_enum", "port_scan_stealth", "service_fingerprint", "vuln_detection"]
-        }
-    
-    def _run_red_team_reporting(self, report_type: str = "full", **kwargs) -> Dict:
-        """Red team reporting"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from red_team_reporting import RedTeamReporting
-        
-        reporting = RedTeamReporting()
-        return {
-            "status": f"Generating {report_type} red team report",
-            "report_type": report_type,
-            "reports_available": ["full", "executive", "technical", "findings", "timeline"]
-        }
-    
-    def _run_web_exploits_advanced(self, exploit_type: str, url: str, **kwargs) -> Dict:
-        """Advanced web exploitation"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from red_team_web_exploits import AdvancedWebExploits
-        
-        web_exp = AdvancedWebExploits()
-        return {
-            "status": f"Advanced web exploit {exploit_type} on {url}",
-            "exploit_type": exploit_type,
-            "url": url,
-            "exploits_available": ["xxe", "ssrf", "deserialization", "template_injection", "cors_bypass"]
-        }
-    
-    def _run_biometric_bypass(self, system_type: str, target: str = None, **kwargs) -> Dict:
-        """Biometric system bypass"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from biometric_bypass import BiometricBypass
-        
-        bio = BiometricBypass()
-        return {
-            "status": f"Biometric bypass for {system_type} initiated",
-            "system_type": system_type,
-            "target": target,
-            "systems_available": ["fingerprint", "facial_recognition", "iris_scan", "voice_recognition"]
-        }
-    
-    def _run_sigint(self, operation: str, frequency: str = None, **kwargs) -> Dict:
-        """SIGINT and Electronic Warfare"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from sigint_core import SIGINTOperations
-        
-        sigint = SIGINTOperations()
-        return {
-            "status": f"SIGINT operation {operation} configured",
-            "operation": operation,
-            "frequency": frequency,
-            "operations_available": ["signal_intercept", "frequency_analysis", "jamming", "direction_finding", "decoding"]
-        }
+    async def _run_biometric_bypass(self, system_type: str, target: str = None, **kwargs) -> Dict:
+        """Biometric system bypass - Real implementation"""
+        if not self.biometric:
+            return {"error": "Biometric bypass module not available"}
+
+        try:
+            result = await self.biometric.execute_bypass(system_type, target, **kwargs)
+            return {"status": "success", "system_type": system_type, "target": target, "result": result}
+        except Exception as e:
+            return {"error": str(e), "system_type": system_type}
+
+    async def _run_sigint(self, operation: str, frequency: str = None, **kwargs) -> Dict:
+        """SIGINT and Electronic Warfare - Real implementation"""
+        if not self.sigint:
+            return {"error": "SIGINT module not available"}
+
+        try:
+            result = await self.sigint.execute_operation(operation, frequency=frequency, **kwargs)
+            return {"status": "success", "operation": operation, "frequency": frequency, "result": result}
+        except Exception as e:
+            return {"error": str(e), "operation": operation}
     
     # ==================== ADVANCED CYBER WARFARE CAPABILITIES ====================
-    
-    def _run_supply_chain_attack(self, target: str, vector: str = "dependency", **kwargs) -> Dict:
-        """Supply chain compromise operations"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from supply_chain_ops import SupplyChainAttack
-        
-        sca = SupplyChainAttack()
+
+    async def _run_supply_chain_attack(self, target: str, vector: str = "dependency", **kwargs) -> Dict:
+        """Supply chain compromise operations - Placeholder for future implementation"""
         return {
-            "status": f"Supply chain attack vector '{vector}' deployed on {target}",
+            "status": "Module not yet implemented",
             "target": target,
             "vector": vector,
-            "vectors_available": ["dependency_confusion", "package_poisoning", "build_pipeline", "vendor_compromise", "update_hijacking"]
+            "note": "Advanced capability - implementation pending"
         }
-    
-    def _run_firmware_exploit(self, device_type: str, exploit_method: str = "bootloader", **kwargs) -> Dict:
-        """Firmware-level exploitation"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from firmware_ops import FirmwareExploit
-        
-        fw_exp = FirmwareExploit()
+
+    async def _run_firmware_exploit(self, device_type: str, exploit_method: str = "bootloader", **kwargs) -> Dict:
+        """Firmware-level exploitation - Placeholder for future implementation"""
         return {
-            "status": f"Firmware exploit '{exploit_method}' targeting {device_type}",
+            "status": "Module not yet implemented",
             "device_type": device_type,
             "exploit_method": exploit_method,
-            "methods_available": ["bootloader_exploit", "uefi_rootkit", "bios_implant", "firmware_backdoor", "secure_boot_bypass"]
+            "note": "Advanced capability - implementation pending"
         }
-    
-    def _run_kernel_exploit(self, os_type: str, exploit_type: str = "privilege_escalation", **kwargs) -> Dict:
-        """Kernel-level exploitation"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from kernel_ops import KernelExploit
-        
-        kern_exp = KernelExploit()
+
+    async def _run_kernel_exploit(self, os_type: str, exploit_type: str = "privilege_escalation", **kwargs) -> Dict:
+        """Kernel-level exploitation - Placeholder for future implementation"""
         return {
-            "status": f"Kernel exploit '{exploit_type}' for {os_type} prepared",
+            "status": "Module not yet implemented",
             "os_type": os_type,
             "exploit_type": exploit_type,
-            "exploits_available": ["privilege_escalation", "kernel_rootkit", "memory_corruption", "race_condition", "use_after_free"]
+            "note": "Advanced capability - implementation pending"
         }
-    
-    def _run_ransomware_sim(self, scenario: str, encryption_method: str = "aes256", **kwargs) -> Dict:
-        """Ransomware simulation for testing"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from ransomware_sim import RansomwareSimulation
-        
-        ransom_sim = RansomwareSimulation()
+
+    async def _run_ransomware_sim(self, scenario: str, encryption_method: str = "aes256", **kwargs) -> Dict:
+        """Ransomware simulation for testing - Placeholder for future implementation"""
         return {
-            "status": f"Ransomware simulation scenario '{scenario}' configured",
+            "status": "Module not yet implemented",
             "scenario": scenario,
             "encryption_method": encryption_method,
-            "scenarios_available": ["file_encryption", "network_spread", "backup_destruction", "double_extortion", "wiper_variant"]
+            "note": "Advanced capability - implementation pending"
         }
-    
-    def _run_threat_hunting(self, hunt_type: str, ioc_feed: str = "internal", **kwargs) -> Dict:
-        """Active threat hunting operations"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from threat_hunting import ThreatHunter
-        
-        hunter = ThreatHunter()
+
+    async def _run_threat_hunting(self, hunt_type: str, ioc_feed: str = "internal", **kwargs) -> Dict:
+        """Active threat hunting operations - Placeholder for future implementation"""
         return {
-            "status": f"Threat hunting operation '{hunt_type}' initiated",
+            "status": "Module not yet implemented",
             "hunt_type": hunt_type,
             "ioc_feed": ioc_feed,
-            "hunts_available": ["apt_indicators", "anomaly_detection", "lateral_movement_trace", "c2_beaconing", "data_staging"]
+            "note": "Advanced capability - implementation pending"
         }
-    
-    def _run_deception_tech(self, deception_type: str, deployment: str = "honeypot", **kwargs) -> Dict:
-        """Deception technology deployment"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from deception_ops import DeceptionTechnology
-        
-        deception = DeceptionTechnology()
+
+    async def _run_deception_tech(self, deception_type: str, deployment: str = "honeypot", **kwargs) -> Dict:
+        """Deception technology deployment - Placeholder for future implementation"""
         return {
-            "status": f"Deception technology '{deployment}' of type '{deception_type}' deployed",
+            "status": "Module not yet implemented",
             "deception_type": deception_type,
             "deployment": deployment,
-            "deployments_available": ["honeypot", "honeytoken", "decoy_credentials", "fake_shares", "canary_tokens"]
+            "note": "Advanced capability - implementation pending"
         }
-    
-    def _run_quantum_crypto(self, target_algorithm: str, attack_method: str = "shor", **kwargs) -> Dict:
-        """Quantum cryptography attack simulation"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from quantum_crypto_ops import QuantumCryptoAttack
-        
-        quantum = QuantumCryptoAttack()
+
+    async def _run_quantum_crypto(self, target_algorithm: str, attack_method: str = "shor", **kwargs) -> Dict:
+        """Quantum cryptography attack simulation - Placeholder for future implementation"""
         return {
-            "status": f"Quantum attack '{attack_method}' on algorithm '{target_algorithm}' prepared",
+            "status": "Module not yet implemented",
             "target_algorithm": target_algorithm,
             "attack_method": attack_method,
-            "methods_available": ["shor_algorithm", "grover_search", "quantum_annealing", "post_quantum_analysis", "harvest_now_decrypt_later"]
+            "note": "Advanced capability - implementation pending"
         }
-    
-    def _run_ai_adversarial(self, model_type: str, attack_type: str = "evasion", **kwargs) -> Dict:
-        """AI/ML adversarial attacks"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from ai_adversarial_ops import AIAdversarialAttack
-        
-        ai_attack = AIAdversarialAttack()
+
+    async def _run_ai_adversarial(self, model_type: str, attack_type: str = "evasion", **kwargs) -> Dict:
+        """AI/ML adversarial attacks - Placeholder for future implementation"""
         return {
-            "status": f"AI adversarial attack '{attack_type}' targeting {model_type} model",
+            "status": "Module not yet implemented",
             "model_type": model_type,
             "attack_type": attack_type,
-            "attacks_available": ["evasion", "poisoning", "model_extraction", "backdoor_injection", "membership_inference"]
+            "note": "Advanced capability - implementation pending"
         }
-    
-    def _run_zero_day_research(self, target_software: str, research_method: str = "fuzzing", **kwargs) -> Dict:
-        """Zero-day vulnerability research"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from zero_day_research import ZeroDayResearch
-        
-        zero_day = ZeroDayResearch()
+
+    async def _run_zero_day_research(self, target_software: str, research_method: str = "fuzzing", **kwargs) -> Dict:
+        """Zero-day vulnerability research - Placeholder for future implementation"""
         return {
-            "status": f"Zero-day research on {target_software} using '{research_method}' initiated",
+            "status": "Module not yet implemented",
             "target_software": target_software,
             "research_method": research_method,
-            "methods_available": ["fuzzing", "symbolic_execution", "taint_analysis", "code_review", "binary_diffing"]
+            "note": "Advanced capability - implementation pending"
         }
-    
-    def _run_threat_intel_fusion(self, intel_sources: str, analysis_type: str = "correlation", **kwargs) -> Dict:
-        """Threat intelligence fusion and analysis"""
-        sys.path.insert(0, str(PROMETHEUS_DIR / "capabilities"))
-        from threat_intel_fusion import ThreatIntelFusion
-        
-        intel_fusion = ThreatIntelFusion()
+
+    async def _run_threat_intel_fusion(self, intel_sources: str, analysis_type: str = "correlation", **kwargs) -> Dict:
+        """Threat intelligence fusion and analysis - Placeholder for future implementation"""
         return {
-            "status": f"Threat intel fusion from '{intel_sources}' with '{analysis_type}' analysis",
+            "status": "Module not yet implemented",
             "intel_sources": intel_sources,
             "analysis_type": analysis_type,
-            "analyses_available": ["correlation", "attribution", "campaign_tracking", "ttp_mapping", "predictive_analysis"]
+            "note": "Advanced capability - implementation pending"
         }
     
     # ==================== END ADVANCED CAPABILITIES ====================

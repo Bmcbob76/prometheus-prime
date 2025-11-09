@@ -9,6 +9,7 @@ The ultimate offensive/defensive security toolkit combining:
 - Digital Forensics & Evidence Collection
 - Post-Exploitation & Persistence
 - Reverse Engineering & Malware Analysis
+- Web API Reverse Engineering 🆕
 
 AUTHORIZED USE ONLY - Commander Bob (Authority Level 11.0)
 """
@@ -27,6 +28,7 @@ from wireless_security import WirelessSecurityToolkit
 from forensics_toolkit import ForensicsToolkit
 from post_exploitation import PostExploitationToolkit
 from reverse_engineering import ReverseEngineeringToolkit
+from api_reverse_engineering import WebAPIReverseEngineering
 
 
 # Initialize all toolkits
@@ -35,6 +37,7 @@ wifi_toolkit = WirelessSecurityToolkit()
 forensics_toolkit = ForensicsToolkit()
 postex_toolkit = PostExploitationToolkit()
 re_toolkit = ReverseEngineeringToolkit()
+api_toolkit = WebAPIReverseEngineering()
 
 # Create MCP server
 server = Server("prometheus-security-arsenal")
@@ -590,6 +593,136 @@ async def handle_list_tools() -> list[types.Tool]:
                 "required": ["packed_file", "output_file"]
             }
         ),
+
+        # WEB API REVERSE ENGINEERING (12 tools) 🆕
+        types.Tool(
+            name="prom_api_endpoint_discovery",
+            description="Discover API endpoints through intelligent fuzzing",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "base_url": {"type": "string", "description": "Base URL to scan"},
+                    "wordlist": {"type": "string", "description": "Custom wordlist file"}
+                },
+                "required": ["base_url"]
+            }
+        ),
+        types.Tool(
+            name="prom_api_parameter_fuzzer",
+            description="Fuzz API endpoint to discover hidden parameters",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "endpoint": {"type": "string", "description": "API endpoint URL"},
+                    "method": {"type": "string", "description": "HTTP method", "default": "GET"},
+                    "common_params": {"type": "boolean", "description": "Use common parameter names", "default": True}
+                },
+                "required": ["endpoint"]
+            }
+        ),
+        types.Tool(
+            name="prom_graphql_introspection",
+            description="Perform GraphQL introspection to discover complete schema",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "graphql_endpoint": {"type": "string", "description": "GraphQL endpoint URL"}
+                },
+                "required": ["graphql_endpoint"]
+            }
+        ),
+        types.Tool(
+            name="prom_jwt_analyzer",
+            description="Analyze and decode JWT tokens with security assessment",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "token": {"type": "string", "description": "JWT token string"}
+                },
+                "required": ["token"]
+            }
+        ),
+        types.Tool(
+            name="prom_swagger_discovery",
+            description="Discover Swagger/OpenAPI documentation endpoints",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "base_url": {"type": "string", "description": "Base URL to scan"}
+                },
+                "required": ["base_url"]
+            }
+        ),
+        types.Tool(
+            name="prom_mitmproxy_setup",
+            description="Setup mitmproxy for HTTPS traffic interception",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "target_host": {"type": "string", "description": "Target host to intercept"},
+                    "port": {"type": "number", "description": "Proxy port", "default": 8080}
+                },
+                "required": ["target_host"]
+            }
+        ),
+        types.Tool(
+            name="prom_javascript_deobfuscate",
+            description="Deobfuscate JavaScript code and extract API endpoints/keys",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "js_code": {"type": "string", "description": "Obfuscated JavaScript code"}
+                },
+                "required": ["js_code"]
+            }
+        ),
+        types.Tool(
+            name="prom_websocket_interceptor",
+            description="Setup WebSocket traffic interception and analysis",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "ws_url": {"type": "string", "description": "WebSocket URL"}
+                },
+                "required": ["ws_url"]
+            }
+        ),
+        types.Tool(
+            name="prom_api_rate_limit_detect",
+            description="Detect API rate limiting behavior and thresholds",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "endpoint": {"type": "string", "description": "API endpoint to test"},
+                    "requests_count": {"type": "number", "description": "Number of requests", "default": 100}
+                },
+                "required": ["endpoint"]
+            }
+        ),
+        types.Tool(
+            name="prom_api_auth_analyzer",
+            description="Analyze API authentication mechanisms",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "endpoint": {"type": "string", "description": "API endpoint"}
+                },
+                "required": ["endpoint"]
+            }
+        ),
+        types.Tool(
+            name="prom_api_response_differ",
+            description="Compare API responses with different parameter values",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "endpoint": {"type": "string", "description": "API endpoint"},
+                    "param": {"type": "string", "description": "Parameter to test"},
+                    "values": {"type": "array", "items": {"type": "string"}, "description": "Values to test"}
+                },
+                "required": ["endpoint", "param", "values"]
+            }
+        ),
     ]
 
 
@@ -819,6 +952,47 @@ async def handle_call_tool(
             arguments["output_file"]
         )
 
+    # WEB API REVERSE ENGINEERING TOOLS 🆕
+    elif name == "prom_api_endpoint_discovery":
+        result = api_toolkit.api_endpoint_discovery(
+            arguments["base_url"],
+            arguments.get("wordlist")
+        )
+    elif name == "prom_api_parameter_fuzzer":
+        result = api_toolkit.api_parameter_fuzzer(
+            arguments["endpoint"],
+            arguments.get("method", "GET"),
+            arguments.get("common_params", True)
+        )
+    elif name == "prom_graphql_introspection":
+        result = api_toolkit.graphql_introspection(arguments["graphql_endpoint"])
+    elif name == "prom_jwt_analyzer":
+        result = api_toolkit.jwt_token_analyzer(arguments["token"])
+    elif name == "prom_swagger_discovery":
+        result = api_toolkit.swagger_openapi_discovery(arguments["base_url"])
+    elif name == "prom_mitmproxy_setup":
+        result = api_toolkit.mitmproxy_intercept(
+            arguments["target_host"],
+            arguments.get("port", 8080)
+        )
+    elif name == "prom_javascript_deobfuscate":
+        result = api_toolkit.javascript_deobfuscate(arguments["js_code"])
+    elif name == "prom_websocket_interceptor":
+        result = api_toolkit.websocket_interceptor(arguments["ws_url"])
+    elif name == "prom_api_rate_limit_detect":
+        result = api_toolkit.api_rate_limit_detector(
+            arguments["endpoint"],
+            arguments.get("requests_count", 100)
+        )
+    elif name == "prom_api_auth_analyzer":
+        result = api_toolkit.api_authentication_analyzer(arguments["endpoint"])
+    elif name == "prom_api_response_differ":
+        result = api_toolkit.api_response_differ(
+            arguments["endpoint"],
+            arguments["param"],
+            arguments["values"]
+        )
+
     else:
         result = {"error": f"Unknown tool: {name}"}
 
@@ -852,7 +1026,8 @@ if __name__ == "__main__":
     print("  🔍 Digital Forensics (10 tools)")
     print("  💀 Post-Exploitation (5 tools)")
     print("  🛠️ Reverse Engineering (10 tools)")
-    print("\n🎯 TOTAL: 46 NEW TOOLS + 43 EXISTING = 89 TOTAL TOOLS")
+    print("  🌐 Web API Reverse Engineering (11 tools) 🆕")
+    print("\n🎯 TOTAL: 57 NEW TOOLS + 43 EXISTING = 100 TOTAL TOOLS")
     print("\n⚠️  AUTHORIZED USE ONLY - Commander Bob (Authority Level 11.0)\n")
 
     asyncio.run(main())

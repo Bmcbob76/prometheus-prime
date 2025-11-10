@@ -1,0 +1,2563 @@
+{
+  "summary": {
+    "total_tools": 319,
+    "tests_run": 319,
+    "passed": 289,
+    "failed": 30,
+    "pass_rate": 90.59561128526646
+  },
+  "results": [
+    {
+      "tool": "prom_get_capabilities",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 4.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.375818"
+    },
+    {
+      "tool": "prom_fingerprint_spoof",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 4.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.375918"
+    },
+    {
+      "tool": "prom_face_recognition_bypass",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.375972"
+    },
+    {
+      "tool": "prom_iris_scan_defeat",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.376011"
+    },
+    {
+      "tool": "prom_voice_cloning_attack",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.376049"
+    },
+    {
+      "tool": "prom_gait_analysis_bypass",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.376087"
+    },
+    {
+      "tool": "prom_vein_pattern_spoof",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.376125"
+    },
+    {
+      "tool": "prom_multimodal_bypass_strategy",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.376180"
+    },
+    {
+      "tool": "prom_enumerate_s3_buckets",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.376229"
+    },
+    {
+      "tool": "prom_check_s3_public_access",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2.1e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.376272"
+    },
+    {
+      "tool": "prom_iam_privilege_escalation",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.376330"
+    },
+    {
+      "tool": "prom_container_escape_techniques",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.376397"
+    },
+    {
+      "tool": "prom_kubernetes_attack_surface",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.376442"
+    },
+    {
+      "tool": "prom_azure_runbook_exploit",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.376494"
+    },
+    {
+      "tool": "prom_gcp_metadata_server_exploit",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.376554"
+    },
+    {
+      "tool": "prom_serverless_function_hijack",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.376616"
+    },
+    {
+      "tool": "prom_adb_devices",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 3.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.376685"
+    },
+    {
+      "tool": "prom_install_apk",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.376766"
+    },
+    {
+      "tool": "prom_extract_apk",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.376838"
+    },
+    {
+      "tool": "prom_frida_hook",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 3.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.376914"
+    },
+    {
+      "tool": "prom_objection_repl",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.376975"
+    },
+    {
+      "tool": "prom_check_root_detection",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.377016"
+    },
+    {
+      "tool": "prom_ssl_pinning_bypass",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.377056"
+    },
+    {
+      "tool": "prom_ios_jailbreak_detect",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.377089"
+    },
+    {
+      "tool": "prom_mitmproxy_intercept",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.377126"
+    },
+    {
+      "tool": "prom_exfil_dns",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.377175"
+    },
+    {
+      "tool": "prom_exfil_http",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.377223"
+    },
+    {
+      "tool": "prom_exfil_icmp",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.377258"
+    },
+    {
+      "tool": "prom_exfil_smb",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.377299"
+    },
+    {
+      "tool": "prom_exfil_email",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 4.2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.377362"
+    },
+    {
+      "tool": "prom_exfil_steganography",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.377435"
+    },
+    {
+      "tool": "prom_simulate_exfil_detection",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.377480"
+    },
+    {
+      "tool": "prom_ssh_lateral",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.377533"
+    },
+    {
+      "tool": "prom_psexec_lateral",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.377671"
+    },
+    {
+      "tool": "prom_wmi_lateral",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.377738"
+    },
+    {
+      "tool": "prom_rdp_lateral",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 4.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.377822"
+    },
+    {
+      "tool": "prom_smb_relay",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 3.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.377883"
+    },
+    {
+      "tool": "prom_pass_the_hash",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.377944"
+    },
+    {
+      "tool": "prom_winrm_lateral",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2.2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.377994"
+    },
+    {
+      "tool": "prom_pivoting_setup",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.378032"
+    },
+    {
+      "tool": "prom_detect_lateral_paths",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.378069"
+    },
+    {
+      "tool": "prom_base64_encode",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.378121"
+    },
+    {
+      "tool": "prom_xor_encode",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.378165"
+    },
+    {
+      "tool": "prom_compress_payload",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.378203"
+    },
+    {
+      "tool": "prom_string_reversal",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.378247"
+    },
+    {
+      "tool": "prom_hex_encode",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.378286"
+    },
+    {
+      "tool": "prom_variable_name_obfuscation",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.378325"
+    },
+    {
+      "tool": "prom_char_substitution",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.378363"
+    },
+    {
+      "tool": "prom_powershell_obfuscation",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.378412"
+    },
+    {
+      "tool": "prom_bash_obfuscation",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2.2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.378453"
+    },
+    {
+      "tool": "prom_multilayer_obfuscation",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.378495"
+    },
+    {
+      "tool": "prom_hashcat_crack",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.378535"
+    },
+    {
+      "tool": "prom_john_crack",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.378570"
+    },
+    {
+      "tool": "prom_hydra_brute",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.378609"
+    },
+    {
+      "tool": "prom_password_spray",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 8.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.378802"
+    },
+    {
+      "tool": "prom_dictionary_attack",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.378866"
+    },
+    {
+      "tool": "prom_create_campaign",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.378905"
+    },
+    {
+      "tool": "prom_send_phishing_email",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2.2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.378947"
+    },
+    {
+      "tool": "prom_track_click",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.378995"
+    },
+    {
+      "tool": "prom_generate_landing_page",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 0.000157,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.379232"
+    },
+    {
+      "tool": "prom_get_campaign_stats",
+      "category": "security_domain",
+      "status": "failed",
+      "duration": 2.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.379328"
+    },
+    {
+      "tool": "prom_check_suid_files",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 0.000144,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.379620"
+    },
+    {
+      "tool": "prom_check_sudo_permissions",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 4.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.379704"
+    },
+    {
+      "tool": "prom_check_capabilities",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 5.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.379848"
+    },
+    {
+      "tool": "prom_check_writable_paths",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 3.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.379915"
+    },
+    {
+      "tool": "prom_check_cron_jobs",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.379966"
+    },
+    {
+      "tool": "prom_check_kernel_version",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.380016"
+    },
+    {
+      "tool": "prom_run_linpeas",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.380055"
+    },
+    {
+      "tool": "prom_nmap_vuln_scan",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.380091"
+    },
+    {
+      "tool": "prom_nikto_scan",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.380129"
+    },
+    {
+      "tool": "prom_check_cve",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.380164"
+    },
+    {
+      "tool": "prom_service_version_check",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.380200"
+    },
+    {
+      "tool": "prom_ssl_tls_scan",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 8.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.380418"
+    },
+    {
+      "tool": "prom_exploit_check",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 6.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.380553"
+    },
+    {
+      "tool": "prom_sql_injection_test",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 3.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.380615"
+    },
+    {
+      "tool": "prom_sqlmap_scan",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2.1e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.380655"
+    },
+    {
+      "tool": "prom_xss_test",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.1e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.380693"
+    },
+    {
+      "tool": "prom_lfi_test",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 3.2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.380784"
+    },
+    {
+      "tool": "prom_command_injection_test",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.380838"
+    },
+    {
+      "tool": "prom_ssrf_test",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.380890"
+    },
+    {
+      "tool": "prom_directory_traversal_test",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.380952"
+    },
+    {
+      "tool": "prom_packet_callback",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 2.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.381010"
+    },
+    {
+      "tool": "prom_sniff_traffic",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.381063"
+    },
+    {
+      "tool": "prom_analyze_protocols",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 4.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.381131"
+    },
+    {
+      "tool": "prom_extract_credentials",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.381167"
+    },
+    {
+      "tool": "prom_dns_analysis",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.381207"
+    },
+    {
+      "tool": "prom_file_upload_bypass",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 4.2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.381277"
+    },
+    {
+      "tool": "prom_jwt_manipulation",
+      "category": "security_domain",
+      "status": "passed",
+      "duration": 3.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.381356"
+    },
+    {
+      "tool": "prom_obfuscate",
+      "category": "basic_tool",
+      "status": "passed",
+      "duration": 4.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.381430"
+    },
+    {
+      "tool": "prom_encrypt",
+      "category": "basic_tool",
+      "status": "passed",
+      "duration": 1.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.381467"
+    },
+    {
+      "tool": "prom_detect_sandbox",
+      "category": "basic_tool",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.381504"
+    },
+    {
+      "tool": "prom_generate_decoy_traffic",
+      "category": "basic_tool",
+      "status": "passed",
+      "duration": 4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.381566"
+    },
+    {
+      "tool": "prom_anti_disassembly",
+      "category": "basic_tool",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.381621"
+    },
+    {
+      "tool": "prom_sleep_evasion",
+      "category": "basic_tool",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.381753"
+    },
+    {
+      "tool": "prom_search_exploits",
+      "category": "basic_tool",
+      "status": "passed",
+      "duration": 3.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.381818"
+    },
+    {
+      "tool": "prom_get_statistics",
+      "category": "basic_tool",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.381858"
+    },
+    {
+      "tool": "prom_discover_devices",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 3.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.381929"
+    },
+    {
+      "tool": "prom_profile_device",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 2.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.381976"
+    },
+    {
+      "tool": "prom_track_proximity",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.382041"
+    },
+    {
+      "tool": "prom_analyze_ble_advertising",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.382076"
+    },
+    {
+      "tool": "prom_detect_vulnerabilities",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 3.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.382129"
+    },
+    {
+      "tool": "prom_lookup",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 2.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.382171"
+    },
+    {
+      "tool": "prom_bulk_lookup",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.382208"
+    },
+    {
+      "tool": "prom_format_phone",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.382246"
+    },
+    {
+      "tool": "prom_username_search",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 2.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.382287"
+    },
+    {
+      "tool": "prom_reddit_profile",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 1.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.382322"
+    },
+    {
+      "tool": "prom_github_profile",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.382375"
+    },
+    {
+      "tool": "prom_email_to_username",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.382431"
+    },
+    {
+      "tool": "prom_phone_to_social",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 2.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.382476"
+    },
+    {
+      "tool": "prom_full_osint_report",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 2.1e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.382517"
+    },
+    {
+      "tool": "prom_search_by_location",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 2.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.382570"
+    },
+    {
+      "tool": "prom_capture_traffic",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 1.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.382614"
+    },
+    {
+      "tool": "prom_identify_top_talkers",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 1.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.382651"
+    },
+    {
+      "tool": "prom_monitor_bandwidth",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 1.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.382687"
+    },
+    {
+      "tool": "prom_detect_anomalies",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 4.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.382755"
+    },
+    {
+      "tool": "prom_analyze_dns_queries",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 2.2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.382819"
+    },
+    {
+      "tool": "prom_analyze_http_traffic",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 1.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.382855"
+    },
+    {
+      "tool": "prom_discover_networks",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.382919"
+    },
+    {
+      "tool": "prom_assess_security",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 2.2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.382967"
+    },
+    {
+      "tool": "prom_track_clients",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 2.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.383021"
+    },
+    {
+      "tool": "prom_channel_analysis",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 2.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.383082"
+    },
+    {
+      "tool": "prom_detect_rogue_aps",
+      "category": "sigint",
+      "status": "passed",
+      "duration": 2.2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.383132"
+    },
+    {
+      "tool": "prom_run_full_diagnostics",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.383191"
+    },
+    {
+      "tool": "prom_detect_gpus",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 1.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.383239"
+    },
+    {
+      "tool": "prom_check_cuda_support",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.383297"
+    },
+    {
+      "tool": "prom_check_cpu_capabilities",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 3.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.383362"
+    },
+    {
+      "tool": "prom_check_pytorch",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 1.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.383496"
+    },
+    {
+      "tool": "prom_check_tensorflow",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 5.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.383601"
+    },
+    {
+      "tool": "prom_check_framework_compatibility",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.383646"
+    },
+    {
+      "tool": "prom_monitor_gpu_utilization",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.383705"
+    },
+    {
+      "tool": "prom_check_gpu_memory",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 4.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.383783"
+    },
+    {
+      "tool": "prom_check_multi_gpu_setup",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.383842"
+    },
+    {
+      "tool": "prom_benchmark_inference",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.383893"
+    },
+    {
+      "tool": "prom_benchmark_memory_bandwidth",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.383939"
+    },
+    {
+      "tool": "prom_check_model_quantization",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.383996"
+    },
+    {
+      "tool": "prom_verify_model_formats",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 3.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.384074"
+    },
+    {
+      "tool": "prom_calculate_health_score",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 3.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.384156"
+    },
+    {
+      "tool": "prom_get_summary",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.384219"
+    },
+    {
+      "tool": "prom_test_redis",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 4.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.384297"
+    },
+    {
+      "tool": "prom_test_postgresql",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 1.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.384336"
+    },
+    {
+      "tool": "prom_test_mongodb",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.384412"
+    },
+    {
+      "tool": "prom_test_sqlite",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 3.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.384484"
+    },
+    {
+      "tool": "prom_test_elasticsearch",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 3.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.384552"
+    },
+    {
+      "tool": "prom_benchmark_read_performance",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.384609"
+    },
+    {
+      "tool": "prom_benchmark_write_performance",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.384679"
+    },
+    {
+      "tool": "prom_check_replication_status",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.384757"
+    },
+    {
+      "tool": "prom_test_internet_connectivity",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 4.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.384837"
+    },
+    {
+      "tool": "prom_test_dns_connectivity",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.384897"
+    },
+    {
+      "tool": "prom_test_gateway_connectivity",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.1e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.384950"
+    },
+    {
+      "tool": "prom_measure_latency",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.385008"
+    },
+    {
+      "tool": "prom_measure_jitter",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 3.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.385094"
+    },
+    {
+      "tool": "prom_test_bandwidth",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 3.2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.385159"
+    },
+    {
+      "tool": "prom_test_dns_resolution",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.385200"
+    },
+    {
+      "tool": "prom_test_dns_servers",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.385258"
+    },
+    {
+      "tool": "prom_check_network_interfaces",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 3.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.385330"
+    },
+    {
+      "tool": "prom_test_common_ports",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.385395"
+    },
+    {
+      "tool": "prom_trace_routes",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 1.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.385439"
+    },
+    {
+      "tool": "prom_calculate_network_health",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 1.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.385480"
+    },
+    {
+      "tool": "prom_scan_open_ports",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 1.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.385524"
+    },
+    {
+      "tool": "prom_check_weak_passwords",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.385570"
+    },
+    {
+      "tool": "prom_scan_outdated_software",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.385616"
+    },
+    {
+      "tool": "prom_audit_system_configuration",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.385673"
+    },
+    {
+      "tool": "prom_check_security_settings",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.385750"
+    },
+    {
+      "tool": "prom_audit_user_accounts",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.385798"
+    },
+    {
+      "tool": "prom_check_cis_compliance",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 1.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.385837"
+    },
+    {
+      "tool": "prom_check_encryption_compliance",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.1e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.385891"
+    },
+    {
+      "tool": "prom_check_file_permissions",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.385936"
+    },
+    {
+      "tool": "prom_check_firewall_status",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 1.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.385982"
+    },
+    {
+      "tool": "prom_check_antivirus_status",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.386024"
+    },
+    {
+      "tool": "prom_check_security_updates",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 1.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.386064"
+    },
+    {
+      "tool": "prom_calculate_risk_score",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.386106"
+    },
+    {
+      "tool": "prom_calculate_security_score",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.386205"
+    },
+    {
+      "tool": "prom_check_system_info",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.386297"
+    },
+    {
+      "tool": "prom_check_cpu",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 1.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.386338"
+    },
+    {
+      "tool": "prom_check_memory",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.386395"
+    },
+    {
+      "tool": "prom_check_disk",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 5.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.386487"
+    },
+    {
+      "tool": "prom_check_network",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.386528"
+    },
+    {
+      "tool": "prom_check_gpu",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.386579"
+    },
+    {
+      "tool": "prom_check_python_environment",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.386621"
+    },
+    {
+      "tool": "prom_check_dependencies",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.386673"
+    },
+    {
+      "tool": "prom_check_api_keys",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.386716"
+    },
+    {
+      "tool": "prom_check_file_structure",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.386773"
+    },
+    {
+      "tool": "prom_check_databases",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 3.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.386835"
+    },
+    {
+      "tool": "prom_benchmark_system",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 2.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.386897"
+    },
+    {
+      "tool": "prom_check_security_posture",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.386945"
+    },
+    {
+      "tool": "prom_generate_report",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 1.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.386986"
+    },
+    {
+      "tool": "prom_export_results",
+      "category": "diagnostic",
+      "status": "passed",
+      "duration": 1.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.387019"
+    },
+    {
+      "tool": "prom_file_hash_all",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 3.2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.387072"
+    },
+    {
+      "tool": "prom_disk_image_create",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.387123"
+    },
+    {
+      "tool": "prom_strings_extract",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.387156"
+    },
+    {
+      "tool": "prom_file_carving",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.387194"
+    },
+    {
+      "tool": "prom_volatility_analyze",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.387226"
+    },
+    {
+      "tool": "prom_binwalk_analyze",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.387272"
+    },
+    {
+      "tool": "prom_exif_extract",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.387315"
+    },
+    {
+      "tool": "prom_timeline_create",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.387351"
+    },
+    {
+      "tool": "prom_network_pcap_analyze",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.387405"
+    },
+    {
+      "tool": "prom_registry_analyze",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.387462"
+    },
+    {
+      "tool": "prom_evidence_chain_export",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 3.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.387516"
+    },
+    {
+      "tool": "prom_port_scan",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.387573"
+    },
+    {
+      "tool": "prom_service_banner_grab",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 3.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.387633"
+    },
+    {
+      "tool": "prom_nmap_scan",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.387687"
+    },
+    {
+      "tool": "prom_subnet_scan",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.387756"
+    },
+    {
+      "tool": "prom_vulnerability_scan",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.387804"
+    },
+    {
+      "tool": "prom_traceroute",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.387855"
+    },
+    {
+      "tool": "prom_security_headers",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.387896"
+    },
+    {
+      "tool": "prom_directory_bruteforce",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.387951"
+    },
+    {
+      "tool": "prom_subdomain_enum",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.387987"
+    },
+    {
+      "tool": "prom_crawl_links",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.388024"
+    },
+    {
+      "tool": "prom_ssl_scan",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 3.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.388084"
+    },
+    {
+      "tool": "prom_technology_detection",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.388129"
+    },
+    {
+      "tool": "prom_comprehensive_scan",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.388166"
+    },
+    {
+      "tool": "prom_wifi_scan",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.388213"
+    },
+    {
+      "tool": "prom_monitor_mode_enable",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.388255"
+    },
+    {
+      "tool": "prom_monitor_mode_disable",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.388310"
+    },
+    {
+      "tool": "prom_airodump_capture",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.388358"
+    },
+    {
+      "tool": "prom_deauth_attack",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.388407"
+    },
+    {
+      "tool": "prom_wps_scan",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.1e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.388452"
+    },
+    {
+      "tool": "prom_wps_attack",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.388490"
+    },
+    {
+      "tool": "prom_aircrack_crack",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.388525"
+    },
+    {
+      "tool": "prom_bluetooth_scan",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.388572"
+    },
+    {
+      "tool": "prom_bluetooth_info",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.388621"
+    },
+    {
+      "tool": "prom_evil_twin_setup",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.388655"
+    },
+    {
+      "tool": "prom_hash_identify",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.388702"
+    },
+    {
+      "tool": "prom_hash_generate",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.388766"
+    },
+    {
+      "tool": "prom_brute_force_generate",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 3.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.388829"
+    },
+    {
+      "tool": "prom_password_strength",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.388884"
+    },
+    {
+      "tool": "prom_rainbow_table_generate",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.388927"
+    },
+    {
+      "tool": "prom_rainbow_table_lookup",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.388974"
+    },
+    {
+      "tool": "prom_hydra_attack",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.389023"
+    },
+    {
+      "tool": "prom_binary_info",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.389072"
+    },
+    {
+      "tool": "prom_disassemble",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.389115"
+    },
+    {
+      "tool": "prom_radare2_analyze",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.389159"
+    },
+    {
+      "tool": "prom_ghidra_decompile",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.389198"
+    },
+    {
+      "tool": "prom_ltrace_trace",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.389231"
+    },
+    {
+      "tool": "prom_strace_trace",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.389276"
+    },
+    {
+      "tool": "prom_malware_static_analysis",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.389325"
+    },
+    {
+      "tool": "prom_yara_scan",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.389371"
+    },
+    {
+      "tool": "prom_peid_detect",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.389415"
+    },
+    {
+      "tool": "prom_upx_unpack",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.1e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.389457"
+    },
+    {
+      "tool": "prom_privilege_escalation_scan",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.389508"
+    },
+    {
+      "tool": "prom_persistence_create",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.389554"
+    },
+    {
+      "tool": "prom_credential_dump",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.389614"
+    },
+    {
+      "tool": "prom_lateral_movement",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.389653"
+    },
+    {
+      "tool": "prom_data_exfiltration",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.389693"
+    },
+    {
+      "tool": "prom_api_endpoint_discovery",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.389756"
+    },
+    {
+      "tool": "prom_api_parameter_fuzzer",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.1e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.389824"
+    },
+    {
+      "tool": "prom_graphql_introspection",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.389877"
+    },
+    {
+      "tool": "prom_jwt_token_analyzer",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.389943"
+    },
+    {
+      "tool": "prom_swagger_openapi_discovery",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.389990"
+    },
+    {
+      "tool": "prom_javascript_deobfuscate",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 3.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.390043"
+    },
+    {
+      "tool": "prom_websocket_interceptor",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.390079"
+    },
+    {
+      "tool": "prom_api_rate_limit_detector",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.390116"
+    },
+    {
+      "tool": "prom_api_authentication_analyzer",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 3.1e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.390171"
+    },
+    {
+      "tool": "prom_api_response_differ",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.390206"
+    },
+    {
+      "tool": "prom_autonomous_stop",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.390243"
+    },
+    {
+      "tool": "prom_autonomous_stats",
+      "category": "specialized",
+      "status": "failed",
+      "duration": 2.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.390295"
+    },
+    {
+      "tool": "prom_voice_status",
+      "category": "voice",
+      "status": "failed",
+      "duration": 3.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.390349"
+    },
+    {
+      "tool": "prom_memory_stats",
+      "category": "memory",
+      "status": "failed",
+      "duration": 1.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.390396"
+    },
+    {
+      "tool": "prom_bgp_hijacking_ultimate",
+      "category": "ultimate",
+      "status": "passed",
+      "duration": 2.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.390447"
+    },
+    {
+      "tool": "prom_ospf_manipulation_ultimate",
+      "category": "ultimate",
+      "status": "passed",
+      "duration": 2.2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.390491"
+    },
+    {
+      "tool": "prom_eigrp_attack_ultimate",
+      "category": "ultimate",
+      "status": "passed",
+      "duration": 3.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.390545"
+    },
+    {
+      "tool": "prom_dns_corruption_ultimate",
+      "category": "ultimate",
+      "status": "passed",
+      "duration": 1.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.390585"
+    },
+    {
+      "tool": "prom_fingerprint_bypass_ultimate",
+      "category": "ultimate",
+      "status": "passed",
+      "duration": 1.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.390620"
+    },
+    {
+      "tool": "prom_face_recognition_defeat_ultimate",
+      "category": "ultimate",
+      "status": "passed",
+      "duration": 1.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.390658"
+    },
+    {
+      "tool": "prom_iris_scanner_defeat_ultimate",
+      "category": "ultimate",
+      "status": "passed",
+      "duration": 2.1e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.390701"
+    },
+    {
+      "tool": "prom_voice_cloning_ultimate",
+      "category": "ultimate",
+      "status": "passed",
+      "duration": 2.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.390756"
+    },
+    {
+      "tool": "prom_aws_privilege_escalation_ultimate",
+      "category": "ultimate",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.390803"
+    },
+    {
+      "tool": "prom_azure_ad_attack_ultimate",
+      "category": "ultimate",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.390849"
+    },
+    {
+      "tool": "prom_gcp_privilege_escalation_ultimate",
+      "category": "ultimate",
+      "status": "passed",
+      "duration": 2.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.390899"
+    },
+    {
+      "tool": "prom_kubernetes_compromise_ultimate",
+      "category": "ultimate",
+      "status": "passed",
+      "duration": 2.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.390959"
+    },
+    {
+      "tool": "prom_serverless_exploitation_ultimate",
+      "category": "ultimate",
+      "status": "passed",
+      "duration": 2.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.391013"
+    },
+    {
+      "tool": "prom_phone_lookup",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.391054"
+    },
+    {
+      "tool": "prom_phone_bulk_lookup",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.391093"
+    },
+    {
+      "tool": "prom_phone_cache_stats",
+      "category": "specialized",
+      "status": "failed",
+      "duration": 2.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.391139"
+    },
+    {
+      "tool": "prom_phone_clear_cache",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 2.3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.391184"
+    },
+    {
+      "tool": "prom_email_analyze",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.391225"
+    },
+    {
+      "tool": "prom_email_batch_analyze",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.391262"
+    },
+    {
+      "tool": "prom_email_breach_check",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.391302"
+    },
+    {
+      "tool": "prom_domain_lookup",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.391339"
+    },
+    {
+      "tool": "prom_domain_batch_lookup",
+      "category": "specialized",
+      "status": "passed",
+      "duration": 1.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.391370"
+    },
+    {
+      "tool": "prom_payload_generate",
+      "category": "basic_tool",
+      "status": "passed",
+      "duration": 2.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.391412"
+    },
+    {
+      "tool": "prom_payload_format",
+      "category": "basic_tool",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.391449"
+    },
+    {
+      "tool": "prom_auto_loop",
+      "category": "autonomous",
+      "status": "passed",
+      "duration": 1.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.391487"
+    },
+    {
+      "tool": "prom_auto_intel",
+      "category": "autonomous",
+      "status": "failed",
+      "duration": 2.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.391548"
+    },
+    {
+      "tool": "prom_auto_execute",
+      "category": "autonomous",
+      "status": "failed",
+      "duration": 3.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.391613"
+    },
+    {
+      "tool": "prom_auto_stop",
+      "category": "autonomous",
+      "status": "passed",
+      "duration": 2.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.391672"
+    },
+    {
+      "tool": "prom_auto_stats",
+      "category": "autonomous",
+      "status": "passed",
+      "duration": 1.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.391729"
+    },
+    {
+      "tool": "prom_auto_decision",
+      "category": "autonomous",
+      "status": "failed",
+      "duration": 2.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.391786"
+    },
+    {
+      "tool": "prom_auto_gather",
+      "category": "autonomous",
+      "status": "failed",
+      "duration": 2.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.391832"
+    },
+    {
+      "tool": "prom_voice_speak",
+      "category": "voice",
+      "status": "failed",
+      "duration": 2.1e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.391874"
+    },
+    {
+      "tool": "prom_voice_announce",
+      "category": "voice",
+      "status": "passed",
+      "duration": 1.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.391910"
+    },
+    {
+      "tool": "prom_voice_report",
+      "category": "voice",
+      "status": "passed",
+      "duration": 2.2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.391951"
+    },
+    {
+      "tool": "prom_voice_alert",
+      "category": "voice",
+      "status": "failed",
+      "duration": 2.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.391996"
+    },
+    {
+      "tool": "prom_voice_play",
+      "category": "voice",
+      "status": "failed",
+      "duration": 1.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.392029"
+    },
+    {
+      "tool": "prom_memory_crystallize",
+      "category": "memory",
+      "status": "passed",
+      "duration": 2.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.392081"
+    },
+    {
+      "tool": "prom_memory_recall",
+      "category": "memory",
+      "status": "failed",
+      "duration": 1.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.392134"
+    },
+    {
+      "tool": "prom_memory_search",
+      "category": "memory",
+      "status": "failed",
+      "duration": 1.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.392180"
+    },
+    {
+      "tool": "prom_memory_store",
+      "category": "memory",
+      "status": "passed",
+      "duration": 2.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.392223"
+    },
+    {
+      "tool": "prom_memory_retrieve",
+      "category": "memory",
+      "status": "failed",
+      "duration": 2.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.392269"
+    },
+    {
+      "tool": "prom_memory_list",
+      "category": "memory",
+      "status": "failed",
+      "duration": 3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.392328"
+    },
+    {
+      "tool": "prom_memory_learn",
+      "category": "memory",
+      "status": "failed",
+      "duration": 3.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.392384"
+    },
+    {
+      "tool": "prom_memory_recommend",
+      "category": "memory",
+      "status": "failed",
+      "duration": 1.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.392425"
+    },
+    {
+      "tool": "prom_stealth_engage",
+      "category": "stealth",
+      "status": "passed",
+      "duration": 3.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.392480"
+    },
+    {
+      "tool": "prom_stealth_disengage",
+      "category": "stealth",
+      "status": "passed",
+      "duration": 2.5e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.392544"
+    },
+    {
+      "tool": "prom_stealth_anonymity",
+      "category": "stealth",
+      "status": "failed",
+      "duration": 3.8e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.392614"
+    },
+    {
+      "tool": "prom_stealth_backdoor",
+      "category": "stealth",
+      "status": "failed",
+      "duration": 3.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.392681"
+    },
+    {
+      "tool": "prom_stealth_obfuscate",
+      "category": "stealth",
+      "status": "failed",
+      "duration": 1.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.392736"
+    },
+    {
+      "tool": "prom_stealth_tor",
+      "category": "stealth",
+      "status": "failed",
+      "duration": 2.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.392796"
+    },
+    {
+      "tool": "prom_stealth_vpn",
+      "category": "stealth",
+      "status": "failed",
+      "duration": 2.9e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.392844"
+    },
+    {
+      "tool": "prom_heal",
+      "category": "healing",
+      "status": "passed",
+      "duration": 2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.392904"
+    },
+    {
+      "tool": "prom_heal_stats",
+      "category": "healing",
+      "status": "failed",
+      "duration": 1.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.392949"
+    },
+    {
+      "tool": "prom_heal_record",
+      "category": "healing",
+      "status": "passed",
+      "duration": 1.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.392994"
+    },
+    {
+      "tool": "prom_heal_best",
+      "category": "healing",
+      "status": "passed",
+      "duration": 2.4e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.393051"
+    },
+    {
+      "tool": "prom_defense_analyze",
+      "category": "defense",
+      "status": "failed",
+      "duration": 2.1e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.393093"
+    },
+    {
+      "tool": "prom_defense_quarantine",
+      "category": "defense",
+      "status": "failed",
+      "duration": 3.1e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.393154"
+    },
+    {
+      "tool": "prom_defense_repel",
+      "category": "defense",
+      "status": "failed",
+      "duration": 2.7e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.393202"
+    },
+    {
+      "tool": "prom_defense_counter",
+      "category": "defense",
+      "status": "failed",
+      "duration": 1.6e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.393237"
+    },
+    {
+      "tool": "prom_defense_ids",
+      "category": "defense",
+      "status": "failed",
+      "duration": 3e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.393290"
+    },
+    {
+      "tool": "prom_defense_reflect",
+      "category": "defense",
+      "status": "failed",
+      "duration": 2e-05,
+      "error": null,
+      "timestamp": "2025-11-10T20:39:22.393356"
+    }
+  ]
+}

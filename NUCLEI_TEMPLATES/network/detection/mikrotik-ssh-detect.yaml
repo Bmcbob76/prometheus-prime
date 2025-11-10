@@ -1,0 +1,33 @@
+id: mikrotik-ssh-detect
+
+info:
+  name: MikroTik RouterOS SSH - Detect
+  author: staticnoise
+  severity: info
+  description: |
+    MikroTik RouterOS SSH was detected.
+  reference:
+    - http://www.openwall.com/lists/oss-security/2016/08/01/2
+    - http://www.openwall.com/lists/oss-security/2018/08/15/5
+    - http://seclists.org/fulldisclosure/2016/Jul/51
+    - https://nvd.nist.gov/vuln/detail/CVE-2016-6210
+    - https://nvd.nist.gov/vuln/detail/CVE-2018-15473
+  classification:
+    cvss-metrics: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
+    cwe-id: CWE-200
+  metadata:
+    max-request: 1
+    shodan-query: SSH-2.0-ROSSSH
+    verified: true
+  tags: network,mikrotik,detect,detection,tcp,discovery
+
+tcp:
+  - host:
+      - "{{Hostname}}"
+    port: 22
+
+    matchers:
+      - type: regex
+        regex:
+          - '(?i)SSH-2.0-ROSSSH'
+# digest: 490a00463044022044ba82abeea3690b201efdd5cb94d1b698f2ddc75a88b5d79746b5c92c4e9b39022074559a271c8ed797ee59f57f8d1bf58dbafc0a2b1b0d3f4b1fdf4add9c126f7e:922c64590222798bb761d5b6d8e72950

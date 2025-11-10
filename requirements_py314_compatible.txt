@@ -1,6 +1,6 @@
-# Prometheus Prime Ultimate - Complete Cognitive Integration
-# Python Dependencies
+# Prometheus Prime Ultimate - Python 3.14 Compatible Dependencies
 # Authority Level: 11.0
+# Use this file if you encounter numba/librosa compatibility issues
 
 # Configuration & Environment
 python-dotenv==1.0.0
@@ -18,14 +18,14 @@ openai>=1.12.0
 google-generativeai>=0.3.0
 cohere>=4.40
 
-# Voice/Audio (for voice system)
+# Voice/Audio (BASIC - without librosa/numba)
 elevenlabs>=0.2.27
-pyaudio>=0.2.13
+# pyaudio>=0.2.13  # Uncomment if needed, may require system libraries
 SpeechRecognition>=3.10.0
 pydub>=0.25.1
 noisereduce>=3.0.0
 vosk>=0.3.45
-librosa>=0.10.0
+# librosa>=0.10.0  # REMOVED - requires numba which doesn't support Python 3.14 yet
 
 # Vision/Image (for vision system)
 opencv-python>=4.8.0
@@ -59,7 +59,7 @@ lxml==4.9.3
 mcp==0.9.0
 
 # Security & Cryptography
-cryptography==44.0.1
+cryptography==41.0.7
 
 # Additional Utilities
 python-dateutil==2.8.2
@@ -67,18 +67,10 @@ pytz==2023.3
 aiohttp>=3.9.0
 pyyaml>=6.0.1
 
-# Optional - For enhanced functionality
-# ftplib (built-in)
-# socket (built-in)
-# ssl (built-in)
-# subprocess (built-in)
-# concurrent.futures (built-in)
-# json (built-in)
-# pathlib (built-in)
-# datetime (built-in)
-# typing (built-in)
-# re (built-in)
-# hashlib (built-in)
-# base64 (built-in)
-# os (built-in)
-# sys (built-in)
+# NOTES:
+# - librosa removed due to numba Python 3.14 incompatibility
+# - Advanced audio spectral analysis features will be limited
+# - All core Prometheus functionality remains operational
+# - Voice synthesis (ElevenLabs) works fine
+# - Speech recognition (Vosk, SpeechRecognition) works fine
+# - Only affects advanced audio feature extraction

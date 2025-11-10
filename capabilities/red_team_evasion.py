@@ -84,8 +84,8 @@ class PostExploitation:
         
         Returns:
             Harvested credentials
-     
-        
+        """
+
         self.logger.info(f"Harvesting credentials on {target_os}")
         
         if target_os.lower() == "windows":

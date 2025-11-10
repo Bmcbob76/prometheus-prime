@@ -1697,6 +1697,18 @@ class PrometheusCapabilityRegistry:
             class_name="DomainIntelligence", mcp_tool_name="prom_domain_batch_lookup",
             operations=["batch_lookup"], expertise_level=ExpertiseLevel.EXPERT)
 
+        # === PAYLOAD GENERATION (2) ===
+        self._capabilities["prom_payload_generate"] = Capability(
+            name="generate", category=CapabilityCategory.BASIC_TOOL,
+            description="Generate offensive payloads (reverse/bind shells, meterpreter)", module_path="tools.payloads",
+            class_name="PayloadGenerator", mcp_tool_name="prom_payload_generate",
+            operations=["generate"], expertise_level=ExpertiseLevel.EXPERT)
+        self._capabilities["prom_payload_format"] = Capability(
+            name="format_payload", category=CapabilityCategory.BASIC_TOOL,
+            description="Format and encode payload for delivery", module_path="tools.payloads",
+            class_name="PayloadGenerator", mcp_tool_name="prom_payload_format",
+            operations=["format_payload"], expertise_level=ExpertiseLevel.EXPERT)
+
     def get_all_capabilities(self):
         return list(self._capabilities.values())
 

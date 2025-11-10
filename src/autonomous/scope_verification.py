@@ -32,14 +32,16 @@ class ScopeVerificationEngine:
     6. Technique authorization
     """
 
-    def __init__(self, contract: EngagementContract):
+    def __init__(self, contract: EngagementContract, sovereign_override=None):
         """
         Initialize scope verifier with engagement contract
 
         Args:
             contract: Valid EngagementContract with authorization
+            sovereign_override: Optional SovereignArchitectOverride instance
         """
         self.contract = contract
+        self.sovereign_override = sovereign_override
         self.verification_log: List[Dict] = []
         self.blocked_operations: List[Dict] = []
         self.operation_count = 0
@@ -48,6 +50,8 @@ class ScopeVerificationEngine:
         logger.info("🛡️ Scope Verification Engine initialized")
         logger.info(f"   Contract: {contract.contract_number}")
         logger.info(f"   Client: {contract.client_name}")
+        if sovereign_override:
+            logger.info(f"   👑 Sovereign Override System: CONNECTED")
 
     def verify_target(self, target: str, operation: str = "unknown") -> Dict:
         """
@@ -88,6 +92,29 @@ class ScopeVerificationEngine:
         logger.info(f"   Target: {target}")
         logger.info(f"   Operation: {operation}")
         logger.info(f"{'='*60}")
+
+        # 👑 SOVEREIGN OVERRIDE CHECK
+        # Authority Level 11.0 with active bloodline key bypasses ALL safety protocols
+        if self.sovereign_override and self.sovereign_override.active_session:
+            if self.sovereign_override.active_session.status.value == "active":
+                logger.info(f"\n👑 SOVEREIGN OVERRIDE ACTIVE")
+                logger.info(f"   Session: {self.sovereign_override.active_session.session_id}")
+                logger.info(f"   Sovereign: {self.sovereign_override.active_session.sovereign_id}")
+                logger.info(f"   ⚠️  ALL SAFETY PROTOCOLS BYPASSED")
+                logger.info(f"   ✅ Target authorized by sovereign authority")
+
+                result["authorized"] = True
+                result["reason"] = "SOVEREIGN OVERRIDE - Authority Level 11.0 with active bloodline key"
+                result["scope_entry"] = "SOVEREIGN_AUTHORITY"
+                result["warnings"].append("⚠️  Sovereign override active - all safety checks bypassed")
+                result["warnings"].append("👑 Only Authority Level 11.0 can override safety protocols")
+
+                # Still log for audit trail
+                self.verification_log.append(result)
+
+                logger.info(f"   ✅ AUTHORIZED BY SOVEREIGN OVERRIDE")
+                logger.info(f"{'='*60}\n")
+                return result
 
         # Layer 1: Contract scope check
         in_scope, scope_reason = self.contract.is_in_scope(target)

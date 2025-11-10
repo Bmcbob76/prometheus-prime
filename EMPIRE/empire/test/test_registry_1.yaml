@@ -1,0 +1,29 @@
+schema_version: 1
+plugins:
+  - name: slack
+    homepage_url: https://github.com/bc-security/slack-plugin
+    source_url: https://github.com/bc-security/slack-plugin
+    authors:
+      - name: Example
+        handle: "@Example"
+        link: github.com/example
+    description: |
+      Slack
+      ---
+
+      This is a plugin that allows you to interact with Slack.
+
+      # This Description supports markdown
+    versions:
+      - name: main
+        git_url: https://github.com/bc-security/slack-plugin
+        ref: main
+        subdirectory:
+      - name: 1.0.0
+        git_url: https://github.com/bc-security/slack-plugin
+        ref: v1.0.0
+        subdirectory:
+      - name: 1.0.1
+        git_url: https://github.com/bc-security/slack-plugin
+        ref: v1.0.1
+        subdirectory:

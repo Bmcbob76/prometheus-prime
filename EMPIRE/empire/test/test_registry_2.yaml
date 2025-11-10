@@ -1,0 +1,28 @@
+schema_version: 1
+plugins:
+  - name: slack
+    homepage_url: https://github.com/bc-security/slack-plugin
+    source_url: https://github.com/bc-security/slack-plugin
+    authors:
+      - name: Example
+        handle: "@Example"
+        link: github.com/example
+    description: |
+      Slack
+      ---
+
+      This is a plugin that allows you to interact with Slack.
+
+      # This Description supports markdown
+    versions:
+      - name: 1.0.0
+        tar_url: https://github.com/bc-security/slack-other/releases/download/v1.0.0/slack.tar.gz
+        # TODO: checksum ?
+
+        subdirectory:
+      - name: 1.0.1
+        tar_url: https://github.com/bc-security/slack-other/releases/download/v1.0.1/slack.tar.gz
+        subdirectory:
+      - name: 2.0.0
+        tar_url: https://github.com/bc-security/slack-other/releases/download/v2.0.0/slack.tar.gz
+        subdirectory:

@@ -1,0 +1,8 @@
+name: Basic Reporting
+authors:
+  - name: Vincent Rose
+    handle: '@vinnybod'
+    link: https://github.com/vinnybod
+software: ''
+techniques: []
+main: basic_reporting.py

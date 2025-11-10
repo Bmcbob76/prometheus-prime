@@ -1,0 +1,48 @@
+name: Sponsors & Kali - Tag Release
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - sponsors-main
+jobs:
+  tag_release:
+    if: github.event.pull_request.merged == true && startsWith(github.head_ref, 'release/')
+      && github.repository == 'BC-Security/Empire-Sponsors'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get tag name
+        run: |
+          echo "TAG_NAME=$(echo ${{ github.head_ref }} | sed 's/release\///')" >> $GITHUB_ENV
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+          token: ${{ secrets.RELEASE_TOKEN }}
+      - name: Initialize mandatory git config
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email noreply@github.com
+      - name: Extract release notes
+        id: extract_release_notes
+        uses: vinnybod/extract-release-notes@v2
+      - name: Extract release notes - sponsors
+        id: extract_release_notes_sponsors
+        uses: vinnybod/extract-release-notes@v2
+        with:
+          changelog_file: CHANGELOG-SPONSORS.md
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        with:
+          tag_name: v${{ env.TAG_NAME }}
+          release_name: v${{ env.TAG_NAME }}
+          body: |
+            ${{ steps.extract_release_notes.outputs.release_notes }}
+
+            ### Sponsors Only
+            ${{ steps.extract_release_notes_sponsors.outputs.release_notes }}
+          draft: false
+          prerelease: false

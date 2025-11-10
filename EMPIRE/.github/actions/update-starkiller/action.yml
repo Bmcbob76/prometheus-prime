@@ -1,0 +1,38 @@
+name: 'Update Starkiller'
+description: 'Updates the config.yaml to the specified version and commits the change.'
+inputs:
+  starkiller-version:
+    description: 'The starkiller ref to use'
+    required: true
+  app-version:
+    description: 'The changelog section to update'
+    required: true
+  repo:
+    description: "The starkiller repo to use. If not set, doesn't update the field."
+    required: false
+  changelog-path:
+    description: "The changelog path"
+    default: CHANGELOG.md
+runs:
+  using: "composite"
+  steps:
+    # This is technically only needed for the first time we update the public repo, as a bootstrap.
+    # After that, the submodule is already initialized to the right repo.
+    - name: Update config.yaml repo
+      if: ${{ inputs.repo }}
+      shell: bash
+      run: |
+        sed -i "s|repo:.*|repo: ${{ inputs.repo }}|" empire/server/config.yaml
+    - name: Update config.yaml ref
+      shell: bash
+      run: |
+        sed -i '0,/ref: .*/s//ref: ${{ inputs.starkiller-version }}/' empire/server/config.yaml
+    - name: Update changelog
+      shell: bash
+      run: |
+        sed -i '/## \[${{ inputs.app-version }}\]/a -   Updated Starkiller to ${{ inputs.starkiller-version }}' ${{ inputs.changelog-path }}
+    - name: Commit changes
+      shell: bash
+      run: |
+        git add -A
+        git commit --message "Update starkiller version to ${{ inputs.starkiller-version }}"

@@ -1,0 +1,65 @@
+suppress_self_cert_warning: true
+api:
+  port: 1337
+database:
+  use: mysql
+  mysql:
+    url: localhost:3306
+    username: empire_user
+    password: empire_password
+    database_name: test_empire
+  sqlite:
+    location: test_empire.db
+  defaults:
+    # staging key will first look at OS environment variables, then here.
+    staging_key: ""
+    username: empireadmin
+    password: password123
+    obfuscation:
+      - language: powershell
+        enabled: false
+        command: "Token\\All\\1"
+        module: "invoke-obfuscation"
+        preobfuscatable: true
+      - language: csharp
+        enabled: false
+        command: ""
+        module: "confuser"
+        preobfuscatable: false
+      - language: python
+        enabled: false
+        command: ""
+        module: "python-obfuscator"
+        preobfuscatable: false
+    keyword_obfuscation:
+      - Invoke-Empire
+      - Invoke-Mimikatz
+empire_compiler:
+  archive: https://github.com/BC-SECURITY/Empire-Compiler/releases/download/v0.3.3/EmpireCompiler-{{platform}}-v0.3.3.tgz
+starkiller:
+  enabled: true
+  repo: https://github.com/BC-SECURITY/Starkiller.git
+  # Can be a branch, tag, or commit hash
+
+  ref: v2.8.2
+submodules:
+  auto_update: true
+plugin_marketplace:
+  registries:
+    - name: BC-SECURITY
+      location: test_registry_1.yaml
+    - name: BC-SECURITY-TEST
+      location: test_registry_2.yaml
+directories:
+  downloads: downloads
+keyword_obfuscation:
+  # List of keywords to obfuscate
+  - Invoke-Empire
+  - Invoke-Mimikatz
+logging:
+  level: INFO
+  simple_console: true
+debug:
+  last_task:
+    enabled: true
+    file: debug/last_task.txt

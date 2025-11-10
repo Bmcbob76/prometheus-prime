@@ -1,0 +1,6 @@
+{
+  "name": "DataScience",
+  "agents": 200,
+  "status": "deployed",
+  "trinity_control": true
+}

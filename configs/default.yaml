@@ -82,3 +82,42 @@ reporting:
   include_mitre_mapping: true
   include_ioc_list: true
   redact_sensitive_fields: true
+
+# ========== PROMETHIAN VAULT - PENTAGON-LEVEL ENCRYPTION ==========
+vault:
+  enabled: true
+  vault_path: ~/.promethian_vault
+  database_path: ~/.promethian_vault/vault.db
+
+  # Encryption settings
+  encryption:
+    algorithm: AES-256-GCM
+    key_derivation: PBKDF2-HMAC-SHA512
+    iterations: 600000
+    asymmetric: RSA-4096
+    integrity: HMAC-SHA512
+
+  # Security features
+  features:
+    enable_credential_storage: true
+    enable_api_key_management: true
+    enable_crypto_wallet_storage: true
+    enable_ssh_key_storage: true
+    enable_certificate_storage: true
+    enable_audit_logging: true
+    enable_intrusion_detection: true
+    enable_honeypot_secrets: true
+    enable_auto_lockdown: true
+    enable_backup_encryption: true
+
+  # Access control
+  access_control:
+    max_failed_attempts: 5
+    lockdown_duration_hours: 1
+    require_authentication: true
+
+  # Backup settings
+  backup:
+    auto_backup: false
+    backup_interval_hours: 24
+    backup_retention_days: 30

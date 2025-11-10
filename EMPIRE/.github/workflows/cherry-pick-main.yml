@@ -1,0 +1,74 @@
+# On pull request merge to main in BC-SECURITY/Empire,
+# cherry-pick the squashed merge commit to private-main in BC-SECURITY/Empire-Sponsors
+# If the pull request contains the label 'auto-cherry-pick'
+name: Prerelease - Cherry Pick Main
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      commitHash:
+        description: 'The commit hash to cherry-pick.'
+        type: string
+        required: true
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+jobs:
+  cherry-pick:
+    if: ${{ github.repository == 'BC-Security/Empire' && (github.event_name == 'workflow_dispatch'
+      || (github.event.pull_request && github.event.pull_request.merged == true &&
+      contains(github.event.pull_request.labels.*.name, 'auto-cherry-pick'))) }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out sponsor repo
+        uses: actions/checkout@v4
+        with:
+          repository: 'BC-Security/Empire-Sponsors'
+          submodules: 'recursive'
+          ref: private-main
+          token: ${{ secrets.RELEASE_TOKEN }}
+          fetch-depth: 0
+      - name: Add public repo
+        run: |
+          git remote add public https://github.com/BC-Security/empire.git
+          # recursing submodules in the fetch will cause remote error: upload-pack: not our ref since the
+          # remote for starkiller hasn't been synced yet
+          git fetch public --no-recurse-submodules
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+      - name: Initialize mandatory git config
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email noreply@github.com
+      - name: Set commitHash workflow input
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          echo "COMMIT_HASH=${{ github.event.inputs.commitHash }}" >> $GITHUB_ENV
+      - name: Set commitHash pull request input
+        if: ${{ github.event_name == 'pull_request' }}
+        run: |
+          echo "COMMIT_HASH=${{ github.event.pull_request.head.sha }}" >> $GITHUB_ENV
+      - name: Create cherry-pick branch
+        run: |
+          git checkout -b cherry-pick-${{ env.COMMIT_HASH }}
+      - name: Cherry-pick commit
+        run: |
+          git cherry-pick ${{ env.COMMIT_HASH }}
+      - name: Push new branch
+        run: git push origin cherry-pick-${{ env.COMMIT_HASH }}
+      - name: Create pull request into private-main
+        uses: thomaseizinger/create-pull-request@1.4.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+          title: Cherry-pick ${{ github.event.inputs.commitHash }} to private-main
+          body: |
+            This pull request was automatically created by a GitHub Action.
+            The commit ${{ env.COMMIT_HASH }} was cherry-picked from the main branch.
+            Merge the pull request. **DO NOT SQUASH**
+          head: cherry-pick-${{ env.COMMIT_HASH }}
+          base: private-main
+          repository: BC-Security/Empire-Sponsors

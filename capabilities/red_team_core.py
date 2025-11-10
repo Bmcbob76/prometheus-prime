@@ -13,6 +13,31 @@ import logging
 from typing import Dict, List, Optional, Any
 from dataclasses import dataclass
 from enum import Enum
+import socket
+import subprocess
+import json
+
+# Real implementation imports
+try:
+    import dns.resolver
+    import dns.zone
+    import dns.query
+    DNS_AVAILABLE = True
+except ImportError:
+    DNS_AVAILABLE = False
+
+try:
+    import whois
+    WHOIS_AVAILABLE = True
+except ImportError:
+    WHOIS_AVAILABLE = False
+
+try:
+    import requests
+    from bs4 import BeautifulSoup
+    WEB_AVAILABLE = True
+except ImportError:
+    WEB_AVAILABLE = False
 
 logger = logging.getLogger("PROMETHEUS-PRIME.RedTeam")
 
@@ -174,48 +199,292 @@ class RedTeamCore:
     async def _passive_osint(self, target: RedTeamTarget) -> Dict[str, Any]:
         """Passive OSINT gathering"""
         self.logger.debug(f"Passive OSINT for {target.name}")
-        
-        # This would integrate with OSINT tools
-        return {
-            "whois": "Domain registration info placeholder",
-            "dns_records": "DNS records placeholder",
-            "shodan": "Shodan results placeholder",
-            "social_media": "Social media intel placeholder",
-            "breach_data": "Breach database check placeholder"
+
+        results = {
+            "whois": {},
+            "dns_records": {},
+            "shodan": "Shodan integration requires API key",
+            "social_media": "Social media intel requires specialized tools",
+            "breach_data": "Breach database check requires API access"
         }
+
+        # Real WHOIS lookup
+        if WHOIS_AVAILABLE and target.domains:
+            for domain in target.domains:
+                try:
+                    whois_data = whois.whois(domain)
+                    results["whois"][domain] = {
+                        "registrar": str(whois_data.registrar) if whois_data.registrar else "Unknown",
+                        "creation_date": str(whois_data.creation_date) if whois_data.creation_date else "Unknown",
+                        "expiration_date": str(whois_data.expiration_date) if whois_data.expiration_date else "Unknown",
+                        "name_servers": whois_data.name_servers if whois_data.name_servers else [],
+                        "status": whois_data.status if whois_data.status else [],
+                        "emails": whois_data.emails if whois_data.emails else [],
+                        "org": str(whois_data.org) if hasattr(whois_data, 'org') and whois_data.org else "Unknown"
+                    }
+                except Exception as e:
+                    self.logger.warning(f"WHOIS lookup failed for {domain}: {e}")
+                    results["whois"][domain] = {"error": str(e)}
+        else:
+            results["whois"] = "python-whois not available - install with: pip install python-whois"
+
+        return results
     
     async def _active_scan(self, target: RedTeamTarget) -> Dict[str, Any]:
         """Active network scanning"""
         self.logger.debug(f"Active scan for {target.name}")
-        
-        # This would integrate with nmap, masscan, etc.
-        return {
-            "open_ports": [22, 80, 443, 3389],
-            "services": ["SSH", "HTTP", "HTTPS", "RDP"],
+
+        results = {
+            "open_ports": [],
+            "services": [],
             "os_detection": target.os_type,
             "vulnerabilities": target.vulnerabilities
         }
+
+        # Real port scanning using socket
+        common_ports = {
+            21: "FTP", 22: "SSH", 23: "Telnet", 25: "SMTP",
+            53: "DNS", 80: "HTTP", 110: "POP3", 143: "IMAP",
+            443: "HTTPS", 445: "SMB", 3306: "MySQL", 3389: "RDP",
+            5432: "PostgreSQL", 5900: "VNC", 8080: "HTTP-Proxy",
+            8443: "HTTPS-Alt", 27017: "MongoDB", 6379: "Redis"
+        }
+
+        for ip in target.ip_addresses[:1]:  # Scan first IP only to avoid timeout
+            for port, service in common_ports.items():
+                try:
+                    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                    sock.settimeout(0.5)
+                    result = sock.connect_ex((ip, port))
+                    if result == 0:
+                        results["open_ports"].append(port)
+                        results["services"].append(service)
+                        self.logger.debug(f"Port {port} ({service}) open on {ip}")
+                    sock.close()
+                except Exception as e:
+                    self.logger.debug(f"Error scanning port {port} on {ip}: {e}")
+
+        # Try nmap if available for better results
+        if results["open_ports"]:
+            try:
+                ip = target.ip_addresses[0]
+                nmap_output = subprocess.run(
+                    ["nmap", "-sV", "-Pn", "-p", ",".join(map(str, results["open_ports"])), ip],
+                    capture_output=True,
+                    text=True,
+                    timeout=30
+                )
+                results["nmap_output"] = nmap_output.stdout
+            except (FileNotFoundError, subprocess.TimeoutExpired):
+                self.logger.debug("nmap not available or timed out, using basic scan results")
+
+        return results
     
     async def _dns_enumeration(self, target: RedTeamTarget) -> Dict[str, Any]:
         """DNS enumeration"""
         self.logger.debug(f"DNS enumeration for {target.name}")
-        
-        return {
-            "subdomains": ["www", "mail", "ftp", "admin"],
-            "mx_records": ["mail.example.com"],
-            "txt_records": ["v=spf1 include:_spf.google.com ~all"]
+
+        results = {
+            "subdomains": [],
+            "mx_records": [],
+            "txt_records": [],
+            "a_records": [],
+            "aaaa_records": [],
+            "ns_records": [],
+            "soa_records": []
         }
+
+        if not DNS_AVAILABLE:
+            results["error"] = "dnspython not available - install with: pip install dnspython"
+            return results
+
+        if not target.domains:
+            results["error"] = "No domains provided for DNS enumeration"
+            return results
+
+        domain = target.domains[0]
+
+        try:
+            # Common subdomain wordlist
+            common_subdomains = [
+                "www", "mail", "ftp", "admin", "vpn", "remote", "ssh", "api",
+                "dev", "test", "staging", "prod", "app", "web", "portal",
+                "secure", "login", "webmail", "smtp", "pop", "imap", "ns1", "ns2"
+            ]
+
+            # Enumerate subdomains
+            for sub in common_subdomains:
+                subdomain = f"{sub}.{domain}"
+                try:
+                    answers = dns.resolver.resolve(subdomain, 'A')
+                    results["subdomains"].append(subdomain)
+                    self.logger.debug(f"Found subdomain: {subdomain}")
+                except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer, dns.exception.Timeout):
+                    pass
+
+            # Get MX records
+            try:
+                mx_answers = dns.resolver.resolve(domain, 'MX')
+                results["mx_records"] = [str(rdata.exchange) for rdata in mx_answers]
+            except Exception as e:
+                self.logger.debug(f"MX lookup failed: {e}")
+
+            # Get TXT records
+            try:
+                txt_answers = dns.resolver.resolve(domain, 'TXT')
+                results["txt_records"] = [str(rdata) for rdata in txt_answers]
+            except Exception as e:
+                self.logger.debug(f"TXT lookup failed: {e}")
+
+            # Get A records
+            try:
+                a_answers = dns.resolver.resolve(domain, 'A')
+                results["a_records"] = [str(rdata) for rdata in a_answers]
+            except Exception as e:
+                self.logger.debug(f"A record lookup failed: {e}")
+
+            # Get AAAA records (IPv6)
+            try:
+                aaaa_answers = dns.resolver.resolve(domain, 'AAAA')
+                results["aaaa_records"] = [str(rdata) for rdata in aaaa_answers]
+            except Exception as e:
+                self.logger.debug(f"AAAA record lookup failed: {e}")
+
+            # Get NS records
+            try:
+                ns_answers = dns.resolver.resolve(domain, 'NS')
+                results["ns_records"] = [str(rdata) for rdata in ns_answers]
+            except Exception as e:
+                self.logger.debug(f"NS record lookup failed: {e}")
+
+            # Get SOA record
+            try:
+                soa_answers = dns.resolver.resolve(domain, 'SOA')
+                results["soa_records"] = [str(rdata) for rdata in soa_answers]
+            except Exception as e:
+                self.logger.debug(f"SOA record lookup failed: {e}")
+
+        except Exception as e:
+            results["error"] = f"DNS enumeration failed: {str(e)}"
+            self.logger.warning(f"DNS enumeration error: {e}")
+
+        return results
     
     async def _web_recon(self, target: RedTeamTarget) -> Dict[str, Any]:
         """Web application reconnaissance"""
         self.logger.debug(f"Web recon for {target.name}")
-        
-        return {
-            "technologies": ["Apache", "PHP", "MySQL"],
-            "cms": "WordPress 6.x",
-            "vulnerabilities": ["Outdated plugins", "Weak authentication"],
-            "endpoints": ["/admin", "/login", "/api"]
+
+        results = {
+            "technologies": [],
+            "cms": "Unknown",
+            "headers": {},
+            "cookies": [],
+            "forms": [],
+            "endpoints": [],
+            "vulnerabilities": []
         }
+
+        if not WEB_AVAILABLE:
+            results["error"] = "requests/beautifulsoup4 not available - install with: pip install requests beautifulsoup4"
+            return results
+
+        if not target.domains:
+            results["error"] = "No domains provided for web reconnaissance"
+            return results
+
+        domain = target.domains[0]
+
+        # Try both HTTP and HTTPS
+        for protocol in ["https", "http"]:
+            url = f"{protocol}://{domain}"
+            try:
+                response = requests.get(url, timeout=10, allow_redirects=True, verify=False)
+
+                # Capture headers
+                results["headers"] = dict(response.headers)
+
+                # Detect technologies from headers
+                server = response.headers.get("Server", "")
+                if server:
+                    results["technologies"].append(f"Server: {server}")
+
+                x_powered_by = response.headers.get("X-Powered-By", "")
+                if x_powered_by:
+                    results["technologies"].append(f"X-Powered-By: {x_powered_by}")
+
+                # Capture cookies
+                results["cookies"] = [{"name": c.name, "value": c.value, "secure": c.secure} for c in response.cookies]
+
+                # Parse HTML
+                soup = BeautifulSoup(response.text, 'html.parser')
+
+                # Detect CMS
+                if "wp-content" in response.text or "wordpress" in response.text.lower():
+                    results["cms"] = "WordPress"
+                elif "joomla" in response.text.lower():
+                    results["cms"] = "Joomla"
+                elif "drupal" in response.text.lower():
+                    results["cms"] = "Drupal"
+
+                # Extract meta tags
+                generator = soup.find("meta", attrs={"name": "generator"})
+                if generator and generator.get("content"):
+                    results["cms"] = generator.get("content")
+
+                # Find forms (potential attack vectors)
+                forms = soup.find_all("form")
+                for form in forms[:5]:  # Limit to 5 forms
+                    form_data = {
+                        "action": form.get("action", ""),
+                        "method": form.get("method", "GET"),
+                        "inputs": [inp.get("name") for inp in form.find_all("input") if inp.get("name")]
+                    }
+                    results["forms"].append(form_data)
+
+                # Common endpoints to check
+                common_paths = ["/admin", "/login", "/api", "/dashboard", "/wp-admin", "/phpmyadmin", "/.git", "/.env"]
+                for path in common_paths:
+                    try:
+                        check_url = f"{protocol}://{domain}{path}"
+                        check_resp = requests.head(check_url, timeout=3, allow_redirects=False, verify=False)
+                        if check_resp.status_code not in [404, 403]:
+                            results["endpoints"].append({"path": path, "status": check_resp.status_code})
+                    except:
+                        pass
+
+                # Check for security headers
+                security_headers = {
+                    "X-Frame-Options": "Missing - Clickjacking risk",
+                    "X-Content-Type-Options": "Missing - MIME sniffing risk",
+                    "Strict-Transport-Security": "Missing - No HSTS",
+                    "Content-Security-Policy": "Missing - XSS risk",
+                    "X-XSS-Protection": "Missing - XSS protection disabled"
+                }
+
+                for header, issue in security_headers.items():
+                    if header not in response.headers:
+                        results["vulnerabilities"].append(issue)
+
+                # Check for common vulnerabilities
+                if response.headers.get("Server"):
+                    results["vulnerabilities"].append("Server version disclosed in headers")
+
+                if "/.git" in [e["path"] for e in results["endpoints"]]:
+                    results["vulnerabilities"].append("Git repository exposed")
+
+                break  # If successful, don't try other protocol
+
+            except requests.exceptions.SSLError:
+                results["vulnerabilities"].append("SSL/TLS certificate error")
+                continue
+            except requests.exceptions.Timeout:
+                self.logger.debug(f"Timeout connecting to {url}")
+                continue
+            except Exception as e:
+                self.logger.debug(f"Error during web recon: {e}")
+                continue
+
+        return results
     
     async def generate_payload(
         self,

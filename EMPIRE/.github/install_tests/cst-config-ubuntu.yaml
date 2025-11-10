@@ -1,0 +1,8 @@
+schemaVersion: 2.0.0
+containerRunOptions:
+  user: "empire"
+commandTests:
+  - name: "mysql version"
+    command: "mysql"
+    args: ["--version"]
+    expectedOutput: ["mysql  Ver 8.0.*"]

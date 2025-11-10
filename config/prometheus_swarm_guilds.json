@@ -1,0 +1,50 @@
+{
+  "prometheus_recon": {
+    "agents": 200,
+    "specialization": "Network Reconnaissance & OSINT",
+    "authority": 9.5,
+    "skills": ["nmap", "shodan", "censys", "passive_dns", "whois"]
+  },
+  "prometheus_redteam": {
+    "agents": 150,
+    "specialization": "Offensive Security Operations",
+    "authority": 9.8,
+    "skills": ["exploit_dev", "payload_gen", "lateral_movement", "privilege_escalation"]
+  },
+  "prometheus_blueteam": {
+    "agents": 150,
+    "specialization": "Defensive Security & Detection",
+    "authority": 9.5,
+    "skills": ["ids_evasion", "log_analysis", "threat_hunting", "incident_response"]
+  },
+  "prometheus_sigint": {
+    "agents": 100,
+    "specialization": "Signals Intelligence & Analysis",
+    "authority": 9.7,
+    "skills": ["wifi_recon", "bluetooth_analysis", "rf_monitoring", "signal_processing"]
+  },
+  "prometheus_osint": {
+    "agents": 150,
+    "specialization": "Open Source Intelligence",
+    "authority": 9.0,
+    "skills": ["social_media", "dark_web", "phone_intel", "domain_intel", "email_intel"]
+  },
+  "prometheus_automation": {
+    "agents": 150,
+    "specialization": "Autonomous Operations & Scripting",
+    "authority": 9.6,
+    "skills": ["python", "powershell", "bash", "api_integration", "task_orchestration"]
+  },
+  "prometheus_analysis": {
+    "agents": 100,
+    "specialization": "Data Analysis & Pattern Recognition",
+    "authority": 9.4,
+    "skills": ["ml_analysis", "pattern_detection", "anomaly_detection", "report_generation"]
+  },
+  "prometheus_exploitation": {
+    "agents": 200,
+    "specialization": "Vulnerability Exploitation",
+    "authority": 9.9,
+    "skills": ["zero_day", "exploit_chain", "persistence", "c2_operations"]
+  }
+}

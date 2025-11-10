@@ -1,0 +1,6 @@
+{
+  "name": "Testers",
+  "agents": 200,
+  "status": "deployed",
+  "trinity_control": true
+}

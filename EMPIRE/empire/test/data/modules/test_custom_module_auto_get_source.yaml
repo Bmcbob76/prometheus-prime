@@ -1,0 +1,25 @@
+name: Test Custom Module
+authors:
+  - name: Vinnybod
+    handle: ''
+    link: ''
+description: This is for tests.
+software: ''
+techniques:
+  - T1088
+background: true
+output_extension:
+needs_admin: false
+opsec_safe: false
+language: powershell
+min_language_version: '2'
+comments:
+  - Comment
+options:
+  - name: Agent
+    description: Agent to run module on.
+    required: true
+    value: ''
+script_path: 'custom_module_auto_get_source.py'
+advanced:
+  custom_generate: true

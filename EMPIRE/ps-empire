@@ -1,0 +1,38 @@
+#!/bin/bash
+
+INSTALL=0
+YES_OPTION=""
+FORCE_OPTION=""
+EMPIRE_ARGS=()
+
+for arg in "$@"; do
+  case $arg in
+    install)
+      INSTALL=1
+      ;;
+    -y)
+      YES_OPTION="-y"
+      ;;
+    -f)
+      FORCE_OPTION="-f"
+      ;;
+    -h)
+      SHOW_HELP="-h"
+      ;;
+    *)
+      EMPIRE_ARGS+=("$arg")
+      ;;
+  esac
+done
+
+if [ $INSTALL -eq 1 ]; then
+  ./setup/install.sh $SHOW_HELP $YES_OPTION $FORCE_OPTION
+fi
+
+if [ "$EUID" -eq 0 ] && [ -z "$FORCE_OPTION" ]; then
+    exit 1
+fi
+
+if [ $INSTALL -eq 0 ]; then
+    sudo -E poetry run python empire.py "${EMPIRE_ARGS[@]}"
+fi

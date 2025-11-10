@@ -35,12 +35,15 @@ except ImportError:
     PYGAME_AVAILABLE = False
     print("⚠️  pygame not installed - will install in venv")
 
-# ElevenLabs import
+# Voice synthesis imports - moved to runtime to avoid import errors
+OPENAI_AVAILABLE = False
+PYTTSX3_AVAILABLE = False
+
 try:
-    from elevenlabs import generate, save, Voice, VoiceSettings
-    ELEVENLABS_AVAILABLE = True
+    import pyttsx3
+    PYTTSX3_AVAILABLE = True
 except ImportError:
-    ELEVENLABS_AVAILABLE = False
+    print("⚠️  pyttsx3 not installed - install with: pip install pyttsx3")
 
 # Check for dotenv
 try:
@@ -315,64 +318,99 @@ class PrometheusLauncher:
         return script
 
     def generate_voice_announcement(self, script: str) -> str:
-        """Generate voice using ElevenLabs v3 TTS"""
+        """Generate voice using OpenAI TTS (primary) → pyttsx3 (fallback)"""
         print("\n" + "="*70)
         print("🎙️  AUDIO SYSTEM CHECK")
         print("="*70)
 
-        if not ELEVENLABS_AVAILABLE:
-            print("❌ ElevenLabs library not installed")
-            print("   Install with: pip install elevenlabs")
-            print("   Launcher will continue without voice\n")
-            return None
-
-        api_key = os.getenv('ELEVENLABS_API_KEY')
-        if not api_key:
-            print("❌ ElevenLabs API key not found")
-            print("   Set ELEVENLABS_API_KEY in:")
-            print("   - P:\\ECHO_PRIME\\CONFIG\\echo_x_complete_api_keychain.env")
-            print("   - Or create .env file in current directory")
-            print("   Launcher will continue without voice\n")
-            return None
-
-        print(f"✅ ElevenLabs library available")
-        print(f"✅ API key found: {api_key[:8]}...{api_key[-4:]}")
-
+        # Try OpenAI TTS first
         try:
-            print("🎙️  Generating voice with ElevenLabs v3...")
-            print("   This may take 5-15 seconds...")
-
-            # Use ElevenLabs v3 with high emotion
-            audio = generate(
-                text=script,
-                voice=Voice(
-                    voice_id="21m00Tcm4TlvDq8ikWAM",  # Rachel - clear, professional
-                    settings=VoiceSettings(
-                        stability=0.3,          # Lower for more emotion
-                        similarity_boost=0.8,   # High for voice consistency
-                        style=0.6,              # Moderate style exaggeration
-                        use_speaker_boost=True  # Enhance clarity
-                    )
-                ),
-                model="eleven_multilingual_v2"  # Best quality model
-            )
-
-            # Save to temp file
-            temp_file = tempfile.NamedTemporaryFile(delete=False, suffix='.mp3')
-            save(audio, temp_file.name)
-
-            print(f"✅ Voice generated successfully!")
-            print(f"   File: {temp_file.name}")
-            print("="*70 + "\n")
-            self.audio_available = True
-            return temp_file.name
-
+            from openai import OpenAI
+            import tempfile
+            
+            api_key = os.getenv('OPENAI_API_KEY')
+            if not api_key:
+                # Try loading from config
+                try:
+                    with open("P:\\ECHO_PRIME\\CONFIG\\echo_x_complete_api_keychain.env", 'r') as f:
+                        for line in f:
+                            if 'OPENAI_API_KEY' in line and '=' in line:
+                                api_key = line.split('=')[1].strip().strip('"').strip("'")
+                                break
+                except:
+                    pass
+            
+            if api_key:
+                print(f"✅ OpenAI API key found: {api_key[:8]}...{api_key[-4:]}")
+                print("🎙️  Generating voice with OpenAI TTS-1-HD...")
+                print("   This may take 5-10 seconds...")
+                
+                client = OpenAI(api_key=api_key)
+                
+                response = client.audio.speech.create(
+                    model="tts-1-hd",
+                    voice="onyx",  # Deep, commanding voice
+                    input=script,
+                    speed=1.0
+                )
+                
+                # Save to temp file
+                temp_file = tempfile.NamedTemporaryFile(delete=False, suffix='.mp3', mode='wb')
+                temp_file.write(response.content)
+                temp_file.close()
+                
+                file_size = os.path.getsize(temp_file.name)
+                print(f"✅ OpenAI TTS SUCCESS - Generated {file_size} bytes")
+                print(f"   Audio file: {temp_file.name}\n")
+                
+                return temp_file.name
+                
+        except ImportError:
+            print("⚠️  OpenAI library not installed - trying fallback...")
         except Exception as e:
-            print(f"❌ Voice generation failed!")
-            print(f"   Error: {e}")
-            print("   Launcher will continue without voice")
-            print("="*70 + "\n")
-            return None
+            print(f"⚠️  OpenAI TTS failed: {str(e)[:100]}")
+            print("   Falling back to pyttsx3...")
+        
+        # Fallback to pyttsx3
+        try:
+            import pyttsx3
+            import tempfile
+            
+            print("🎙️  Using pyttsx3 local TTS fallback...")
+            
+            engine = pyttsx3.init()
+            
+            # Configure voice (deep male)
+            voices = engine.getProperty('voices')
+            for voice in voices:
+                if 'male' in voice.name.lower() and 'david' in voice.name.lower():
+                    engine.setProperty('voice', voice.id)
+                    break
+            
+            # Set properties for commanding tone
+            engine.setProperty('rate', 160)  # Slower, more commanding
+            engine.setProperty('volume', 1.0)
+            
+            # Save to temp file
+            temp_file = tempfile.NamedTemporaryFile(delete=False, suffix='.wav', mode='wb')
+            temp_file.close()
+            
+            engine.save_to_file(script, temp_file.name)
+            engine.runAndWait()
+            
+            file_size = os.path.getsize(temp_file.name)
+            print(f"✅ pyttsx3 SUCCESS - Generated {file_size} bytes")
+            print(f"   Audio file: {temp_file.name}\n")
+            
+            return temp_file.name
+            
+        except ImportError:
+            print("❌ pyttsx3 not installed - install with: pip install pyttsx3")
+        except Exception as e:
+            print(f"❌ pyttsx3 failed: {str(e)[:100]}")
+        
+        print("❌ All voice systems failed - continuing without audio\n")
+        return None
 
     def play_audio(self, audio_file: str):
         """Play audio file using pygame"""
@@ -579,6 +617,7 @@ class PrometheusLauncher:
 
     def run(self):
         """Main launcher sequence"""
+        global pygame, gfxdraw
         try:
             # Initialize pygame
             if not PYGAME_AVAILABLE:
@@ -623,8 +662,12 @@ class PrometheusLauncher:
             import traceback
             traceback.print_exc()
         finally:
-            if self.screen:
-                pygame.quit()
+            if self.screen and PYGAME_AVAILABLE:
+                try:
+                    import pygame
+                    pygame.quit()
+                except:
+                    pass
 
 
 def main():

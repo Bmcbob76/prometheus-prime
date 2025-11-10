@@ -1,116 +1,91 @@
 # Prometheus Prime Ultimate - Complete Cognitive Integration
 # Python Dependencies
 # Authority Level: 11.0
+# Last Updated: 2025-11-10 - Security Vulnerability Fixes
 
 # Configuration & Environment
-python-dotenv==1.0.0
+python-dotenv==1.0.1
 
 # Core Web Framework
 flask==3.1.2
-flask-cors==4.0.0
+flask-cors==5.0.0
 requests==2.32.5
 urllib3==2.5.0
-httpx>=0.24.1
+httpx>=0.28.2
 
 # AI/LLM APIs
-anthropic>=0.18.0
-openai>=1.12.0
-google-generativeai>=0.3.0
-cohere>=4.40
+anthropic>=0.40.0
+openai>=1.59.5
+google-generativeai>=0.8.3
+cohere>=5.13.4
 
-# Voice/Audio (for voice system)
-elevenlabs>=0.2.27
-pyaudio>=0.2.13
-SpeechRecognition>=3.10.0
+# Voice/Audio (for voice system with ElevenLabs V3 TTS)
+elevenlabs==1.12.2
+pyaudio>=0.2.14
+SpeechRecognition>=3.11.0
 pydub>=0.25.1
-noisereduce>=3.0.0
+noisereduce>=3.0.2
 vosk>=0.3.45
-librosa>=0.10.0
+librosa>=0.10.2.post1
 
 # Vision/Image (for vision system)
-opencv-python>=4.8.0
-face-recognition>=1.3.0
-pytesseract>=0.3.10
-pillow>=12.0.0
-mss>=9.0.1
+opencv-python==4.10.0.84
+face-recognition==1.3.0
+pytesseract==0.3.13
+pillow==11.1.0
+mss==10.0.0
 screeninfo>=0.8.1
 
 # System Monitoring
-psutil>=5.9.5
+psutil>=6.1.1
 
 # Networking/Security
-scapy>=2.5.0
+scapy>=2.6.1
 
 # Databases
-pymysql==1.1.0
-redis>=5.0.0
-psycopg2-binary>=2.9.7
-pymongo>=4.5.0
+pymysql==1.1.1
+redis>=5.2.0
+psycopg2-binary>=2.9.10
+pymongo>=4.10.1
 
 # OSINT Integrations
-twilio==8.10.0
-dnspython==2.4.2
-python-whois==0.8.0
+twilio==9.4.1
+dnspython==2.7.0
+python-whois==0.9.4
 
 # Web Scraping & Parsing
-beautifulsoup4==4.12.2
+beautifulsoup4==4.12.3
 lxml==6.0.2
 
 # MCP Protocol
-mcp==0.9.0
+mcp==1.3.2
 
 # Security & Cryptography
 cryptography==46.0.3
 
 # Additional Utilities
-python-dateutil==2.8.2
-pytz==2023.3
+python-dateutil==2.9.0.post0
+pytz==2024.2
 aiohttp>=3.13.2
 pyyaml>=6.0.3
 
 # SSH/Network Access
-paramiko==3.4.0
-pywinrm==0.4.3
-impacket==0.11.0
+paramiko==3.5.0
+pywinrm==0.5.0
+impacket==0.13.0
 
-# Image Processing & Vision
-opencv-python==4.9.0.80
-face-recognition==1.3.0
-pytesseract==0.3.10
-easyocr==1.7.0
-pillow==12.0.0
+# Image Processing & Vision (consolidated)
+easyocr==1.7.2
 pyzbar==0.1.9
-mss==9.0.1
-numpy==1.26.3
+numpy==2.2.1
 
 # Audio Processing & Hearing
-SpeechRecognition==3.10.1
-openai-whisper==20231117
-pvporcupine==3.0.2
-pyaudio==0.2.14
-pyannote.audio==3.1.1
+openai-whisper==20240930
+pvporcupine==3.0.4
+pyannote.audio==3.3.2
 webrtcvad==2.0.10
-pydub==0.25.1
 
-# Voice Synthesis (already exists)
-elevenlabs==1.0.0
-
-# Optional - For enhanced functionality
-# ftplib (built-in)
-# socket (built-in)
-# ssl (built-in)
-# subprocess (built-in)
-# concurrent.futures (built-in)
-# json (built-in)
-# pathlib (built-in)
-# datetime (built-in)
-# typing (built-in)
-# re (built-in)
-# hashlib (built-in)
-# base64 (built-in)
-# os (built-in)
-# sys (built-in)
-# zlib (built-in)
-# smtplib (built-in)
-# email (built-in)
-# uuid (built-in)
+# Optional - For enhanced functionality (built-in modules)
+# ftplib, socket, ssl, subprocess, concurrent.futures, json
+# pathlib, datetime, typing, re, hashlib, base64, os, sys
+# zlib, smtplib, email, uuid

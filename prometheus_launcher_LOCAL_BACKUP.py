@@ -35,15 +35,12 @@ except ImportError:
     PYGAME_AVAILABLE = False
     print("⚠️  pygame not installed - will install in venv")
 
-# Voice synthesis imports - moved to runtime to avoid import errors
-OPENAI_AVAILABLE = False
-PYTTSX3_AVAILABLE = False
-
+# ElevenLabs import
 try:
-    import pyttsx3
-    PYTTSX3_AVAILABLE = True
+    from elevenlabs import generate, save, Voice, VoiceSettings
+    ELEVENLABS_AVAILABLE = True
 except ImportError:
-    print("⚠️  pyttsx3 not installed - install with: pip install pyttsx3")
+    ELEVENLABS_AVAILABLE = False
 
 # Check for dotenv
 try:
@@ -58,7 +55,7 @@ class PrometheusLauncher:
     """Epic Prometheus Prime Launcher with Graphics and Voice"""
 
     def __init__(self):
-        # Will be set after detecting screen size
+        # Use safe windowed resolution (fits most monitors)
         self.width = 1280
         self.height = 720
         self.fps = 60
@@ -71,7 +68,6 @@ class PrometheusLauncher:
         self.phase = "init"
         self.audio_playing = False
         self.audio_file = None
-        self.audio_available = False
 
         # Visual effects
         self.particles = []
@@ -90,57 +86,27 @@ class PrometheusLauncher:
         }
 
     def init_pygame(self):
-        """Initialize pygame with auto-detected screen size"""
+        """Initialize pygame with windowed graphics"""
         pygame.init()
         pygame.mixer.init(44100, -16, 2, 2048)
 
-        # Get display info to auto-detect screen size
-        display_info = pygame.display.Info()
-        screen_width = display_info.current_w
-        screen_height = display_info.current_h
-
-        print(f"🖥️  Detected screen: {screen_width}x{screen_height}")
-
-        # Use 80% of screen size for window
-        self.width = int(screen_width * 0.8)
-        self.height = int(screen_height * 0.8)
-
-        # Minimum size check
-        if self.width < 800:
-            self.width = 800
-        if self.height < 600:
-            self.height = 600
-
-        print(f"📐 Using window size: {self.width}x{self.height}")
-
-        # Create windowed mode (not fullscreen)
-        try:
-            self.screen = pygame.display.set_mode(
-                (self.width, self.height),
-                pygame.HWSURFACE | pygame.DOUBLEBUF | pygame.RESIZABLE
-            )
-        except:
-            # Fallback to basic mode
-            self.screen = pygame.display.set_mode((self.width, self.height))
+        # Use windowed mode (safer and fits all monitors)
+        self.screen = pygame.display.set_mode((self.width, self.height), pygame.HWSURFACE | pygame.DOUBLEBUF)
 
         pygame.display.set_caption("🔥 PROMETHEUS PRIME - Initializing...")
         self.clock = pygame.time.Clock()
 
-        # Fonts - scale based on screen size
-        large_size = max(60, int(self.height / 12))
-        medium_size = max(30, int(self.height / 24))
-        small_size = max(18, int(self.height / 40))
-
+        # Fonts
         try:
-            self.font_large = pygame.font.Font(None, large_size)
-            self.font_medium = pygame.font.Font(None, medium_size)
-            self.font_small = pygame.font.Font(None, small_size)
+            self.font_large = pygame.font.Font(None, 120)
+            self.font_medium = pygame.font.Font(None, 60)
+            self.font_small = pygame.font.Font(None, 36)
         except:
-            self.font_large = pygame.font.SysFont('consolas', int(large_size * 0.8), bold=True)
-            self.font_medium = pygame.font.SysFont('consolas', int(medium_size * 0.8), bold=True)
-            self.font_small = pygame.font.SysFont('consolas', int(small_size * 0.8))
+            self.font_large = pygame.font.SysFont('consolas', 80, bold=True)
+            self.font_medium = pygame.font.SysFont('consolas', 40, bold=True)
+            self.font_small = pygame.font.SysFont('consolas', 24)
 
-        pygame.mouse.set_visible(True)  # Keep mouse visible
+        pygame.mouse.set_visible(False)
 
     def create_particles(self, x, y, count=50):
         """Create particle effects"""
@@ -318,130 +284,115 @@ class PrometheusLauncher:
         return script
 
     def generate_voice_announcement(self, script: str) -> str:
-        """Generate voice using OpenAI TTS (primary) → pyttsx3 (fallback)"""
-        print("\n" + "="*70)
-        print("🎙️  AUDIO SYSTEM CHECK")
-        print("="*70)
+        """Generate voice using ElevenLabs v3 TTS"""
+        if not ELEVENLABS_AVAILABLE:
+            print("⚠️  ElevenLabs not available - attempting install...")
+            try:
+                subprocess.check_call([sys.executable, "-m", "pip", "install", "elevenlabs", "--quiet"])
+                from elevenlabs import generate, save, Voice, VoiceSettings
+                print("✅ ElevenLabs installed successfully")
+            except Exception as e:
+                print(f"❌ Could not install ElevenLabs: {e}")
+                return None
 
-        # Try OpenAI TTS first
+        # Try multiple API key sources
+        api_key = None
+        key_sources = [
+            ('ELEVENLABS_API_KEY', os.getenv('ELEVENLABS_API_KEY')),
+            ('ELEVEN_LABS_API_KEY', os.getenv('ELEVEN_LABS_API_KEY')),
+            ('Direct .env', self._load_elevenlabs_key_direct())
+        ]
+
+        for source_name, key in key_sources:
+            if key:
+                api_key = key
+                print(f"✅ Found ElevenLabs API key from: {source_name}")
+                break
+
+        if not api_key:
+            print("❌ ElevenLabs API key not found in any source")
+            print("   Checked: ELEVENLABS_API_KEY, ELEVEN_LABS_API_KEY, .env file")
+            return None
+
         try:
-            from openai import OpenAI
-            import tempfile
-            
-            api_key = os.getenv('OPENAI_API_KEY')
-            if not api_key:
-                # Try loading from config
+            print("🎙️  Generating voice with ElevenLabs v3...")
+            print(f"    Script length: {len(script)} characters")
+            print(f"    Using voice: Rachel (21m00Tcm4TlvDq8ikWAM)")
+
+            # Set API key
+            from elevenlabs import set_api_key
+            set_api_key(api_key)
+
+            # Use ElevenLabs v3 with high emotion
+            audio = generate(
+                text=script,
+                voice=Voice(
+                    voice_id="21m00Tcm4TlvDq8ikWAM",  # Rachel - clear, professional
+                    settings=VoiceSettings(
+                        stability=0.3,          # Lower for more emotion
+                        similarity_boost=0.8,   # High for voice consistency
+                        style=0.6,              # Moderate style exaggeration
+                        use_speaker_boost=True  # Enhance clarity
+                    )
+                ),
+                model="eleven_multilingual_v2"  # Best quality model
+            )
+
+            # Save to temp file
+            temp_file = tempfile.NamedTemporaryFile(delete=False, suffix='.mp3')
+            save(audio, temp_file.name)
+
+            print(f"✅ Voice generated: {temp_file.name}")
+            print(f"   File size: {os.path.getsize(temp_file.name)} bytes")
+            return temp_file.name
+
+        except Exception as e:
+            print(f"❌ Voice generation failed: {e}")
+            import traceback
+            traceback.print_exc()
+            return None
+
+    def _load_elevenlabs_key_direct(self) -> str:
+        """Load ElevenLabs key directly from .env file"""
+        env_paths = [
+            "P:\\ECHO_PRIME\\CONFIG\\echo_x_complete_api_keychain.env",
+            ".env",
+            os.path.join(os.getcwd(), ".env")
+        ]
+
+        for env_path in env_paths:
+            if os.path.exists(env_path):
                 try:
-                    with open("P:\\ECHO_PRIME\\CONFIG\\echo_x_complete_api_keychain.env", 'r') as f:
+                    with open(env_path, 'r') as f:
                         for line in f:
-                            if 'OPENAI_API_KEY' in line and '=' in line:
-                                api_key = line.split('=')[1].strip().strip('"').strip("'")
-                                break
+                            if 'ELEVENLABS_API_KEY' in line or 'ELEVEN_LABS_API_KEY' in line:
+                                key = line.split('=', 1)[1].strip().strip('"').strip("'")
+                                if key and len(key) > 10:
+                                    return key
                 except:
                     pass
-            
-            if api_key:
-                print(f"✅ OpenAI API key found: {api_key[:8]}...{api_key[-4:]}")
-                print("🎙️  Generating voice with OpenAI TTS-1-HD...")
-                print("   This may take 5-10 seconds...")
-                
-                client = OpenAI(api_key=api_key)
-                
-                response = client.audio.speech.create(
-                    model="tts-1-hd",
-                    voice="onyx",  # Deep, commanding voice
-                    input=script,
-                    speed=1.0
-                )
-                
-                # Save to temp file
-                temp_file = tempfile.NamedTemporaryFile(delete=False, suffix='.mp3', mode='wb')
-                temp_file.write(response.content)
-                temp_file.close()
-                
-                file_size = os.path.getsize(temp_file.name)
-                print(f"✅ OpenAI TTS SUCCESS - Generated {file_size} bytes")
-                print(f"   Audio file: {temp_file.name}\n")
-                
-                return temp_file.name
-                
-        except ImportError:
-            print("⚠️  OpenAI library not installed - trying fallback...")
-        except Exception as e:
-            print(f"⚠️  OpenAI TTS failed: {str(e)[:100]}")
-            print("   Falling back to pyttsx3...")
-        
-        # Fallback to pyttsx3
-        try:
-            import pyttsx3
-            import tempfile
-            
-            print("🎙️  Using pyttsx3 local TTS fallback...")
-            
-            engine = pyttsx3.init()
-            
-            # Configure voice (deep male)
-            voices = engine.getProperty('voices')
-            for voice in voices:
-                if 'male' in voice.name.lower() and 'david' in voice.name.lower():
-                    engine.setProperty('voice', voice.id)
-                    break
-            
-            # Set properties for commanding tone
-            engine.setProperty('rate', 160)  # Slower, more commanding
-            engine.setProperty('volume', 1.0)
-            
-            # Save to temp file
-            temp_file = tempfile.NamedTemporaryFile(delete=False, suffix='.wav', mode='wb')
-            temp_file.close()
-            
-            engine.save_to_file(script, temp_file.name)
-            engine.runAndWait()
-            
-            file_size = os.path.getsize(temp_file.name)
-            print(f"✅ pyttsx3 SUCCESS - Generated {file_size} bytes")
-            print(f"   Audio file: {temp_file.name}\n")
-            
-            return temp_file.name
-            
-        except ImportError:
-            print("❌ pyttsx3 not installed - install with: pip install pyttsx3")
-        except Exception as e:
-            print(f"❌ pyttsx3 failed: {str(e)[:100]}")
-        
-        print("❌ All voice systems failed - continuing without audio\n")
         return None
 
     def play_audio(self, audio_file: str):
         """Play audio file using pygame"""
-        print("\n" + "="*70)
-        print("🔊 AUDIO PLAYBACK")
-        print("="*70)
+        if not audio_file or not os.path.exists(audio_file):
+            print(f"❌ Audio file not found or invalid: {audio_file}")
+            return False
 
         try:
-            print(f"📂 Loading audio file: {audio_file}")
+            print(f"🔊 Loading audio: {audio_file}")
             pygame.mixer.music.load(audio_file)
-
-            # Check volume
-            volume = pygame.mixer.music.get_volume()
-            print(f"🔊 Volume level: {volume * 100:.0f}%")
-
-            if volume < 0.1:
-                pygame.mixer.music.set_volume(0.8)
-                print(f"   Increased volume to 80%")
-
+            pygame.mixer.music.set_volume(1.0)  # Maximum volume
             pygame.mixer.music.play()
             self.audio_playing = True
-            print(f"✅ Playing announcement...")
-            print(f"   Press SPACE to skip")
-            print("="*70 + "\n")
-
+            print(f"✅ Announcement playing... ({os.path.getsize(audio_file)} bytes)")
+            return True
         except Exception as e:
-            print(f"❌ Audio playback failed!")
-            print(f"   Error: {e}")
-            print(f"   Check your audio device is working")
-            print("="*70 + "\n")
+            print(f"❌ Audio playback failed: {e}")
+            import traceback
+            traceback.print_exc()
             self.audio_playing = False
+            return False
 
     def check_audio_playing(self):
         """Check if audio is still playing"""
@@ -541,14 +492,31 @@ class PrometheusLauncher:
 
     def show_announcement(self, audio_file: str = None):
         """Show announcement visuals while audio plays"""
+        print("\n" + "="*70)
+        print("🔥 PROMETHEUS PRIME ANNOUNCEMENT")
+        print("="*70)
+
         if audio_file:
-            self.play_audio(audio_file)
+            success = self.play_audio(audio_file)
+            if not success:
+                print("⚠️  Audio playback failed - showing visual announcement only")
+        else:
+            print("⚠️  No audio file generated - showing visual announcement only")
 
         start_time = time.time()
-        # Shorter duration if no audio
-        max_duration = 60 if audio_file else 8
+        max_duration = 90  # Maximum 90 seconds
 
-        while (time.time() - start_time < max_duration) and (self.audio_playing or not audio_file):
+        while (time.time() - start_time < max_duration):
+            # Check if audio is still playing
+            if audio_file and self.audio_playing:
+                self.check_audio_playing()
+                if not self.audio_playing:
+                    print("✅ Audio announcement complete")
+                    break
+            elif not audio_file and time.time() - start_time > 8:
+                # No audio, show visuals for 8 seconds
+                break
+
             self.screen.fill(self.colors['bg'])
             self.draw_grid()
 
@@ -557,29 +525,25 @@ class PrometheusLauncher:
             self.draw_pulse_effect()
 
             # Announcement text
-            y_offset = -120 if not audio_file else -100
-
             texts = [
-                ("PROMETHEUS PRIME", self.font_large, self.colors['primary'], self.height // 2 + y_offset),
-                ("Authority Level 11.0", self.font_medium, self.colors['accent'], self.height // 2 + y_offset + 80),
-                ("Sworn to Commander Bobby Don McWilliams II", self.font_small, self.colors['secondary'], self.height // 2 + y_offset + 150),
-                ("Sovereign Architect of Echo Prime", self.font_small, self.colors['text'], self.height // 2 + y_offset + 190)
+                ("PROMETHEUS PRIME", self.font_large, self.colors['primary'], self.height // 2 - 100),
+                ("Authority Level 11.0", self.font_medium, self.colors['accent'], self.height // 2),
+                ("Sworn to Commander Bobby Don McWilliams II", self.font_small, self.colors['secondary'], self.height // 2 + 80),
+                ("Sovereign Architect of Echo Prime", self.font_small, self.colors['text'], self.height // 2 + 130)
             ]
-
-            # Show audio status message if no audio
-            if not audio_file:
-                audio_msg_y = self.height // 2 + y_offset + 250
-                msg1 = self.font_small.render("Voice announcement unavailable", True, self.colors['warning'])
-                msg2 = self.font_small.render("Add ELEVENLABS_API_KEY for voice", True, self.colors['dim'])
-                rect1 = msg1.get_rect(center=(self.width // 2, audio_msg_y))
-                rect2 = msg2.get_rect(center=(self.width // 2, audio_msg_y + 30))
-                self.screen.blit(msg1, rect1)
-                self.screen.blit(msg2, rect2)
 
             for text, font, color, y_pos in texts:
                 rendered = font.render(text, True, color)
                 rect = rendered.get_rect(center=(self.width // 2, y_pos))
                 self.screen.blit(rendered, rect)
+
+            # Status indicator
+            if audio_file and self.audio_playing:
+                status_text = self.font_small.render("🔊 AUDIO ANNOUNCEMENT IN PROGRESS", True, self.colors['secondary'])
+            else:
+                status_text = self.font_small.render("VISUAL ANNOUNCEMENT", True, self.colors['warning'])
+            status_rect = status_text.get_rect(center=(self.width // 2, self.height - 50))
+            self.screen.blit(status_text, status_rect)
 
             # Continuous particles
             if random.random() > 0.8:
@@ -596,9 +560,6 @@ class PrometheusLauncher:
             self.clock.tick(self.fps)
             self.time += 1
 
-            # Check audio status
-            self.check_audio_playing()
-
             # Handle events
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -607,12 +568,10 @@ class PrometheusLauncher:
                     if event.key == pygame.K_ESCAPE:
                         return False
                     elif event.key == pygame.K_SPACE:
+                        print("⏭️  Announcement skipped by user")
                         return True  # Skip
 
-            # Exit if no audio and enough time passed
-            if not audio_file and time.time() - start_time > 5:
-                return True
-
+        print("="*70)
         return True
 
     def run(self):
@@ -629,15 +588,30 @@ class PrometheusLauncher:
             self.init_pygame()
 
             # Show startup sequence
+            print("\n🚀 Starting Prometheus Prime initialization sequence...")
             if not self.show_startup_sequence():
                 return
 
             # Generate announcement
+            print("\n" + "="*70)
+            print("📝 GENERATING PROMETHEUS PRIME ANNOUNCEMENT")
+            print("="*70)
             script = self.generate_announcement_script()
-            print(f"\n📢 Announcement Script:\n{script}\n")
+            print(f"\n📢 Announcement Script ({len(script)} characters):")
+            print("-"*70)
+            print(script)
+            print("-"*70 + "\n")
 
             # Generate voice
+            print("🎙️  Attempting voice synthesis...")
             audio_file = self.generate_voice_announcement(script)
+
+            if audio_file:
+                print(f"✅ Voice file ready: {audio_file}")
+                print(f"   File exists: {os.path.exists(audio_file)}")
+                print(f"   File size: {os.path.getsize(audio_file) if os.path.exists(audio_file) else 0} bytes")
+            else:
+                print("⚠️  Voice synthesis unavailable - will show visual announcement only")
 
             # Show announcement with visuals
             self.show_announcement(audio_file)
@@ -646,8 +620,9 @@ class PrometheusLauncher:
             if audio_file and os.path.exists(audio_file):
                 try:
                     os.unlink(audio_file)
-                except:
-                    pass
+                    print(f"🗑️  Cleaned up temp audio file")
+                except Exception as e:
+                    print(f"⚠️  Could not delete temp file: {e}")
 
             # Final message
             self.screen.fill(self.colors['bg'])
@@ -657,17 +632,15 @@ class PrometheusLauncher:
             pygame.display.flip()
             time.sleep(2)
 
+        except KeyboardInterrupt:
+            print("\n⚠️  Launcher interrupted by user")
         except Exception as e:
             print(f"❌ Launcher error: {e}")
             import traceback
             traceback.print_exc()
         finally:
-            if self.screen and PYGAME_AVAILABLE:
-                try:
-                    import pygame
-                    pygame.quit()
-                except:
-                    pass
+            if self.screen:
+                pygame.quit()
 
 
 def main():

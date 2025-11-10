@@ -62,12 +62,12 @@ from src.diagnostics.database_diagnostics import DatabaseDiagnostics
 from tools.scanner import PortScanner, VulnScanner, OSFingerprinter
 from tools.evasion import EvasionTechniques
 from tools.exploits import ExploitFramework
-from tools.payloads import PayloadGenerator
+# from tools.payloads import PayloadGenerator  # DELETED - use payload generation from capabilities
 from tools.password_cracking import PasswordCracker
 from tools.mobile_exploitation import MobileExploitation
 from tools.advanced_wireless import AdvancedWireless
 from tools.network_device_penetration import NetworkDevicePenetration
-from tools.physical_attacks import PhysicalAttacks
+# from tools.physical_attacks import PhysicalAttacks  # DELETED - use physical security from capabilities
 from tools.advanced_persistence import AdvancedPersistence
 
 # Import SIGINT Phase 2 modules

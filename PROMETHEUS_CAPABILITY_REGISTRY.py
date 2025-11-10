@@ -17,6 +17,7 @@ class CapabilityCategory(Enum):
     BASIC_TOOL = "basic_tool"
     SIGINT = "sigint"
     SPECIALIZED = "specialized"
+    ULTIMATE = "ultimate"
 
 class ExpertiseLevel(Enum):
     EXPERT = 4
@@ -1552,6 +1553,149 @@ class PrometheusCapabilityRegistry:
             description="api_response_differ operation", module_path="api_reverse_engineering",
             class_name="WebAPIReverseEngineering", mcp_tool_name="prom_api_response_differ",
             operations=["api_response_differ"], expertise_level=ExpertiseLevel.EXPERT)
+
+        # === ADDITIONAL SYSTEMS (26 operations) ===
+        # Autonomous System (2)
+        self._capabilities["prom_autonomous_stop"] = Capability(
+            name="stop_autonomous_loop", category=CapabilityCategory.SPECIALIZED,
+            description="Stop autonomous loop", module_path="src.autonomous.prometheus_autonomous",
+            class_name="PrometheusAutonomous", mcp_tool_name="prom_autonomous_stop",
+            operations=["stop_autonomous_loop"], expertise_level=ExpertiseLevel.EXPERT)
+        self._capabilities["prom_autonomous_stats"] = Capability(
+            name="get_stats", category=CapabilityCategory.SPECIALIZED,
+            description="Get autonomous loop statistics", module_path="src.autonomous.prometheus_autonomous",
+            class_name="PrometheusAutonomous", mcp_tool_name="prom_autonomous_stats",
+            operations=["get_stats"], expertise_level=ExpertiseLevel.EXPERT)
+        # Voice System (1)
+        self._capabilities["prom_voice_status"] = Capability(
+            name="get_status", category=CapabilityCategory.SPECIALIZED,
+            description="Get voice system status", module_path="src.voice.prometheus_voice",
+            class_name="PrometheusVoice", mcp_tool_name="prom_voice_status",
+            operations=["get_status"], expertise_level=ExpertiseLevel.EXPERT)
+        # Memory System (1)
+        self._capabilities["prom_memory_stats"] = Capability(
+            name="get_memory_stats", category=CapabilityCategory.SPECIALIZED,
+            description="Get crystal memory statistics", module_path="src.memory.crystal_prometheus",
+            class_name="PrometheusMemory", mcp_tool_name="prom_memory_stats",
+            operations=["get_memory_stats"], expertise_level=ExpertiseLevel.EXPERT)
+        # === ULTIMATE CAPABILITIES (13) ===
+        # Network (4)
+        self._capabilities["prom_bgp_hijacking_ultimate"] = Capability(
+            name="bgp_maximum_hijacking", category=CapabilityCategory.ULTIMATE,
+            description="Ultimate BGP hijacking", module_path="ULTIMATE_CAPABILITIES.network_exploitation_ultimate",
+            class_name="NetworkPlatform", mcp_tool_name="prom_bgp_hijacking_ultimate",
+            operations=["bgp_maximum_hijacking"], expertise_level=ExpertiseLevel.GRANDMASTER)
+        self._capabilities["prom_ospf_manipulation_ultimate"] = Capability(
+            name="ospf_ultimate_protocol_manipulation", category=CapabilityCategory.ULTIMATE,
+            description="Ultimate OSPF manipulation", module_path="ULTIMATE_CAPABILITIES.network_exploitation_ultimate",
+            class_name="NetworkPlatform", mcp_tool_name="prom_ospf_manipulation_ultimate",
+            operations=["ospf_ultimate_protocol_manipulation"], expertise_level=ExpertiseLevel.GRANDMASTER)
+        self._capabilities["prom_eigrp_attack_ultimate"] = Capability(
+            name="eigrp_advanced_protocol_attack", category=CapabilityCategory.ULTIMATE,
+            description="Ultimate EIGRP attack", module_path="ULTIMATE_CAPABILITIES.network_exploitation_ultimate",
+            class_name="NetworkPlatform", mcp_tool_name="prom_eigrp_attack_ultimate",
+            operations=["eigrp_advanced_protocol_attack"], expertise_level=ExpertiseLevel.GRANDMASTER)
+        self._capabilities["prom_dns_corruption_ultimate"] = Capability(
+            name="dns_advanced_corruption", category=CapabilityCategory.ULTIMATE,
+            description="Ultimate DNS corruption", module_path="ULTIMATE_CAPABILITIES.network_exploitation_ultimate",
+            class_name="NetworkPlatform", mcp_tool_name="prom_dns_corruption_ultimate",
+            operations=["dns_advanced_corruption"], expertise_level=ExpertiseLevel.GRANDMASTER)
+        # Biometric (4)
+        self._capabilities["prom_fingerprint_bypass_ultimate"] = Capability(
+            name="fingerprint_ultimate_bypass", category=CapabilityCategory.ULTIMATE,
+            description="Ultimate fingerprint bypass", module_path="ULTIMATE_CAPABILITIES.biometric_bypass_ultimate",
+            class_name="MaximumThreatLevel", mcp_tool_name="prom_fingerprint_bypass_ultimate",
+            operations=["fingerprint_ultimate_bypass"], expertise_level=ExpertiseLevel.GRANDMASTER)
+        self._capabilities["prom_face_recognition_defeat_ultimate"] = Capability(
+            name="face_recognition_elite_defeat", category=CapabilityCategory.ULTIMATE,
+            description="Ultimate face recognition defeat", module_path="ULTIMATE_CAPABILITIES.biometric_bypass_ultimate",
+            class_name="MaximumThreatLevel", mcp_tool_name="prom_face_recognition_defeat_ultimate",
+            operations=["face_recognition_elite_defeat"], expertise_level=ExpertiseLevel.GRANDMASTER)
+        self._capabilities["prom_iris_scanner_defeat_ultimate"] = Capability(
+            name="iris_scanner_national_defeat", category=CapabilityCategory.ULTIMATE,
+            description="Ultimate iris scanner defeat", module_path="ULTIMATE_CAPABILITIES.biometric_bypass_ultimate",
+            class_name="MaximumThreatLevel", mcp_tool_name="prom_iris_scanner_defeat_ultimate",
+            operations=["iris_scanner_national_defeat"], expertise_level=ExpertiseLevel.GRANDMASTER)
+        self._capabilities["prom_voice_cloning_ultimate"] = Capability(
+            name="voice_cloning_maximum", category=CapabilityCategory.ULTIMATE,
+            description="Ultimate voice cloning", module_path="ULTIMATE_CAPABILITIES.biometric_bypass_ultimate",
+            class_name="MaximumThreatLevel", mcp_tool_name="prom_voice_cloning_ultimate",
+            operations=["voice_cloning_maximum"], expertise_level=ExpertiseLevel.GRANDMASTER)
+        # Cloud (5)
+        self._capabilities["prom_aws_privilege_escalation_ultimate"] = Capability(
+            name="aws_maximum_privilege_escalation", category=CapabilityCategory.ULTIMATE,
+            description="Ultimate AWS privilege escalation", module_path="ULTIMATE_CAPABILITIES.cloud_exploits_ultimate",
+            class_name="CloudPlatform", mcp_tool_name="prom_aws_privilege_escalation_ultimate",
+            operations=["aws_maximum_privilege_escalation"], expertise_level=ExpertiseLevel.GRANDMASTER)
+        self._capabilities["prom_azure_ad_attack_ultimate"] = Capability(
+            name="azure_ultimate_active_directory_attack", category=CapabilityCategory.ULTIMATE,
+            description="Ultimate Azure AD attack", module_path="ULTIMATE_CAPABILITIES.cloud_exploits_ultimate",
+            class_name="CloudPlatform", mcp_tool_name="prom_azure_ad_attack_ultimate",
+            operations=["azure_ultimate_active_directory_attack"], expertise_level=ExpertiseLevel.GRANDMASTER)
+        self._capabilities["prom_gcp_privilege_escalation_ultimate"] = Capability(
+            name="gcp_maximum_privilege_escalation", category=CapabilityCategory.ULTIMATE,
+            description="Ultimate GCP privilege escalation", module_path="ULTIMATE_CAPABILITIES.cloud_exploits_ultimate",
+            class_name="CloudPlatform", mcp_tool_name="prom_gcp_privilege_escalation_ultimate",
+            operations=["gcp_maximum_privilege_escalation"], expertise_level=ExpertiseLevel.GRANDMASTER)
+        self._capabilities["prom_kubernetes_compromise_ultimate"] = Capability(
+            name="kubernetes_ultimate_compromise", category=CapabilityCategory.ULTIMATE,
+            description="Ultimate Kubernetes compromise", module_path="ULTIMATE_CAPABILITIES.cloud_exploits_ultimate",
+            class_name="CloudPlatform", mcp_tool_name="prom_kubernetes_compromise_ultimate",
+            operations=["kubernetes_ultimate_compromise"], expertise_level=ExpertiseLevel.GRANDMASTER)
+        self._capabilities["prom_serverless_exploitation_ultimate"] = Capability(
+            name="serverless_ultimate_exploitation", category=CapabilityCategory.ULTIMATE,
+            description="Ultimate serverless exploitation", module_path="ULTIMATE_CAPABILITIES.cloud_exploits_ultimate",
+            class_name="CloudPlatform", mcp_tool_name="prom_serverless_exploitation_ultimate",
+            operations=["serverless_ultimate_exploitation"], expertise_level=ExpertiseLevel.GRANDMASTER)
+        # === INTELLIGENCE MODULES (9) ===
+        # Phone (4)
+        self._capabilities["prom_phone_lookup"] = Capability(
+            name="lookup", category=CapabilityCategory.SPECIALIZED,
+            description="Lookup phone number", module_path="phone_intelligence",
+            class_name="PhoneIntelligence", mcp_tool_name="prom_phone_lookup",
+            operations=["lookup"], expertise_level=ExpertiseLevel.EXPERT)
+        self._capabilities["prom_phone_bulk_lookup"] = Capability(
+            name="bulk_lookup", category=CapabilityCategory.SPECIALIZED,
+            description="Bulk phone lookup", module_path="phone_intelligence",
+            class_name="PhoneIntelligence", mcp_tool_name="prom_phone_bulk_lookup",
+            operations=["bulk_lookup"], expertise_level=ExpertiseLevel.EXPERT)
+        self._capabilities["prom_phone_cache_stats"] = Capability(
+            name="get_cache_stats", category=CapabilityCategory.SPECIALIZED,
+            description="Phone cache stats", module_path="phone_intelligence",
+            class_name="PhoneIntelligence", mcp_tool_name="prom_phone_cache_stats",
+            operations=["get_cache_stats"], expertise_level=ExpertiseLevel.EXPERT)
+        self._capabilities["prom_phone_clear_cache"] = Capability(
+            name="clear_expired_cache", category=CapabilityCategory.SPECIALIZED,
+            description="Clear phone cache", module_path="phone_intelligence",
+            class_name="PhoneIntelligence", mcp_tool_name="prom_phone_clear_cache",
+            operations=["clear_expired_cache"], expertise_level=ExpertiseLevel.EXPERT)
+        # Email (3)
+        self._capabilities["prom_email_analyze"] = Capability(
+            name="analyze", category=CapabilityCategory.SPECIALIZED,
+            description="Analyze email", module_path="email_intelligence",
+            class_name="EmailIntelligence", mcp_tool_name="prom_email_analyze",
+            operations=["analyze"], expertise_level=ExpertiseLevel.EXPERT)
+        self._capabilities["prom_email_batch_analyze"] = Capability(
+            name="batch_analyze", category=CapabilityCategory.SPECIALIZED,
+            description="Batch email analysis", module_path="email_intelligence",
+            class_name="EmailIntelligence", mcp_tool_name="prom_email_batch_analyze",
+            operations=["batch_analyze"], expertise_level=ExpertiseLevel.EXPERT)
+        self._capabilities["prom_email_breach_check"] = Capability(
+            name="check_password_breach", category=CapabilityCategory.SPECIALIZED,
+            description="Check email breach", module_path="email_intelligence",
+            class_name="EmailIntelligence", mcp_tool_name="prom_email_breach_check",
+            operations=["check_password_breach"], expertise_level=ExpertiseLevel.EXPERT)
+        # Domain (2)
+        self._capabilities["prom_domain_lookup"] = Capability(
+            name="lookup", category=CapabilityCategory.SPECIALIZED,
+            description="Domain lookup", module_path="domain_intelligence",
+            class_name="DomainIntelligence", mcp_tool_name="prom_domain_lookup",
+            operations=["lookup"], expertise_level=ExpertiseLevel.EXPERT)
+        self._capabilities["prom_domain_batch_lookup"] = Capability(
+            name="batch_lookup", category=CapabilityCategory.SPECIALIZED,
+            description="Batch domain lookup", module_path="domain_intelligence",
+            class_name="DomainIntelligence", mcp_tool_name="prom_domain_batch_lookup",
+            operations=["batch_lookup"], expertise_level=ExpertiseLevel.EXPERT)
 
     def get_all_capabilities(self):
         return list(self._capabilities.values())

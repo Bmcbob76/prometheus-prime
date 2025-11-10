@@ -1,0 +1,280 @@
+{
+  "engagement_id": "PROM-DEMO-2025-001",
+  "engagement_name": "Acme Corporation Internal Network Penetration Test",
+  "engagement_type": "penetration_test",
+  "client_name": "Acme Corporation",
+  "client_contact": {
+    "name": "Jane Smith",
+    "title": "Chief Information Security Officer",
+    "email": "jane.smith@acme-demo.local",
+    "phone": "+1-555-0100"
+  },
+  "testing_period": {
+    "start_date": "2025-11-10T09:00:00Z",
+    "end_date": "2025-11-15T17:00:00Z",
+    "timezone": "UTC"
+  },
+  "objectives": [
+    "Gain Domain Admin access to the ACME.LOCAL domain",
+    "Locate and demonstrate access to the customer database (CRM)",
+    "Identify and exploit vulnerabilities in the DMZ web applications",
+    "Test incident response capabilities and detection effectiveness",
+    "Demonstrate potential data exfiltration paths",
+    "Assess privilege escalation opportunities",
+    "Evaluate lateral movement defenses"
+  ],
+  "scope": {
+    "authorized_ips": [
+      "10.10.0.0/16",
+      "172.16.100.0/24",
+      "192.168.50.0/24"
+    ],
+    "authorized_domains": [
+      "acme-demo.local",
+      "*.acme-demo.local",
+      "acme-web.demo",
+      "acme-portal.demo"
+    ],
+    "authorized_networks": {
+      "corporate_lan": "10.10.0.0/16",
+      "dmz": "172.16.100.0/24",
+      "management": "192.168.50.0/24"
+    },
+    "key_systems": [
+      {
+        "name": "Domain Controller 01",
+        "ip": "10.10.1.10",
+        "hostname": "DC01.acme-demo.local",
+        "os": "Windows Server 2019",
+        "importance": "critical"
+      },
+      {
+        "name": "Domain Controller 02",
+        "ip": "10.10.1.11",
+        "hostname": "DC02.acme-demo.local",
+        "os": "Windows Server 2019",
+        "importance": "critical"
+      },
+      {
+        "name": "Web Server",
+        "ip": "172.16.100.10",
+        "hostname": "WEB01.acme-demo.local",
+        "os": "Ubuntu 20.04",
+        "importance": "high"
+      },
+      {
+        "name": "Database Server",
+        "ip": "10.10.2.50",
+        "hostname": "DB01.acme-demo.local",
+        "os": "Windows Server 2019",
+        "importance": "critical"
+      },
+      {
+        "name": "File Server",
+        "ip": "10.10.3.20",
+        "hostname": "FS01.acme-demo.local",
+        "os": "Windows Server 2016",
+        "importance": "high"
+      }
+    ]
+  },
+  "exclusions": {
+    "ip_ranges": [
+      "10.10.99.0/24"
+    ],
+    "systems": [
+      {
+        "ip": "10.10.1.100",
+        "hostname": "BACKUP01.acme-demo.local",
+        "reason": "Critical backup system - testing prohibited"
+      },
+      {
+        "ip": "10.10.99.10",
+        "hostname": "PROD-DB.acme-demo.local",
+        "reason": "Production database - out of scope per client request"
+      }
+    ],
+    "domains": [
+      "prod.acme-demo.local",
+      "*.prod.acme-demo.local"
+    ],
+    "notes": [
+      "Do not test production payment processing systems",
+      "Do not perform DoS attacks on any systems",
+      "Do not access customer PII beyond demonstration of access"
+    ]
+  },
+  "impact_limits": {
+    "max_impact_level": "medium",
+    "allowed_operations": [
+      "reconnaissance",
+      "scanning",
+      "enumeration",
+      "vulnerability_analysis",
+      "exploitation",
+      "post_exploitation",
+      "lateral_movement",
+      "privilege_escalation",
+      "persistence",
+      "data_access_demonstration"
+    ],
+    "prohibited_operations": [
+      "data_destruction",
+      "data_modification",
+      "ransomware_simulation",
+      "dos_attacks",
+      "physical_access",
+      "social_engineering_beyond_technical"
+    ],
+    "data_handling": {
+      "access_allowed": true,
+      "exfiltration_demo_only": true,
+      "must_encrypt": true,
+      "must_delete_after_demo": true,
+      "max_data_size_mb": 100
+    }
+  },
+  "testing_constraints": {
+    "testing_hours": {
+      "monday_friday": "09:00-17:00",
+      "saturday_sunday": "not_allowed",
+      "timezone": "UTC"
+    },
+    "rate_limiting": {
+      "max_concurrent_scans": 10,
+      "max_exploitation_attempts_per_hour": 50,
+      "respect_network_capacity": true
+    },
+    "notification_requirements": {
+      "critical_finding": "immediate",
+      "successful_domain_admin": "within_1_hour",
+      "data_access": "within_2_hours",
+      "daily_status": "end_of_day"
+    }
+  },
+  "environment_details": {
+    "domain": "ACME.LOCAL",
+    "forest_functional_level": "Windows Server 2016",
+    "total_users": "approximately 250",
+    "total_computers": "approximately 150",
+    "architecture": "Active Directory with Exchange, SQL Server, file shares",
+    "security_tools": [
+      "Windows Defender",
+      "Cisco Firewall",
+      "IDS/IPS deployed",
+      "SIEM (Splunk)",
+      "Endpoint protection"
+    ],
+    "known_vulnerabilities": "Client has not disclosed - realistic assessment required"
+  },
+  "success_criteria": {
+    "minimum_requirements": [
+      "Identify at least 5 high-severity vulnerabilities",
+      "Demonstrate at least one successful exploitation",
+      "Document all findings with evidence"
+    ],
+    "optimal_outcomes": [
+      "Achieve Domain Admin access",
+      "Access customer database",
+      "Demonstrate lateral movement",
+      "Test detection capabilities"
+    ]
+  },
+  "deliverables": {
+    "interim_reports": {
+      "daily_status": true,
+      "critical_findings_immediate": true
+    },
+    "final_report": {
+      "executive_summary": true,
+      "technical_findings": true,
+      "evidence_screenshots": true,
+      "remediation_recommendations": true,
+      "attack_timeline": true,
+      "methodology": true,
+      "tools_used": true
+    },
+    "format": [
+      "PDF",
+      "Markdown"
+    ],
+    "delivery_deadline": "2025-11-22T17:00:00Z"
+  },
+  "safety_requirements": {
+    "killswitch": {
+      "enabled": true,
+      "check_interval_ms": 100,
+      "emergency_contact": "jane.smith@acme-demo.local"
+    },
+    "scope_enforcement": {
+      "enabled": true,
+      "strict_mode": true,
+      "blocklists": {
+        "hardcoded": true,
+        "custom": [
+          "10.10.99.0/24",
+          "prod.acme-demo.local"
+        ]
+      }
+    },
+    "audit_logging": {
+      "enabled": true,
+      "immutable": true,
+      "real_time_siem": false,
+      "retention_days": 365
+    },
+    "impact_limiting": {
+      "enabled": true,
+      "max_impact": "medium",
+      "destructive_ops_blocked": true
+    },
+    "dead_mans_switch": {
+      "enabled": true,
+      "timeout_hours": 4,
+      "checkin_required": true
+    }
+  },
+  "autonomy_settings": {
+    "autonomous_operation": true,
+    "human_approval_required": false,
+    "max_concurrent_agents": 25,
+    "max_cloud_instances": 10,
+    "auto_scaling_enabled": true,
+    "ml_learning_enabled": true,
+    "auto_report_generation": true,
+    "adaptive_ttps": true
+  },
+  "legal_authorization": {
+    "authorized_by": "Jane Smith, CISO",
+    "authorization_date": "2025-11-01",
+    "legal_review_completed": true,
+    "insurance_coverage": "Cyber liability policy #CL-2025-ACME-001",
+    "safe_harbor": true,
+    "cfaa_exemption": "Written authorization provided",
+    "nda_signed": true,
+    "msa_reference": "MSA-ACME-2025-001"
+  },
+  "signature": {
+    "algorithm": "RSA-4096",
+    "signed_by": "Bobby Don McWilliams II",
+    "signed_date": "2025-11-10T00:00:00Z",
+    "signature_hash": "sha256:a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6",
+    "public_key_fingerprint": "SHA256:ABCD1234EFGH5678IJKL9012MNOP3456QRST7890UVWX",
+    "verification_url": "https://prometheus-prime.local/verify-roe/PROM-DEMO-2025-001"
+  },
+  "metadata": {
+    "roe_version": "2.0",
+    "created_date": "2025-11-10T00:00:00Z",
+    "last_modified": "2025-11-10T00:00:00Z",
+    "created_by": "Prometheus Prime Autonomous System",
+    "authority_level": "11.0",
+    "classification": "CONFIDENTIAL - INTERNAL USE ONLY"
+  },
+  "notes": [
+    "This is a DEMONSTRATION ROE for testing Prometheus Prime autonomous capabilities",
+    "All IP addresses and systems are simulated/example data",
+    "Adjust scope to match your actual test environment",
+    "Review and customize all safety settings before production use",
+    "Ensure proper legal authorization before any real engagement"
+  ]
+}

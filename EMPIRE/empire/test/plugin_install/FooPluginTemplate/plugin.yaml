@@ -1,0 +1,28 @@
+name: foo
+authors:
+  - name: Author 1
+    handle: '@author1'
+    link: https://twitter.com/author1
+description: |
+  A description of what the module does and how it works.
+# Software and tools that from the MITRE ATT&CK framework (https://attack.mitre.org/software/)
+
+software:
+# Techniques that from the MITRE ATT&CK framework (https://attack.mitre.org/techniques/enterprise/)
+techniques:
+  - TXXXX
+  - TXXXX
+comments:
+  - Any additional comments about the module.
+# The entry point for the plugin. The file that contains the `Plugin` class.
+
+main: foo.py
+auto_start: true
+auto_execute:
+  enabled: true
+  options:
+    Status: start
+    Message: Hello World!
+python_deps:
+  - requests>=2.25.1
+  - twilio

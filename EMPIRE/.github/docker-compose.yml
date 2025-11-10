@@ -1,0 +1,31 @@
+# This is for running the tests in the Docker file, so we can catch
+# issues with the Dockerfile itself.
+version: '3'
+services:
+  test:
+    depends_on:
+      - db
+    links:
+      - 'db:db'
+    build: ../
+    image: bcsecurity/empire-test
+    entrypoint: /bin/bash
+    platform: linux/amd64
+    command: >
+      -c "DATABASE_USE=sqlite poetry run python -m pytest . --nodocker && sed -i
+      's/localhost:3306/db:3306/g' empire/test/test_server_config.yaml && DATABASE_USE=mysql
+      poetry run python -m pytest . --nodocker"
+
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_USER: 'empire_user'
+      MYSQL_PASSWORD: 'empire_password'
+      MYSQL_DATABASE: test_empire
+    volumes:
+      - db:/var/lib/mysql
+volumes:
+  db:
+    driver: local

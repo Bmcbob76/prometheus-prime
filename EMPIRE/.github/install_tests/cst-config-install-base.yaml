@@ -1,0 +1,64 @@
+schemaVersion: 2.0.0
+commandTests:
+  # pyenv
+  - name: "pyenv"
+    command: "which"
+    args: ["pyenv"]
+    expectedOutput: ["/usr/bin/pyenv"]
+  - name: "pyenv version"
+    command: "pyenv"
+    args: ["--version"]
+    expectedOutput: ["pyenv 2.*"]
+  # poetry
+  - name: "poetry python"
+    command: "poetry"
+    args: ["run", "which", "python3"]
+    expectedOutput: ["/empire/.venv/bin/python3"]
+  - name: "poetry"
+    command: "which"
+    args: ["poetry"]
+    expectedOutput: ["/usr/bin/poetry"]
+  - name: "poetry version"
+    command: "poetry"
+    args: ["--version"]
+    expectedOutput: ["Poetry (version 1.6*)*"]
+  - name: "poetry python version"
+    command: "poetry"
+    args: ["run", "python3", "--version"]
+    expectedOutput: ["Python 3.13.*"]
+  # powershell
+  - name: "powershell which"
+    command: "which"
+    args: ["pwsh"]
+    expectedOutput: ["/usr/bin/pwsh"]
+  - name: "powershell version"
+    command: "pwsh"
+    args: ["--version"]
+    expectedOutput: ["PowerShell 7.*"]
+  # mysql
+  - name: "mysql which"
+    command: "which"
+    args: ["mysql"]
+    expectedOutput: ["/usr/bin/mysql"]
+  # go
+  - name: "go which"
+    command: "which"
+    args: ["go"]
+    expectedOutput: ["/usr/bin/go"]
+  - name: "go version"
+    command: "go"
+    args: ["version"]
+    expectedOutput: ["go version go1.23.* linux/*"]
+  # run
+  - name: "ps-empire help"
+    command: "./ps-empire"
+    args: ["server", "--help"]
+    expectedOutput: ["usage: empire.py server [-h]*"]
+  - name: "ps-empire version"
+    command: "./ps-empire"
+    args: ["server", "--version"]
+    expectedOutput: ["6.* BC Security Fork"]
+fileExistenceTests:
+  - name: 'profiles'
+    path: '/empire/empire/server/data/profiles/'
+    shouldExist: true

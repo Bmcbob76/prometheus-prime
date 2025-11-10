@@ -1,0 +1,62 @@
+suppress_self_cert_warning: true
+api:
+  ip: 0.0.0.0
+  port: 1337
+  secure: false
+database:
+  use: mysql
+  mysql:
+    url: localhost:3306
+    username: empire_user
+    password: empire_password
+    database_name: empire
+  sqlite:
+    location: empire.db
+  defaults:
+    username: empireadmin
+    password: password123
+    obfuscation:
+      - language: powershell
+        enabled: false
+        command: "Token\\All\\1"
+        module: "invoke-obfuscation"
+        preobfuscatable: true
+      - language: csharp
+        enabled: false
+        command: ""
+        module: "confuser"
+        preobfuscatable: false
+      - language: python
+        enabled: false
+        command: ""
+        module: "python-obfuscator"
+        preobfuscatable: false
+    keyword_obfuscation:
+      - Invoke-Empire
+      - Invoke-Mimikatz
+    ip_allow_list: []
+    ip_deny_list: []
+empire_compiler:
+  archive: https://github.com/BC-SECURITY/Empire-Compiler/releases/download/v0.3.3/EmpireCompiler-{{platform}}-v0.3.3.tgz
+starkiller:
+  enabled: true
+  repo: https://github.com/BC-SECURITY/Starkiller.git
+  # Can be a branch, tag, or commit hash
+  ref: v3.1.0
+submodules:
+  auto_update: true
+plugin_marketplace:
+  registries:
+    - name: BC-SECURITY
+      git_url: https://github.com/BC-SECURITY/Empire-Plugin-Registry.git
+      ref: main
+      file: registry.yaml
+directories:
+  downloads: downloads
+logging:
+  level: INFO
+  simple_console: true
+debug:
+  last_task:
+    enabled: false
+    file: debug/last_task.txt

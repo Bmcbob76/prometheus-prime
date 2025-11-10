@@ -1,7 +1,7 @@
 # 🎯 PROMETHEUS PRIME - COMPLETE OFFENSIVE/DEFENSIVE PLATFORM
 
-**Authority Level:** 11.0  
-**Version:** 3.0.0  
+**Authority Level:** 11.0
+**Version:** 4.0.0 🆕
 **Status:** ✅ FULLY OPERATIONAL
 
 ---
@@ -10,14 +10,22 @@
 
 Prometheus Prime is a **complete offensive and defensive security operations platform** featuring:
 
-- **OSINT Intelligence** (5 modules) - Phone, Social, Domain, Email, IP
+### CORE CAPABILITIES (43 Tools)
+- **OSINT Intelligence** (6 modules) - Phone, Social, Domain, Email, IP
 - **Network Security** (5 tools) - Port scanning, Nmap, vulnerability detection
 - **Mobile Device Control** (8 tools) - iOS & Android management via ADB/libimobiledevice
 - **Web Security Testing** (8 tools) - SQL injection, XSS, crawling, SSL analysis
 - **Exploitation Framework** (5 tools) - Metasploit integration, payload generation
 - **Phoenix Healing** - Auto-recovery with GS343 patterns
 
-**Total: 43 MCP Tools + 13 HTTP API Endpoints**
+### 🆕 NEW: ADVANCED SECURITY ARSENAL (46 Tools)
+- **🔐 Password Cracking** (8 tools) - John, Hashcat, Hydra, Rainbow tables
+- **📡 Wireless Security** (11 tools) - WiFi/Bluetooth attacks, WPS cracking, Evil Twin
+- **🔍 Digital Forensics** (10 tools) - Disk imaging, Memory analysis, File carving, PCAP analysis
+- **💀 Post-Exploitation** (5 tools) - Privilege escalation, Persistence, Credential dumping
+- **🛠️ Reverse Engineering** (10 tools) - Ghidra, Radare2, Malware analysis, YARA scanning
+
+**Total: 89 MCP Tools + 13 HTTP API Endpoints**
 
 ---
 

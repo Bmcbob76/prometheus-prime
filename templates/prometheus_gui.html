@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 PROMETHEUS PRIME - Command & Control</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #000000 0%, #1a0033 100%);
+            color: #00ff00;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 2px solid #00ff00;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 255, 0, 0.3);
+        }
+
+        .header h1 {
+            color: #ff0000;
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            color: #00ff00;
+            font-size: 1.2em;
+        }
+
+        .status-bar {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            display: flex;
+            justify-content: space-around;
+            border-bottom: 1px solid #00ff00;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-indicator {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #00ff00;
+            box-shadow: 0 0 10px #00ff00;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .main-container {
+            display: flex;
+            height: calc(100vh - 200px);
+        }
+
+        .sidebar {
+            width: 250px;
+            background: rgba(0, 0, 0, 0.9);
+            border-right: 2px solid #00ff00;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .domain-tab {
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .domain-tab:hover {
+            background: rgba(0, 255, 0, 0.3);
+            transform: translateX(10px);
+        }
+
+        .domain-tab.active {
+            background: rgba(0, 255, 0, 0.4);
+            border-left: 5px solid #ff0000;
+        }
+
+        .content-area {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .domain-panel {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .domain-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .panel-header {
+            border-bottom: 2px solid #00ff00;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+
+        .panel-header h2 {
+            color: #ff0000;
+            font-size: 2em;
+            text-shadow: 0 0 10px #ff0000;
+        }
+
+        .panel-header p {
+            color: #00ff00;
+            margin-top: 10px;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 20px;
+        }
+
+        .tool-card {
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .tool-card:hover {
+            border-color: #ff0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+            transform: scale(1.02);
+        }
+
+        .tool-card h3 {
+            color: #00ff00;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .tool-card p {
+            color: #888;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+
+        .input-group {
+            margin: 15px 0;
+        }
+
+        .input-group label {
+            display: block;
+            color: #00ff00;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .input-group input[type="text"],
+        .input-group input[type="number"],
+        .input-group select {
+            width: 100%;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #ff0000;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toggle {
+            position: relative;
+            width: 50px;
+            height: 25px;
+            background: #333;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .toggle.active {
+            background: #00ff00;
+        }
+
+        .toggle::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            top: 2.5px;
+            left: 2.5px;
+            transition: 0.3s;
+        }
+
+        .toggle.active::after {
+            left: 27.5px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background: #00ff00;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            font-size: 1em;
+            transition: all 0.3s;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            background: #ff0000;
+            color: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .btn-danger {
+            background: #ff0000;
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            background: #cc0000;
+        }
+
+        .output-console {
+            background: rgba(0, 0, 0, 0.95);
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+        }
+
+        .output-console h3 {
+            color: #00ff00;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #00ff00;
+            padding-bottom: 10px;
+        }
+
+        .log-entry {
+            padding: 10px;
+            margin: 5px 0;
+            border-left: 3px solid #00ff00;
+            background: rgba(0, 255, 0, 0.05);
+        }
+
+        .log-entry.error {
+            border-left-color: #ff0000;
+            background: rgba(255, 0, 0, 0.05);
+        }
+
+        .log-entry .timestamp {
+            color: #888;
+            font-size: 0.8em;
+        }
+
+        .autonomous-panel {
+            background: rgba(255, 0, 0, 0.1);
+            border: 3px solid #ff0000;
+            border-radius: 15px;
+            padding: 30px;
+        }
+
+        .autonomous-panel h2 {
+            color: #ff0000;
+            font-size: 2.5em;
+            text-shadow: 0 0 15px #ff0000;
+            margin-bottom: 20px;
+        }
+
+        .autonomous-controls {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .autonomous-card {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #ff0000;
+            border-radius: 10px;
+            padding: 25px;
+        }
+
+        .autonomous-card h3 {
+            color: #ff0000;
+            margin-bottom: 15px;
+        }
+
+        .status-display {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #00ff00;
+            margin-top: 20px;
+        }
+
+        .status-display .metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #333;
+        }
+
+        .status-display .metric:last-child {
+            border-bottom: none;
+        }
+
+        .status-display .label {
+            color: #888;
+        }
+
+        .status-display .value {
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #00ff00;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔥 PROMETHEUS PRIME</h1>
+        <div class="subtitle">Command & Control Interface | Authority Level: 11.0</div>
+    </div>
+
+    <div class="status-bar">
+        <div class="status-item">
+            <div class="status-indicator"></div>
+            <span>System Status: <span id="system-status">READY</span></span>
+        </div>
+        <div class="status-item">
+            <span>Active Tools: <span id="active-tools">0</span></span>
+        </div>
+        <div class="status-item">
+            <span>Autonomous Mode: <span id="autonomous-status">OFF</span></span>
+        </div>
+        <div class="status-item">
+            <span>Authority Level: <span id="authority-level">11.0</span></span>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="sidebar">
+            <div class="domain-tab active" data-domain="reconnaissance">
+                🔍 Reconnaissance
+            </div>
+            <div class="domain-tab" data-domain="web_application">
+                🌐 Web Application
+            </div>
+            <div class="domain-tab" data-domain="network_attacks">
+                🌐 Network Attacks
+            </div>
+            <div class="domain-tab" data-domain="wireless">
+                📡 Wireless
+            </div>
+            <div class="domain-tab" data-domain="password_attacks">
+                🔑 Password Attacks
+            </div>
+            <div class="domain-tab" data-domain="exploitation">
+                💥 Exploitation
+            </div>
+            <div class="domain-tab" data-domain="post_exploitation">
+                🎯 Post-Exploitation
+            </div>
+            <div class="domain-tab" data-domain="privilege_escalation">
+                ⬆️ Privilege Escalation
+            </div>
+            <div class="domain-tab" data-domain="social_engineering">
+                🎭 Social Engineering
+            </div>
+            <div class="domain-tab" data-domain="cryptography">
+                🔐 Cryptography
+            </div>
+            <div class="domain-tab" data-domain="autonomous" style="border-color: #ff0000;">
+                🤖 AUTONOMOUS
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div id="domain-panels">
+                <!-- Domain panels will be dynamically generated here -->
+            </div>
+
+            <div class="output-console">
+                <h3>📊 Execution Log</h3>
+                <div id="log-output">
+                    <div class="log-entry">
+                        <div class="timestamp">[SYSTEM]</div>
+                        <div>Prometheus Prime initialized - Authority Level 11.0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script>
+        const socket = io();
+        let domains = {};
+        let currentDomain = 'reconnaissance';
+
+        // Initialize
+        async function init() {
+            // Fetch domain data
+            const response = await fetch('/api/domains');
+            domains = await response.json();
+
+            // Generate panels
+            generateDomainPanels();
+
+            // Show first panel
+            showDomain('reconnaissance');
+
+            // Setup event listeners
+            setupEventListeners();
+        }
+
+        function generateDomainPanels() {
+            const container = document.getElementById('domain-panels');
+
+            for (const [domainKey, domain] of Object.entries(domains)) {
+                const panel = document.createElement('div');
+                panel.className = 'domain-panel';
+                panel.id = `panel-${domainKey}`;
+
+                if (domainKey === 'autonomous') {
+                    panel.innerHTML = generateAutonomousPanel(domain);
+                } else {
+                    panel.innerHTML = generateStandardPanel(domain, domainKey);
+                }
+
+                container.appendChild(panel);
+            }
+        }
+
+        function generateStandardPanel(domain, domainKey) {
+            let html = `
+                <div class="panel-header">
+                    <h2>${domain.icon} ${domain.name}</h2>
+                    <p>${domain.description}</p>
+                </div>
+                <div class="tools-grid">
+            `;
+
+            domain.tools.forEach(tool => {
+                html += `
+                    <div class="tool-card">
+                        <h3>${tool.name}</h3>
+                        <p>${tool.command}</p>
+
+                        ${tool.target ? `
+                            <div class="input-group">
+                                <label>Target:</label>
+                                <input type="text" id="${tool.id}-target" placeholder="IP address, domain, or URL">
+                            </div>
+                        ` : ''}
+
+                        <div class="input-group">
+                            <label>Options:</label>
+                            <input type="text" id="${tool.id}-options" placeholder="Additional options">
+                        </div>
+
+                        <button class="btn" onclick="executeTool('${tool.id}', '${domainKey}')">
+                            Execute ${tool.name}
+                        </button>
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+            return html;
+        }
+
+        function generateAutonomousPanel(domain) {
+            return `
+                <div class="autonomous-panel">
+                    <h2>🤖 AUTONOMOUS CONTROL CENTER</h2>
+                    <p>AI-Powered Autonomous Penetration Testing</p>
+
+                    <div class="status-display">
+                        <div class="metric">
+                            <span class="label">Current Status:</span>
+                            <span class="value" id="auto-status">STANDBY</span>
+                        </div>
+                        <div class="metric">
+                            <span class="label">AI Decision Engine:</span>
+                            <span class="value">5-MODEL CONSENSUS</span>
+                        </div>
+                        <div class="metric">
+                            <span class="label">Phoenix Healing:</span>
+                            <span class="value">ACTIVE</span>
+                        </div>
+                        <div class="metric">
+                            <span class="label">Omniscience KB:</span>
+                            <span class="value">220K CVEs | 50K Exploits</span>
+                        </div>
+                    </div>
+
+                    <div class="autonomous-controls">
+                        <div class="autonomous-card">
+                            <h3>🔥 Full Autonomous Engagement</h3>
+                            <div class="input-group">
+                                <label>Target:</label>
+                                <input type="text" id="auto-target" placeholder="192.168.1.100 or example.com">
+                            </div>
+                            <div class="input-group">
+                                <label>Scope:</label>
+                                <input type="text" id="auto-scope" placeholder="192.168.1.0/24">
+                            </div>
+                            <div class="input-group">
+                                <label>Contract Number:</label>
+                                <input type="text" id="auto-contract" placeholder="CONTRACT-2025-001">
+                            </div>
+                            <div class="toggle-switch">
+                                <span>Autonomous Decisions:</span>
+                                <div class="toggle active" onclick="toggleSwitch(this)"></div>
+                            </div>
+                            <button class="btn" onclick="startAutonomous()">
+                                START AUTONOMOUS ENGAGEMENT
+                            </button>
+                            <button class="btn btn-danger" onclick="stopAutonomous()">
+                                EMERGENCY STOP
+                            </button>
+                        </div>
+
+                        <div class="autonomous-card">
+                            <h3>🧠 AI Decision Engine</h3>
+                            <div class="input-group">
+                                <label>Decision Type:</label>
+                                <select id="decision-type">
+                                    <option>Exploit Choice</option>
+                                    <option>Tool Selection</option>
+                                    <option>Risk Assessment</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label>Context:</label>
+                                <input type="text" id="decision-context" placeholder="Decision context">
+                            </div>
+                            <button class="btn" onclick="queryAI()">Query AI Consensus</button>
+                        </div>
+
+                        <div class="autonomous-card">
+                            <h3>🔍 Omniscience Intelligence</h3>
+                            <div class="input-group">
+                                <label>Query Type:</label>
+                                <select id="intel-type">
+                                    <option>CVE Search</option>
+                                    <option>Exploit Database</option>
+                                    <option>MITRE ATT&CK</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label>Search Term:</label>
+                                <input type="text" id="intel-search" placeholder="Search term">
+                            </div>
+                            <button class="btn" onclick="queryIntelligence()">Search Intelligence</button>
+                        </div>
+
+                        <div class="autonomous-card">
+                            <h3>🔥 Phoenix Auto-Healing</h3>
+                            <div class="input-group">
+                                <label>Error Type:</label>
+                                <select id="heal-type">
+                                    <option>Network Failure</option>
+                                    <option>Tool Crash</option>
+                                    <option>Detection Event</option>
+                                    <option>Rate Limit</option>
+                                </select>
+                            </div>
+                            <button class="btn" onclick="triggerHealing()">Trigger Healing</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showDomain(domainKey) {
+            // Hide all panels
+            document.querySelectorAll('.domain-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+
+            // Show selected panel
+            document.getElementById(`panel-${domainKey}`).classList.add('active');
+
+            // Update sidebar
+            document.querySelectorAll('.domain-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`[data-domain="${domainKey}"]`).classList.add('active');
+
+            currentDomain = domainKey;
+        }
+
+        async function executeTool(toolId, domainKey) {
+            const targetInput = document.getElementById(`${toolId}-target`);
+            const optionsInput = document.getElementById(`${toolId}-options`);
+
+            const data = {
+                tool_id: toolId,
+                domain: domainKey,
+                target: targetInput ? targetInput.value : '',
+                options: optionsInput ? optionsInput.value : ''
+            };
+
+            logMessage(`Executing ${toolId} on target ${data.target}...`);
+
+            const response = await fetch('/api/execute-tool', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            logMessage(`✅ ${toolId} completed: ${result.message}`);
+        }
+
+        async function startAutonomous() {
+            const target = document.getElementById('auto-target').value;
+            const scope = document.getElementById('auto-scope').value;
+            const contract = document.getElementById('auto-contract').value;
+
+            if (!target || !scope || !contract) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            logMessage('🤖 Starting autonomous engagement...', 'success');
+
+            const response = await fetch('/api/autonomous/start', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ target, scope, contract })
+            });
+
+            const result = await response.json();
+            logMessage(`✅ ${result.message}`, 'success');
+            document.getElementById('autonomous-status').textContent = 'ACTIVE';
+            document.getElementById('auto-status').textContent = 'RUNNING';
+        }
+
+        async function stopAutonomous() {
+            logMessage('⚠️ Emergency stop triggered', 'error');
+
+            const response = await fetch('/api/autonomous/stop', {
+                method: 'POST'
+            });
+
+            const result = await response.json();
+            logMessage(`✅ ${result.message}`, 'success');
+            document.getElementById('autonomous-status').textContent = 'OFF';
+            document.getElementById('auto-status').textContent = 'STANDBY';
+        }
+
+        function queryAI() {
+            logMessage('🧠 Querying AI decision engine with 5-model consensus...', 'success');
+        }
+
+        function queryIntelligence() {
+            const searchTerm = document.getElementById('intel-search').value;
+            logMessage(`🔍 Searching Omniscience KB for: ${searchTerm}`, 'success');
+        }
+
+        function triggerHealing() {
+            logMessage('🔥 Phoenix auto-healing triggered', 'success');
+        }
+
+        function toggleSwitch(element) {
+            element.classList.toggle('active');
+        }
+
+        function logMessage(message, type = 'info') {
+            const logOutput = document.getElementById('log-output');
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+
+            const timestamp = new Date().toLocaleTimeString();
+            entry.innerHTML = `
+                <div class="timestamp">[${timestamp}]</div>
+                <div>${message}</div>
+            `;
+
+            logOutput.appendChild(entry);
+            logOutput.scrollTop = logOutput.scrollHeight;
+        }
+
+        function setupEventListeners() {
+            // Domain tab clicks
+            document.querySelectorAll('.domain-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    showDomain(tab.dataset.domain);
+                });
+            });
+        }
+
+        // Socket.IO events
+        socket.on('connected', (data) => {
+            console.log('Connected to Prometheus Prime');
+        });
+
+        socket.on('tool_started', (data) => {
+            logMessage(`🔧 Tool started: ${data.tool_id}`);
+        });
+
+        socket.on('tool_completed', (data) => {
+            logMessage(`✅ Tool completed: ${data.tool_id}`, 'success');
+        });
+
+        socket.on('autonomous_started', (data) => {
+            logMessage(`🤖 Autonomous engagement started: ${data.engagement_id}`, 'success');
+        });
+
+        socket.on('autonomous_stopped', (data) => {
+            logMessage('⚠️ Autonomous engagement stopped', 'error');
+        });
+
+        // Initialize on load
+        window.onload = init;
+    </script>
+</body>
+</html>

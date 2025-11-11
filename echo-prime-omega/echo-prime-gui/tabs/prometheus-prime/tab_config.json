@@ -1,0 +1,28 @@
+{
+  "id": "prometheus_prime",
+  "name": "Prometheus Prime",
+  "icon": "⚔️",
+  "description": "Autonomous Penetration Testing System",
+  "color": "#ff0000",
+  "order": 1,
+  "enabled": true,
+  "routes": {
+    "main": "/tab/prometheus-prime",
+    "api": "/api/prometheus-prime"
+  },
+  "capabilities": [
+    "Full 6-phase autonomous engagement",
+    "11 security domains with 50+ tools",
+    "AI decision engine (5-model consensus)",
+    "Phoenix auto-healing",
+    "Omniscience intelligence (220K CVEs, 50K exploits)"
+  ],
+  "requires": [
+    "flask",
+    "flask-socketio"
+  ],
+  "author": "Bobby Don McWilliams II",
+  "version": "1.0.0",
+  "authority_level": 11.0,
+  "status": "OPERATIONAL"
+}

@@ -40,6 +40,7 @@ psutil>=5.9.5
 
 # Networking/Security
 scapy>=2.5.0
+python-nmap>=0.7.1
 
 # Databases
 pymysql==1.1.0

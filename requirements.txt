@@ -7,7 +7,7 @@ python-dotenv==1.0.0
 
 # Core Web Framework
 flask==3.1.2
-flask-cors==4.0.0
+flask-cors==6.0.0
 requests==2.32.5
 urllib3==2.5.0
 httpx>=0.24.1
@@ -40,6 +40,7 @@ psutil>=5.9.5
 
 # Networking/Security
 scapy>=2.5.0
+python-nmap>=0.7.1
 
 # Databases
 pymysql==1.1.0

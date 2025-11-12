@@ -1,0 +1,2033 @@
+================================================================================
+🔥 PROMETHEUS PRIME - COMPLETE MCP TOOL REGISTRY
+================================================================================
+
+Authority Level: 11.0
+Total Tools: 282
+Categories: 6
+
+✅ Successfully loaded 282 capabilities
+
+================================================================================
+📦 SPECIALIZED (85 tools)
+================================================================================
+
+  1. prom_aircrack_crack
+     Description: aircrack_crack operation
+     Module: wireless_security
+     Class: WirelessSecurityToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: aircrack_crack
+
+  2. prom_airodump_capture
+     Description: airodump_capture operation
+     Module: wireless_security
+     Class: WirelessSecurityToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: airodump_capture
+
+  3. prom_email_analyze
+     Description: Analyze email
+     Module: email_intelligence
+     Class: EmailIntelligence
+     Expertise: EXPERT | Authority: 9.0
+     Operations: analyze
+
+  4. prom_api_authentication_analyzer
+     Description: api_authentication_analyzer operation
+     Module: api_reverse_engineering
+     Class: WebAPIReverseEngineering
+     Expertise: EXPERT | Authority: 9.0
+     Operations: api_authentication_analyzer
+
+  5. prom_api_endpoint_discovery
+     Description: api_endpoint_discovery operation
+     Module: api_reverse_engineering
+     Class: WebAPIReverseEngineering
+     Expertise: EXPERT | Authority: 9.0
+     Operations: api_endpoint_discovery
+
+  6. prom_api_parameter_fuzzer
+     Description: api_parameter_fuzzer operation
+     Module: api_reverse_engineering
+     Class: WebAPIReverseEngineering
+     Expertise: EXPERT | Authority: 9.0
+     Operations: api_parameter_fuzzer
+
+  7. prom_api_rate_limit_detector
+     Description: api_rate_limit_detector operation
+     Module: api_reverse_engineering
+     Class: WebAPIReverseEngineering
+     Expertise: EXPERT | Authority: 9.0
+     Operations: api_rate_limit_detector
+
+  8. prom_api_response_differ
+     Description: api_response_differ operation
+     Module: api_reverse_engineering
+     Class: WebAPIReverseEngineering
+     Expertise: EXPERT | Authority: 9.0
+     Operations: api_response_differ
+
+  9. prom_email_batch_analyze
+     Description: Batch email analysis
+     Module: email_intelligence
+     Class: EmailIntelligence
+     Expertise: EXPERT | Authority: 9.0
+     Operations: batch_analyze
+
+ 10. prom_domain_batch_lookup
+     Description: Batch domain lookup
+     Module: domain_intelligence
+     Class: DomainIntelligence
+     Expertise: EXPERT | Authority: 9.0
+     Operations: batch_lookup
+
+ 11. prom_binary_info
+     Description: binary_info operation
+     Module: reverse_engineering
+     Class: ReverseEngineeringToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: binary_info
+
+ 12. prom_binwalk_analyze
+     Description: binwalk_analyze operation
+     Module: forensics_toolkit
+     Class: ForensicsToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: binwalk_analyze
+
+ 13. prom_bluetooth_info
+     Description: bluetooth_info operation
+     Module: wireless_security
+     Class: WirelessSecurityToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: bluetooth_info
+
+ 14. prom_bluetooth_scan
+     Description: bluetooth_scan operation
+     Module: wireless_security
+     Class: WirelessSecurityToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: bluetooth_scan
+
+ 15. prom_brute_force_generate
+     Description: brute_force_generate operation
+     Module: password_cracking
+     Class: PasswordCrackingToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: brute_force_generate
+
+ 16. prom_phone_bulk_lookup
+     Description: Bulk phone lookup
+     Module: phone_intelligence
+     Class: PhoneIntelligence
+     Expertise: EXPERT | Authority: 9.0
+     Operations: bulk_lookup
+
+ 17. prom_email_breach_check
+     Description: Check email breach
+     Module: email_intelligence
+     Class: EmailIntelligence
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_password_breach
+
+ 18. prom_phone_clear_cache
+     Description: Clear phone cache
+     Module: phone_intelligence
+     Class: PhoneIntelligence
+     Expertise: EXPERT | Authority: 9.0
+     Operations: clear_expired_cache
+
+ 19. prom_comprehensive_scan
+     Description: Test web security tools
+     Module: web_security
+     Class: WebSecurity
+     Expertise: EXPERT | Authority: 9.0
+     Operations: comprehensive_scan
+
+ 20. prom_crawl_links
+     Description: Test web security tools
+     Module: web_security
+     Class: WebSecurity
+     Expertise: EXPERT | Authority: 9.0
+     Operations: crawl_links
+
+ 21. prom_credential_dump
+     Description: credential_dump operation
+     Module: post_exploitation
+     Class: PostExploitationToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: credential_dump
+
+ 22. prom_data_exfiltration
+     Description: data_exfiltration operation
+     Module: post_exploitation
+     Class: PostExploitationToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: data_exfiltration
+
+ 23. prom_deauth_attack
+     Description: deauth_attack operation
+     Module: wireless_security
+     Class: WirelessSecurityToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: deauth_attack
+
+ 24. prom_directory_bruteforce
+     Description: Test web security tools
+     Module: web_security
+     Class: WebSecurity
+     Expertise: EXPERT | Authority: 9.0
+     Operations: directory_bruteforce
+
+ 25. prom_disassemble
+     Description: disassemble operation
+     Module: reverse_engineering
+     Class: ReverseEngineeringToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: disassemble
+
+ 26. prom_disk_image_create
+     Description: disk_image_create operation
+     Module: forensics_toolkit
+     Class: ForensicsToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: disk_image_create
+
+ 27. prom_evidence_chain_export
+     Description: evidence_chain_export operation
+     Module: forensics_toolkit
+     Class: ForensicsToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: evidence_chain_export
+
+ 28. prom_evil_twin_setup
+     Description: evil_twin_setup operation
+     Module: wireless_security
+     Class: WirelessSecurityToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: evil_twin_setup
+
+ 29. prom_exif_extract
+     Description: exif_extract operation
+     Module: forensics_toolkit
+     Class: ForensicsToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: exif_extract
+
+ 30. prom_file_carving
+     Description: file_carving operation
+     Module: forensics_toolkit
+     Class: ForensicsToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: file_carving
+
+ 31. prom_file_hash_all
+     Description: file_hash_all operation
+     Module: forensics_toolkit
+     Class: ForensicsToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: file_hash_all
+
+ 32. prom_phone_cache_stats
+     Description: Phone cache stats
+     Module: phone_intelligence
+     Class: PhoneIntelligence
+     Expertise: EXPERT | Authority: 9.0
+     Operations: get_cache_stats
+
+ 33. prom_memory_stats
+     Description: Get crystal memory statistics
+     Module: src.memory.crystal_prometheus
+     Class: PrometheusMemory
+     Expertise: EXPERT | Authority: 9.0
+     Operations: get_memory_stats
+
+ 34. prom_autonomous_stats
+     Description: Get autonomous loop statistics
+     Module: src.autonomous.prometheus_autonomous
+     Class: PrometheusAutonomous
+     Expertise: EXPERT | Authority: 9.0
+     Operations: get_stats
+
+ 35. prom_voice_status
+     Description: Get voice system status
+     Module: src.voice.prometheus_voice
+     Class: PrometheusVoice
+     Expertise: EXPERT | Authority: 9.0
+     Operations: get_status
+
+ 36. prom_ghidra_decompile
+     Description: ghidra_decompile operation
+     Module: reverse_engineering
+     Class: ReverseEngineeringToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: ghidra_decompile
+
+ 37. prom_graphql_introspection
+     Description: graphql_introspection operation
+     Module: api_reverse_engineering
+     Class: WebAPIReverseEngineering
+     Expertise: EXPERT | Authority: 9.0
+     Operations: graphql_introspection
+
+ 38. prom_hash_generate
+     Description: hash_generate operation
+     Module: password_cracking
+     Class: PasswordCrackingToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: hash_generate
+
+ 39. prom_hash_identify
+     Description: hash_identify operation
+     Module: password_cracking
+     Class: PasswordCrackingToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: hash_identify
+
+ 40. prom_hashcat_crack
+     Description: hashcat_crack operation
+     Module: password_cracking
+     Class: PasswordCrackingToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: hashcat_crack
+
+ 41. prom_hydra_attack
+     Description: hydra_attack operation
+     Module: password_cracking
+     Class: PasswordCrackingToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: hydra_attack
+
+ 42. prom_javascript_deobfuscate
+     Description: javascript_deobfuscate operation
+     Module: api_reverse_engineering
+     Class: WebAPIReverseEngineering
+     Expertise: EXPERT | Authority: 9.0
+     Operations: javascript_deobfuscate
+
+ 43. prom_john_crack
+     Description: john_crack operation
+     Module: password_cracking
+     Class: PasswordCrackingToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: john_crack
+
+ 44. prom_jwt_token_analyzer
+     Description: jwt_token_analyzer operation
+     Module: api_reverse_engineering
+     Class: WebAPIReverseEngineering
+     Expertise: EXPERT | Authority: 9.0
+     Operations: jwt_token_analyzer
+
+ 45. prom_lateral_movement
+     Description: lateral_movement operation
+     Module: post_exploitation
+     Class: PostExploitationToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: lateral_movement
+
+ 46. prom_phone_lookup
+     Description: Lookup phone number
+     Module: phone_intelligence
+     Class: PhoneIntelligence
+     Expertise: EXPERT | Authority: 9.0
+     Operations: lookup
+
+ 47. prom_domain_lookup
+     Description: Domain lookup
+     Module: domain_intelligence
+     Class: DomainIntelligence
+     Expertise: EXPERT | Authority: 9.0
+     Operations: lookup
+
+ 48. prom_ltrace_trace
+     Description: ltrace_trace operation
+     Module: reverse_engineering
+     Class: ReverseEngineeringToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: ltrace_trace
+
+ 49. prom_malware_static_analysis
+     Description: malware_static_analysis operation
+     Module: reverse_engineering
+     Class: ReverseEngineeringToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: malware_static_analysis
+
+ 50. prom_mitmproxy_intercept
+     Description: mitmproxy_intercept operation
+     Module: api_reverse_engineering
+     Class: WebAPIReverseEngineering
+     Expertise: EXPERT | Authority: 9.0
+     Operations: mitmproxy_intercept
+
+ 51. prom_monitor_mode_disable
+     Description: monitor_mode_disable operation
+     Module: wireless_security
+     Class: WirelessSecurityToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: monitor_mode_disable
+
+ 52. prom_monitor_mode_enable
+     Description: monitor_mode_enable operation
+     Module: wireless_security
+     Class: WirelessSecurityToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: monitor_mode_enable
+
+ 53. prom_network_pcap_analyze
+     Description: network_pcap_analyze operation
+     Module: forensics_toolkit
+     Class: ForensicsToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: network_pcap_analyze
+
+ 54. prom_nmap_scan
+     Description: Test network security tools
+     Module: network_security
+     Class: NetworkSecurity
+     Expertise: EXPERT | Authority: 9.0
+     Operations: nmap_scan
+
+ 55. prom_password_strength
+     Description: password_strength operation
+     Module: password_cracking
+     Class: PasswordCrackingToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: password_strength
+
+ 56. prom_peid_detect
+     Description: peid_detect operation
+     Module: reverse_engineering
+     Class: ReverseEngineeringToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: peid_detect
+
+ 57. prom_persistence_create
+     Description: persistence_create operation
+     Module: post_exploitation
+     Class: PostExploitationToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: persistence_create
+
+ 58. prom_port_scan
+     Description: Test network security tools
+     Module: network_security
+     Class: NetworkSecurity
+     Expertise: EXPERT | Authority: 9.0
+     Operations: port_scan
+
+ 59. prom_privilege_escalation_scan
+     Description: privilege_escalation_scan operation
+     Module: post_exploitation
+     Class: PostExploitationToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: privilege_escalation_scan
+
+ 60. prom_radare2_analyze
+     Description: radare2_analyze operation
+     Module: reverse_engineering
+     Class: ReverseEngineeringToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: radare2_analyze
+
+ 61. prom_rainbow_table_generate
+     Description: rainbow_table_generate operation
+     Module: password_cracking
+     Class: PasswordCrackingToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: rainbow_table_generate
+
+ 62. prom_rainbow_table_lookup
+     Description: rainbow_table_lookup operation
+     Module: password_cracking
+     Class: PasswordCrackingToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: rainbow_table_lookup
+
+ 63. prom_registry_analyze
+     Description: registry_analyze operation
+     Module: forensics_toolkit
+     Class: ForensicsToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: registry_analyze
+
+ 64. prom_security_headers
+     Description: Test web security tools
+     Module: web_security
+     Class: WebSecurity
+     Expertise: EXPERT | Authority: 9.0
+     Operations: security_headers
+
+ 65. prom_service_banner_grab
+     Description: Test network security tools
+     Module: network_security
+     Class: NetworkSecurity
+     Expertise: EXPERT | Authority: 9.0
+     Operations: service_banner_grab
+
+ 66. prom_sql_injection_test
+     Description: Test web security tools
+     Module: web_security
+     Class: WebSecurity
+     Expertise: EXPERT | Authority: 9.0
+     Operations: sql_injection_test
+
+ 67. prom_ssl_scan
+     Description: Test web security tools
+     Module: web_security
+     Class: WebSecurity
+     Expertise: EXPERT | Authority: 9.0
+     Operations: ssl_scan
+
+ 68. prom_autonomous_stop
+     Description: Stop autonomous loop
+     Module: src.autonomous.prometheus_autonomous
+     Class: PrometheusAutonomous
+     Expertise: EXPERT | Authority: 9.0
+     Operations: stop_autonomous_loop
+
+ 69. prom_strace_trace
+     Description: strace_trace operation
+     Module: reverse_engineering
+     Class: ReverseEngineeringToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: strace_trace
+
+ 70. prom_strings_extract
+     Description: strings_extract operation
+     Module: forensics_toolkit
+     Class: ForensicsToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: strings_extract
+
+ 71. prom_subdomain_enum
+     Description: Test web security tools
+     Module: web_security
+     Class: WebSecurity
+     Expertise: EXPERT | Authority: 9.0
+     Operations: subdomain_enum
+
+ 72. prom_subnet_scan
+     Description: Test network security tools
+     Module: network_security
+     Class: NetworkSecurity
+     Expertise: EXPERT | Authority: 9.0
+     Operations: subnet_scan
+
+ 73. prom_swagger_openapi_discovery
+     Description: swagger_openapi_discovery operation
+     Module: api_reverse_engineering
+     Class: WebAPIReverseEngineering
+     Expertise: EXPERT | Authority: 9.0
+     Operations: swagger_openapi_discovery
+
+ 74. prom_technology_detection
+     Description: Test web security tools
+     Module: web_security
+     Class: WebSecurity
+     Expertise: EXPERT | Authority: 9.0
+     Operations: technology_detection
+
+ 75. prom_timeline_create
+     Description: timeline_create operation
+     Module: forensics_toolkit
+     Class: ForensicsToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: timeline_create
+
+ 76. prom_traceroute
+     Description: Test network security tools
+     Module: network_security
+     Class: NetworkSecurity
+     Expertise: EXPERT | Authority: 9.0
+     Operations: traceroute
+
+ 77. prom_upx_unpack
+     Description: upx_unpack operation
+     Module: reverse_engineering
+     Class: ReverseEngineeringToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: upx_unpack
+
+ 78. prom_volatility_analyze
+     Description: volatility_analyze operation
+     Module: forensics_toolkit
+     Class: ForensicsToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: volatility_analyze
+
+ 79. prom_vulnerability_scan
+     Description: Test network security tools
+     Module: network_security
+     Class: NetworkSecurity
+     Expertise: EXPERT | Authority: 9.0
+     Operations: vulnerability_scan
+
+ 80. prom_websocket_interceptor
+     Description: websocket_interceptor operation
+     Module: api_reverse_engineering
+     Class: WebAPIReverseEngineering
+     Expertise: EXPERT | Authority: 9.0
+     Operations: websocket_interceptor
+
+ 81. prom_wifi_scan
+     Description: wifi_scan operation
+     Module: wireless_security
+     Class: WirelessSecurityToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: wifi_scan
+
+ 82. prom_wps_attack
+     Description: wps_attack operation
+     Module: wireless_security
+     Class: WirelessSecurityToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: wps_attack
+
+ 83. prom_wps_scan
+     Description: wps_scan operation
+     Module: wireless_security
+     Class: WirelessSecurityToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: wps_scan
+
+ 84. prom_xss_test
+     Description: Test web security tools
+     Module: web_security
+     Class: WebSecurity
+     Expertise: EXPERT | Authority: 9.0
+     Operations: xss_test
+
+ 85. prom_yara_scan
+     Description: yara_scan operation
+     Module: reverse_engineering
+     Class: ReverseEngineeringToolkit
+     Expertise: EXPERT | Authority: 9.0
+     Operations: yara_scan
+================================================================================
+📦 SECURITY DOMAIN (81 tools)
+================================================================================
+
+  1. prom_adb_devices
+     Description: adb_devices operation
+     Module: capabilities.mobile_exploits
+     Class: MobileDevice
+     Expertise: EXPERT | Authority: 9.0
+     Operations: adb_devices
+
+  2. prom_azure_runbook_exploit
+     Description: azure_runbook_exploit operation
+     Module: capabilities.cloud_exploits
+     Class: CloudAsset
+     Expertise: EXPERT | Authority: 9.0
+     Operations: azure_runbook_exploit
+
+  3. prom_base64_encode
+     Description: base64_encode operation
+     Module: capabilities.red_team_obfuscation
+     Class: PayloadObfuscation
+     Expertise: EXPERT | Authority: 9.0
+     Operations: base64_encode
+
+  4. prom_bash_obfuscation
+     Description: bash_obfuscation operation
+     Module: capabilities.red_team_obfuscation
+     Class: PayloadObfuscation
+     Expertise: EXPERT | Authority: 9.0
+     Operations: bash_obfuscation
+
+  5. prom_char_substitution
+     Description: char_substitution operation
+     Module: capabilities.red_team_obfuscation
+     Class: PayloadObfuscation
+     Expertise: EXPERT | Authority: 9.0
+     Operations: char_substitution
+
+  6. prom_check_capabilities
+     Description: check_capabilities operation
+     Module: capabilities.red_team_privesc
+     Class: PrivilegeEscalation
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_capabilities
+
+  7. prom_check_cron_jobs
+     Description: check_cron_jobs operation
+     Module: capabilities.red_team_privesc
+     Class: PrivilegeEscalation
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_cron_jobs
+
+  8. prom_check_cve
+     Description: check_cve operation
+     Module: capabilities.red_team_vuln_scan
+     Class: VulnerabilityScanner
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_cve
+
+  9. prom_check_kernel_version
+     Description: check_kernel_version operation
+     Module: capabilities.red_team_privesc
+     Class: PrivilegeEscalation
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_kernel_version
+
+ 10. prom_check_root_detection
+     Description: check_root_detection operation
+     Module: capabilities.mobile_exploits
+     Class: MobileDevice
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_root_detection
+
+ 11. prom_check_s3_public_access
+     Description: check_s3_public_access operation
+     Module: capabilities.cloud_exploits
+     Class: CloudAsset
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_s3_public_access
+
+ 12. prom_check_suid_files
+     Description: check_suid_files operation
+     Module: capabilities.red_team_privesc
+     Class: PrivilegeEscalation
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_suid_files
+
+ 13. prom_check_writable_paths
+     Description: check_writable_paths operation
+     Module: capabilities.red_team_privesc
+     Class: PrivilegeEscalation
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_writable_paths
+
+ 14. prom_command_injection_test
+     Description: command_injection_test operation
+     Module: capabilities.red_team_web_exploits
+     Class: WebExploits
+     Expertise: EXPERT | Authority: 9.0
+     Operations: command_injection_test
+
+ 15. prom_compress_payload
+     Description: compress_payload operation
+     Module: capabilities.red_team_obfuscation
+     Class: PayloadObfuscation
+     Expertise: EXPERT | Authority: 9.0
+     Operations: compress_payload
+
+ 16. prom_container_escape_techniques
+     Description: container_escape_techniques operation
+     Module: capabilities.cloud_exploits
+     Class: CloudAsset
+     Expertise: EXPERT | Authority: 9.0
+     Operations: container_escape_techniques
+
+ 17. prom_create_campaign
+     Description: create_campaign operation
+     Module: capabilities.red_team_phishing
+     Class: PhishingCampaign
+     Expertise: EXPERT | Authority: 9.0
+     Operations: create_campaign
+
+ 18. prom_detect_lateral_paths
+     Description: detect_lateral_paths operation
+     Module: capabilities.red_team_lateral_movement
+     Class: LateralMovement
+     Expertise: EXPERT | Authority: 9.0
+     Operations: detect_lateral_paths
+
+ 19. prom_dictionary_attack
+     Description: dictionary_attack operation
+     Module: capabilities.red_team_password_attacks
+     Class: PasswordAttacks
+     Expertise: EXPERT | Authority: 9.0
+     Operations: dictionary_attack
+
+ 20. prom_directory_traversal_test
+     Description: directory_traversal_test operation
+     Module: capabilities.red_team_web_exploits
+     Class: WebExploits
+     Expertise: EXPERT | Authority: 9.0
+     Operations: directory_traversal_test
+
+ 21. prom_dns_analysis
+     Description: Passive network reconnaissance
+     Module: capabilities.sigint_core
+     Class: SignalIntel
+     Expertise: EXPERT | Authority: 9.0
+     Operations: dns_analysis
+
+ 22. prom_enumerate_s3_buckets
+     Description: enumerate_s3_buckets operation
+     Module: capabilities.cloud_exploits
+     Class: CloudAsset
+     Expertise: EXPERT | Authority: 9.0
+     Operations: enumerate_s3_buckets
+
+ 23. prom_exfil_dns
+     Description: exfil_dns operation
+     Module: capabilities.red_team_exfil
+     Class: DataExfiltration
+     Expertise: EXPERT | Authority: 9.0
+     Operations: exfil_dns
+
+ 24. prom_exfil_email
+     Description: exfil_email operation
+     Module: capabilities.red_team_exfil
+     Class: DataExfiltration
+     Expertise: EXPERT | Authority: 9.0
+     Operations: exfil_email
+
+ 25. prom_exfil_http
+     Description: exfil_http operation
+     Module: capabilities.red_team_exfil
+     Class: DataExfiltration
+     Expertise: EXPERT | Authority: 9.0
+     Operations: exfil_http
+
+ 26. prom_exfil_icmp
+     Description: exfil_icmp operation
+     Module: capabilities.red_team_exfil
+     Class: DataExfiltration
+     Expertise: EXPERT | Authority: 9.0
+     Operations: exfil_icmp
+
+ 27. prom_exfil_smb
+     Description: exfil_smb operation
+     Module: capabilities.red_team_exfil
+     Class: DataExfiltration
+     Expertise: EXPERT | Authority: 9.0
+     Operations: exfil_smb
+
+ 28. prom_exfil_steganography
+     Description: exfil_steganography operation
+     Module: capabilities.red_team_exfil
+     Class: DataExfiltration
+     Expertise: EXPERT | Authority: 9.0
+     Operations: exfil_steganography
+
+ 29. prom_exploit_check
+     Description: exploit_check operation
+     Module: capabilities.red_team_vuln_scan
+     Class: VulnerabilityScanner
+     Expertise: EXPERT | Authority: 9.0
+     Operations: exploit_check
+
+ 30. prom_extract_apk
+     Description: extract_apk operation
+     Module: capabilities.mobile_exploits
+     Class: MobileDevice
+     Expertise: EXPERT | Authority: 9.0
+     Operations: extract_apk
+
+ 31. prom_extract_credentials
+     Description: Passive network reconnaissance
+     Module: capabilities.sigint_core
+     Class: SignalIntel
+     Expertise: EXPERT | Authority: 9.0
+     Operations: extract_credentials
+
+ 32. prom_face_recognition_bypass
+     Description: face_recognition_bypass operation
+     Module: capabilities.biometric_bypass
+     Class: BiometricSample
+     Expertise: EXPERT | Authority: 9.0
+     Operations: face_recognition_bypass
+
+ 33. prom_file_upload_bypass
+     Description: file_upload_bypass operation
+     Module: capabilities.web_exploits
+     Class: WebExploiter
+     Expertise: EXPERT | Authority: 9.0
+     Operations: file_upload_bypass
+
+ 34. prom_fingerprint_spoof
+     Description: fingerprint_spoof operation
+     Module: capabilities.biometric_bypass
+     Class: BiometricSample
+     Expertise: EXPERT | Authority: 9.0
+     Operations: fingerprint_spoof
+
+ 35. prom_frida_hook
+     Description: frida_hook operation
+     Module: capabilities.mobile_exploits
+     Class: MobileDevice
+     Expertise: EXPERT | Authority: 9.0
+     Operations: frida_hook
+
+ 36. prom_gait_analysis_bypass
+     Description: gait_analysis_bypass operation
+     Module: capabilities.biometric_bypass
+     Class: BiometricSample
+     Expertise: EXPERT | Authority: 9.0
+     Operations: gait_analysis_bypass
+
+ 37. prom_gcp_metadata_server_exploit
+     Description: gcp_metadata_server_exploit operation
+     Module: capabilities.cloud_exploits
+     Class: CloudAsset
+     Expertise: EXPERT | Authority: 9.0
+     Operations: gcp_metadata_server_exploit
+
+ 38. prom_generate_landing_page
+     Description: generate_landing_page operation
+     Module: capabilities.red_team_phishing
+     Class: PhishingCampaign
+     Expertise: EXPERT | Authority: 9.0
+     Operations: generate_landing_page
+
+ 39. prom_get_campaign_stats
+     Description: get_campaign_stats operation
+     Module: capabilities.red_team_phishing
+     Class: PhishingCampaign
+     Expertise: EXPERT | Authority: 9.0
+     Operations: get_campaign_stats
+
+ 40. prom_get_capabilities
+     Description: get_capabilities operation
+     Module: capabilities.wireless_ops
+     Class: WirelessOps
+     Expertise: EXPERT | Authority: 9.0
+     Operations: get_capabilities
+
+ 41. prom_hex_encode
+     Description: hex_encode operation
+     Module: capabilities.red_team_obfuscation
+     Class: PayloadObfuscation
+     Expertise: EXPERT | Authority: 9.0
+     Operations: hex_encode
+
+ 42. prom_hydra_brute
+     Description: hydra_brute operation
+     Module: capabilities.red_team_password_attacks
+     Class: PasswordAttacks
+     Expertise: EXPERT | Authority: 9.0
+     Operations: hydra_brute
+
+ 43. prom_iam_privilege_escalation
+     Description: iam_privilege_escalation operation
+     Module: capabilities.cloud_exploits
+     Class: CloudAsset
+     Expertise: EXPERT | Authority: 9.0
+     Operations: iam_privilege_escalation
+
+ 44. prom_install_apk
+     Description: install_apk operation
+     Module: capabilities.mobile_exploits
+     Class: MobileDevice
+     Expertise: EXPERT | Authority: 9.0
+     Operations: install_apk
+
+ 45. prom_ios_jailbreak_detect
+     Description: ios_jailbreak_detect operation
+     Module: capabilities.mobile_exploits
+     Class: MobileDevice
+     Expertise: EXPERT | Authority: 9.0
+     Operations: ios_jailbreak_detect
+
+ 46. prom_iris_scan_defeat
+     Description: iris_scan_defeat operation
+     Module: capabilities.biometric_bypass
+     Class: BiometricSample
+     Expertise: EXPERT | Authority: 9.0
+     Operations: iris_scan_defeat
+
+ 47. prom_jwt_manipulation
+     Description: jwt_manipulation operation
+     Module: capabilities.web_exploits
+     Class: WebExploiter
+     Expertise: EXPERT | Authority: 9.0
+     Operations: jwt_manipulation
+
+ 48. prom_kubernetes_attack_surface
+     Description: kubernetes_attack_surface operation
+     Module: capabilities.cloud_exploits
+     Class: CloudAsset
+     Expertise: EXPERT | Authority: 9.0
+     Operations: kubernetes_attack_surface
+
+ 49. prom_lfi_test
+     Description: lfi_test operation
+     Module: capabilities.web_exploits
+     Class: WebExploiter
+     Expertise: EXPERT | Authority: 9.0
+     Operations: lfi_test
+
+ 50. prom_multilayer_obfuscation
+     Description: multilayer_obfuscation operation
+     Module: capabilities.red_team_obfuscation
+     Class: PayloadObfuscation
+     Expertise: EXPERT | Authority: 9.0
+     Operations: multilayer_obfuscation
+
+ 51. prom_multimodal_bypass_strategy
+     Description: multimodal_bypass_strategy operation
+     Module: capabilities.biometric_bypass
+     Class: BiometricSample
+     Expertise: EXPERT | Authority: 9.0
+     Operations: multimodal_bypass_strategy
+
+ 52. prom_nikto_scan
+     Description: nikto_scan operation
+     Module: capabilities.red_team_vuln_scan
+     Class: VulnerabilityScanner
+     Expertise: EXPERT | Authority: 9.0
+     Operations: nikto_scan
+
+ 53. prom_nmap_vuln_scan
+     Description: nmap_vuln_scan operation
+     Module: capabilities.red_team_vuln_scan
+     Class: VulnerabilityScanner
+     Expertise: EXPERT | Authority: 9.0
+     Operations: nmap_vuln_scan
+
+ 54. prom_objection_repl
+     Description: objection_repl operation
+     Module: capabilities.mobile_exploits
+     Class: MobileDevice
+     Expertise: EXPERT | Authority: 9.0
+     Operations: objection_repl
+
+ 55. prom_packet_callback
+     Description: Scapy packet handler
+     Module: capabilities.sigint_core
+     Class: SignalIntel
+     Expertise: EXPERT | Authority: 9.0
+     Operations: packet_callback
+
+ 56. prom_pass_the_hash
+     Description: pass_the_hash operation
+     Module: capabilities.red_team_lateral_movement
+     Class: LateralMovement
+     Expertise: EXPERT | Authority: 9.0
+     Operations: pass_the_hash
+
+ 57. prom_password_spray
+     Description: password_spray operation
+     Module: capabilities.red_team_password_attacks
+     Class: PasswordAttacks
+     Expertise: EXPERT | Authority: 9.0
+     Operations: password_spray
+
+ 58. prom_pivoting_setup
+     Description: pivoting_setup operation
+     Module: capabilities.red_team_lateral_movement
+     Class: LateralMovement
+     Expertise: EXPERT | Authority: 9.0
+     Operations: pivoting_setup
+
+ 59. prom_powershell_obfuscation
+     Description: powershell_obfuscation operation
+     Module: capabilities.red_team_obfuscation
+     Class: PayloadObfuscation
+     Expertise: EXPERT | Authority: 9.0
+     Operations: powershell_obfuscation
+
+ 60. prom_psexec_lateral
+     Description: psexec_lateral operation
+     Module: capabilities.red_team_lateral_movement
+     Class: LateralMovement
+     Expertise: EXPERT | Authority: 9.0
+     Operations: psexec_lateral
+
+ 61. prom_rdp_lateral
+     Description: rdp_lateral operation
+     Module: capabilities.red_team_lateral_movement
+     Class: LateralMovement
+     Expertise: EXPERT | Authority: 9.0
+     Operations: rdp_lateral
+
+ 62. prom_run_linpeas
+     Description: run_linpeas operation
+     Module: capabilities.red_team_privesc
+     Class: PrivilegeEscalation
+     Expertise: EXPERT | Authority: 9.0
+     Operations: run_linpeas
+
+ 63. prom_send_phishing_email
+     Description: send_phishing_email operation
+     Module: capabilities.red_team_phishing
+     Class: PhishingCampaign
+     Expertise: EXPERT | Authority: 9.0
+     Operations: send_phishing_email
+
+ 64. prom_serverless_function_hijack
+     Description: serverless_function_hijack operation
+     Module: capabilities.cloud_exploits
+     Class: CloudAsset
+     Expertise: EXPERT | Authority: 9.0
+     Operations: serverless_function_hijack
+
+ 65. prom_service_version_check
+     Description: service_version_check operation
+     Module: capabilities.red_team_vuln_scan
+     Class: VulnerabilityScanner
+     Expertise: EXPERT | Authority: 9.0
+     Operations: service_version_check
+
+ 66. prom_simulate_exfil_detection
+     Description: simulate_exfil_detection operation
+     Module: capabilities.red_team_exfil
+     Class: DataExfiltration
+     Expertise: EXPERT | Authority: 9.0
+     Operations: simulate_exfil_detection
+
+ 67. prom_smb_relay
+     Description: smb_relay operation
+     Module: capabilities.red_team_lateral_movement
+     Class: LateralMovement
+     Expertise: EXPERT | Authority: 9.0
+     Operations: smb_relay
+
+ 68. prom_sniff_traffic
+     Description: Capture network traffic
+     Module: capabilities.sigint_core
+     Class: SignalIntel
+     Expertise: EXPERT | Authority: 9.0
+     Operations: sniff_traffic
+
+ 69. prom_sqlmap_scan
+     Description: sqlmap_scan operation
+     Module: capabilities.red_team_web_exploits
+     Class: WebExploits
+     Expertise: EXPERT | Authority: 9.0
+     Operations: sqlmap_scan
+
+ 70. prom_ssh_lateral
+     Description: ssh_lateral operation
+     Module: capabilities.red_team_lateral_movement
+     Class: LateralMovement
+     Expertise: EXPERT | Authority: 9.0
+     Operations: ssh_lateral
+
+ 71. prom_ssl_pinning_bypass
+     Description: ssl_pinning_bypass operation
+     Module: capabilities.mobile_exploits
+     Class: MobileDevice
+     Expertise: EXPERT | Authority: 9.0
+     Operations: ssl_pinning_bypass
+
+ 72. prom_ssl_tls_scan
+     Description: ssl_tls_scan operation
+     Module: capabilities.red_team_vuln_scan
+     Class: VulnerabilityScanner
+     Expertise: EXPERT | Authority: 9.0
+     Operations: ssl_tls_scan
+
+ 73. prom_ssrf_test
+     Description: ssrf_test operation
+     Module: capabilities.web_exploits
+     Class: WebExploiter
+     Expertise: EXPERT | Authority: 9.0
+     Operations: ssrf_test
+
+ 74. prom_string_reversal
+     Description: string_reversal operation
+     Module: capabilities.red_team_obfuscation
+     Class: PayloadObfuscation
+     Expertise: EXPERT | Authority: 9.0
+     Operations: string_reversal
+
+ 75. prom_track_click
+     Description: track_click operation
+     Module: capabilities.red_team_phishing
+     Class: PhishingCampaign
+     Expertise: EXPERT | Authority: 9.0
+     Operations: track_click
+
+ 76. prom_variable_name_obfuscation
+     Description: variable_name_obfuscation operation
+     Module: capabilities.red_team_obfuscation
+     Class: PayloadObfuscation
+     Expertise: EXPERT | Authority: 9.0
+     Operations: variable_name_obfuscation
+
+ 77. prom_vein_pattern_spoof
+     Description: vein_pattern_spoof operation
+     Module: capabilities.biometric_bypass
+     Class: BiometricSample
+     Expertise: EXPERT | Authority: 9.0
+     Operations: vein_pattern_spoof
+
+ 78. prom_voice_cloning_attack
+     Description: voice_cloning_attack operation
+     Module: capabilities.biometric_bypass
+     Class: BiometricSample
+     Expertise: EXPERT | Authority: 9.0
+     Operations: voice_cloning_attack
+
+ 79. prom_winrm_lateral
+     Description: winrm_lateral operation
+     Module: capabilities.red_team_lateral_movement
+     Class: LateralMovement
+     Expertise: EXPERT | Authority: 9.0
+     Operations: winrm_lateral
+
+ 80. prom_wmi_lateral
+     Description: wmi_lateral operation
+     Module: capabilities.red_team_lateral_movement
+     Class: LateralMovement
+     Expertise: EXPERT | Authority: 9.0
+     Operations: wmi_lateral
+
+ 81. prom_xor_encode
+     Description: xor_encode operation
+     Module: capabilities.red_team_obfuscation
+     Class: PayloadObfuscation
+     Expertise: EXPERT | Authority: 9.0
+     Operations: xor_encode
+================================================================================
+📦 DIAGNOSTIC (66 tools)
+================================================================================
+
+  1. prom_audit_system_configuration
+     Description: audit_system_configuration operation
+     Module: src.diagnostics.security_diagnostics
+     Class: SecurityDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: audit_system_configuration
+
+  2. prom_audit_user_accounts
+     Description: audit_user_accounts operation
+     Module: src.diagnostics.security_diagnostics
+     Class: SecurityDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: audit_user_accounts
+
+  3. prom_benchmark_inference
+     Description: benchmark_inference operation
+     Module: src.diagnostics.ai_ml_diagnostics
+     Class: AIMLDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: benchmark_inference
+
+  4. prom_benchmark_memory_bandwidth
+     Description: benchmark_memory_bandwidth operation
+     Module: src.diagnostics.ai_ml_diagnostics
+     Class: AIMLDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: benchmark_memory_bandwidth
+
+  5. prom_benchmark_read_performance
+     Description: benchmark_read_performance operation
+     Module: src.diagnostics.database_diagnostics
+     Class: DatabaseDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: benchmark_read_performance
+
+  6. prom_benchmark_system
+     Description: Benchmark system performance
+     Module: src.diagnostics.system_diagnostics
+     Class: SystemDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: benchmark_system
+
+  7. prom_benchmark_write_performance
+     Description: benchmark_write_performance operation
+     Module: src.diagnostics.database_diagnostics
+     Class: DatabaseDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: benchmark_write_performance
+
+  8. prom_calculate_health_score
+     Description: Calculate overall system health score
+     Module: src.diagnostics.system_diagnostics
+     Class: SystemDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: calculate_health_score
+
+  9. prom_calculate_network_health
+     Description: calculate_network_health operation
+     Module: src.diagnostics.network_diagnostics
+     Class: NetworkDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: calculate_network_health
+
+ 10. prom_calculate_risk_score
+     Description: calculate_risk_score operation
+     Module: src.diagnostics.security_diagnostics
+     Class: SecurityDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: calculate_risk_score
+
+ 11. prom_calculate_security_score
+     Description: calculate_security_score operation
+     Module: src.diagnostics.security_diagnostics
+     Class: SecurityDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: calculate_security_score
+
+ 12. prom_check_antivirus_status
+     Description: check_antivirus_status operation
+     Module: src.diagnostics.security_diagnostics
+     Class: SecurityDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_antivirus_status
+
+ 13. prom_check_api_keys
+     Description: Check API key configuration
+     Module: src.diagnostics.system_diagnostics
+     Class: SystemDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_api_keys
+
+ 14. prom_check_cis_compliance
+     Description: check_cis_compliance operation
+     Module: src.diagnostics.security_diagnostics
+     Class: SecurityDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_cis_compliance
+
+ 15. prom_check_cpu
+     Description: Check CPU metrics
+     Module: src.diagnostics.system_diagnostics
+     Class: SystemDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_cpu
+
+ 16. prom_check_cpu_capabilities
+     Description: check_cpu_capabilities operation
+     Module: src.diagnostics.ai_ml_diagnostics
+     Class: AIMLDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_cpu_capabilities
+
+ 17. prom_check_cuda_support
+     Description: check_cuda_support operation
+     Module: src.diagnostics.ai_ml_diagnostics
+     Class: AIMLDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_cuda_support
+
+ 18. prom_check_databases
+     Description: Check database connectivity
+     Module: src.diagnostics.system_diagnostics
+     Class: SystemDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_databases
+
+ 19. prom_check_dependencies
+     Description: Check critical dependencies
+     Module: src.diagnostics.system_diagnostics
+     Class: SystemDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_dependencies
+
+ 20. prom_check_disk
+     Description: Check disk usage
+     Module: src.diagnostics.system_diagnostics
+     Class: SystemDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_disk
+
+ 21. prom_check_encryption_compliance
+     Description: check_encryption_compliance operation
+     Module: src.diagnostics.security_diagnostics
+     Class: SecurityDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_encryption_compliance
+
+ 22. prom_check_file_permissions
+     Description: check_file_permissions operation
+     Module: src.diagnostics.security_diagnostics
+     Class: SecurityDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_file_permissions
+
+ 23. prom_check_file_structure
+     Description: Check file structure integrity
+     Module: src.diagnostics.system_diagnostics
+     Class: SystemDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_file_structure
+
+ 24. prom_check_firewall_status
+     Description: check_firewall_status operation
+     Module: src.diagnostics.security_diagnostics
+     Class: SecurityDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_firewall_status
+
+ 25. prom_check_framework_compatibility
+     Description: check_framework_compatibility operation
+     Module: src.diagnostics.ai_ml_diagnostics
+     Class: AIMLDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_framework_compatibility
+
+ 26. prom_check_gpu
+     Description: Check GPU status
+     Module: src.diagnostics.system_diagnostics
+     Class: SystemDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_gpu
+
+ 27. prom_check_gpu_memory
+     Description: check_gpu_memory operation
+     Module: src.diagnostics.ai_ml_diagnostics
+     Class: AIMLDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_gpu_memory
+
+ 28. prom_check_memory
+     Description: Check RAM metrics
+     Module: src.diagnostics.system_diagnostics
+     Class: SystemDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_memory
+
+ 29. prom_check_model_quantization
+     Description: check_model_quantization operation
+     Module: src.diagnostics.ai_ml_diagnostics
+     Class: AIMLDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_model_quantization
+
+ 30. prom_check_multi_gpu_setup
+     Description: check_multi_gpu_setup operation
+     Module: src.diagnostics.ai_ml_diagnostics
+     Class: AIMLDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_multi_gpu_setup
+
+ 31. prom_check_network
+     Description: Check network connectivity
+     Module: src.diagnostics.system_diagnostics
+     Class: SystemDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_network
+
+ 32. prom_check_network_interfaces
+     Description: check_network_interfaces operation
+     Module: src.diagnostics.network_diagnostics
+     Class: NetworkDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_network_interfaces
+
+ 33. prom_check_python_environment
+     Description: Check Python environment
+     Module: src.diagnostics.system_diagnostics
+     Class: SystemDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_python_environment
+
+ 34. prom_check_pytorch
+     Description: check_pytorch operation
+     Module: src.diagnostics.ai_ml_diagnostics
+     Class: AIMLDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_pytorch
+
+ 35. prom_check_replication_status
+     Description: check_replication_status operation
+     Module: src.diagnostics.database_diagnostics
+     Class: DatabaseDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_replication_status
+
+ 36. prom_check_security_posture
+     Description: Check security posture
+     Module: src.diagnostics.system_diagnostics
+     Class: SystemDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_security_posture
+
+ 37. prom_check_security_settings
+     Description: check_security_settings operation
+     Module: src.diagnostics.security_diagnostics
+     Class: SecurityDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_security_settings
+
+ 38. prom_check_security_updates
+     Description: check_security_updates operation
+     Module: src.diagnostics.security_diagnostics
+     Class: SecurityDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_security_updates
+
+ 39. prom_check_sudo_permissions
+     Description: check_sudo_permissions operation
+     Module: src.diagnostics.security_diagnostics
+     Class: SecurityDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_sudo_permissions
+
+ 40. prom_check_system_info
+     Description: Check system information
+     Module: src.diagnostics.system_diagnostics
+     Class: SystemDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_system_info
+
+ 41. prom_check_tensorflow
+     Description: check_tensorflow operation
+     Module: src.diagnostics.ai_ml_diagnostics
+     Class: AIMLDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_tensorflow
+
+ 42. prom_check_weak_passwords
+     Description: check_weak_passwords operation
+     Module: src.diagnostics.security_diagnostics
+     Class: SecurityDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: check_weak_passwords
+
+ 43. prom_detect_gpus
+     Description: detect_gpus operation
+     Module: src.diagnostics.ai_ml_diagnostics
+     Class: AIMLDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: detect_gpus
+
+ 44. prom_export_results
+     Description: Export diagnostics results to JSON
+     Module: src.diagnostics.system_diagnostics
+     Class: SystemDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: export_results
+
+ 45. prom_generate_report
+     Description: Export diagnostics results to JSON
+     Module: src.diagnostics.system_diagnostics
+     Class: SystemDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: generate_report
+
+ 46. prom_get_summary
+     Description: get_summary operation
+     Module: src.diagnostics.security_diagnostics
+     Class: SecurityDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: get_summary
+
+ 47. prom_measure_jitter
+     Description: measure_jitter operation
+     Module: src.diagnostics.network_diagnostics
+     Class: NetworkDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: measure_jitter
+
+ 48. prom_measure_latency
+     Description: measure_latency operation
+     Module: src.diagnostics.network_diagnostics
+     Class: NetworkDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: measure_latency
+
+ 49. prom_monitor_gpu_utilization
+     Description: monitor_gpu_utilization operation
+     Module: src.diagnostics.ai_ml_diagnostics
+     Class: AIMLDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: monitor_gpu_utilization
+
+ 50. prom_run_full_diagnostics
+     Description: Check system information
+     Module: src.diagnostics.system_diagnostics
+     Class: SystemDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: run_full_diagnostics
+
+ 51. prom_scan_open_ports
+     Description: scan_open_ports operation
+     Module: src.diagnostics.security_diagnostics
+     Class: SecurityDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: scan_open_ports
+
+ 52. prom_scan_outdated_software
+     Description: scan_outdated_software operation
+     Module: src.diagnostics.security_diagnostics
+     Class: SecurityDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: scan_outdated_software
+
+ 53. prom_test_bandwidth
+     Description: test_bandwidth operation
+     Module: src.diagnostics.network_diagnostics
+     Class: NetworkDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: test_bandwidth
+
+ 54. prom_test_common_ports
+     Description: test_common_ports operation
+     Module: src.diagnostics.network_diagnostics
+     Class: NetworkDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: test_common_ports
+
+ 55. prom_test_dns_connectivity
+     Description: test_dns_connectivity operation
+     Module: src.diagnostics.network_diagnostics
+     Class: NetworkDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: test_dns_connectivity
+
+ 56. prom_test_dns_resolution
+     Description: test_dns_resolution operation
+     Module: src.diagnostics.network_diagnostics
+     Class: NetworkDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: test_dns_resolution
+
+ 57. prom_test_dns_servers
+     Description: test_dns_servers operation
+     Module: src.diagnostics.network_diagnostics
+     Class: NetworkDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: test_dns_servers
+
+ 58. prom_test_elasticsearch
+     Description: test_elasticsearch operation
+     Module: src.diagnostics.database_diagnostics
+     Class: DatabaseDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: test_elasticsearch
+
+ 59. prom_test_gateway_connectivity
+     Description: test_gateway_connectivity operation
+     Module: src.diagnostics.network_diagnostics
+     Class: NetworkDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: test_gateway_connectivity
+
+ 60. prom_test_internet_connectivity
+     Description: test_internet_connectivity operation
+     Module: src.diagnostics.network_diagnostics
+     Class: NetworkDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: test_internet_connectivity
+
+ 61. prom_test_mongodb
+     Description: test_mongodb operation
+     Module: src.diagnostics.database_diagnostics
+     Class: DatabaseDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: test_mongodb
+
+ 62. prom_test_postgresql
+     Description: test_postgresql operation
+     Module: src.diagnostics.database_diagnostics
+     Class: DatabaseDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: test_postgresql
+
+ 63. prom_test_redis
+     Description: test_redis operation
+     Module: src.diagnostics.database_diagnostics
+     Class: DatabaseDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: test_redis
+
+ 64. prom_test_sqlite
+     Description: test_sqlite operation
+     Module: src.diagnostics.database_diagnostics
+     Class: DatabaseDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: test_sqlite
+
+ 65. prom_trace_routes
+     Description: trace_routes operation
+     Module: src.diagnostics.network_diagnostics
+     Class: NetworkDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: trace_routes
+
+ 66. prom_verify_model_formats
+     Description: verify_model_formats operation
+     Module: src.diagnostics.ai_ml_diagnostics
+     Class: AIMLDiagnostics
+     Expertise: EXPERT | Authority: 9.0
+     Operations: verify_model_formats
+================================================================================
+📦 SIGINT (27 tools)
+================================================================================
+
+  1. prom_analyze_ble_advertising
+     Description: analyze_ble_advertising operation
+     Module: modules.bluetooth_intelligence
+     Class: BluetoothIntelligence
+     Expertise: EXPERT | Authority: 9.0
+     Operations: analyze_ble_advertising
+
+  2. prom_analyze_dns_queries
+     Description: analyze_dns_queries operation
+     Module: modules.traffic_analysis
+     Class: TrafficAnalysis
+     Expertise: EXPERT | Authority: 9.0
+     Operations: analyze_dns_queries
+
+  3. prom_analyze_http_traffic
+     Description: analyze_http_traffic operation
+     Module: modules.traffic_analysis
+     Class: TrafficAnalysis
+     Expertise: EXPERT | Authority: 9.0
+     Operations: analyze_http_traffic
+
+  4. prom_analyze_protocols
+     Description: analyze_protocols operation
+     Module: modules.traffic_analysis
+     Class: TrafficAnalysis
+     Expertise: EXPERT | Authority: 9.0
+     Operations: analyze_protocols
+
+  5. prom_assess_security
+     Description: assess_security operation
+     Module: modules.wifi_intelligence
+     Class: WiFiIntelligence
+     Expertise: EXPERT | Authority: 9.0
+     Operations: assess_security
+
+  6. prom_bulk_lookup
+     Description: bulk_lookup operation
+     Module: modules.phone_intelligence
+     Class: PhoneIntelligence
+     Expertise: EXPERT | Authority: 9.0
+     Operations: bulk_lookup
+
+  7. prom_capture_traffic
+     Description: capture_traffic operation
+     Module: modules.traffic_analysis
+     Class: TrafficAnalysis
+     Expertise: EXPERT | Authority: 9.0
+     Operations: capture_traffic
+
+  8. prom_channel_analysis
+     Description: channel_analysis operation
+     Module: modules.wifi_intelligence
+     Class: WiFiIntelligence
+     Expertise: EXPERT | Authority: 9.0
+     Operations: channel_analysis
+
+  9. prom_detect_anomalies
+     Description: detect_anomalies operation
+     Module: modules.traffic_analysis
+     Class: TrafficAnalysis
+     Expertise: EXPERT | Authority: 9.0
+     Operations: detect_anomalies
+
+ 10. prom_detect_rogue_aps
+     Description: detect_rogue_aps operation
+     Module: modules.wifi_intelligence
+     Class: WiFiIntelligence
+     Expertise: EXPERT | Authority: 9.0
+     Operations: detect_rogue_aps
+
+ 11. prom_detect_vulnerabilities
+     Description: detect_vulnerabilities operation
+     Module: modules.bluetooth_intelligence
+     Class: BluetoothIntelligence
+     Expertise: EXPERT | Authority: 9.0
+     Operations: detect_vulnerabilities
+
+ 12. prom_discover_devices
+     Description: discover_devices operation
+     Module: modules.bluetooth_intelligence
+     Class: BluetoothIntelligence
+     Expertise: EXPERT | Authority: 9.0
+     Operations: discover_devices
+
+ 13. prom_discover_networks
+     Description: discover_networks operation
+     Module: modules.wifi_intelligence
+     Class: WiFiIntelligence
+     Expertise: EXPERT | Authority: 9.0
+     Operations: discover_networks
+
+ 14. prom_email_to_username
+     Description: email_to_username operation
+     Module: modules.social_osint
+     Class: SocialOSINT
+     Expertise: EXPERT | Authority: 9.0
+     Operations: email_to_username
+
+ 15. prom_format_phone
+     Description: format_phone operation
+     Module: modules.phone_intelligence
+     Class: PhoneIntelligence
+     Expertise: EXPERT | Authority: 9.0
+     Operations: format_phone
+
+ 16. prom_full_osint_report
+     Description: full_osint_report operation
+     Module: modules.social_osint
+     Class: SocialOSINT
+     Expertise: EXPERT | Authority: 9.0
+     Operations: full_osint_report
+
+ 17. prom_github_profile
+     Description: github_profile operation
+     Module: modules.social_osint
+     Class: SocialOSINT
+     Expertise: EXPERT | Authority: 9.0
+     Operations: github_profile
+
+ 18. prom_identify_top_talkers
+     Description: identify_top_talkers operation
+     Module: modules.traffic_analysis
+     Class: TrafficAnalysis
+     Expertise: EXPERT | Authority: 9.0
+     Operations: identify_top_talkers
+
+ 19. prom_lookup
+     Description: lookup operation
+     Module: modules.phone_intelligence
+     Class: PhoneIntelligence
+     Expertise: EXPERT | Authority: 9.0
+     Operations: lookup
+
+ 20. prom_monitor_bandwidth
+     Description: monitor_bandwidth operation
+     Module: modules.traffic_analysis
+     Class: TrafficAnalysis
+     Expertise: EXPERT | Authority: 9.0
+     Operations: monitor_bandwidth
+
+ 21. prom_phone_to_social
+     Description: phone_to_social operation
+     Module: modules.social_osint
+     Class: SocialOSINT
+     Expertise: EXPERT | Authority: 9.0
+     Operations: phone_to_social
+
+ 22. prom_profile_device
+     Description: profile_device operation
+     Module: modules.bluetooth_intelligence
+     Class: BluetoothIntelligence
+     Expertise: EXPERT | Authority: 9.0
+     Operations: profile_device
+
+ 23. prom_reddit_profile
+     Description: reddit_profile operation
+     Module: modules.social_osint
+     Class: SocialOSINT
+     Expertise: EXPERT | Authority: 9.0
+     Operations: reddit_profile
+
+ 24. prom_search_by_location
+     Description: search_by_location operation
+     Module: modules.social_osint
+     Class: SocialOSINT
+     Expertise: EXPERT | Authority: 9.0
+     Operations: search_by_location
+
+ 25. prom_track_clients
+     Description: track_clients operation
+     Module: modules.wifi_intelligence
+     Class: WiFiIntelligence
+     Expertise: EXPERT | Authority: 9.0
+     Operations: track_clients
+
+ 26. prom_track_proximity
+     Description: track_proximity operation
+     Module: modules.bluetooth_intelligence
+     Class: BluetoothIntelligence
+     Expertise: EXPERT | Authority: 9.0
+     Operations: track_proximity
+
+ 27. prom_username_search
+     Description: username_search operation
+     Module: modules.social_osint
+     Class: SocialOSINT
+     Expertise: EXPERT | Authority: 9.0
+     Operations: username_search
+================================================================================
+📦 ULTIMATE (13 tools)
+================================================================================
+
+  1. prom_aws_privilege_escalation_ultimate
+     Description: Ultimate AWS privilege escalation
+     Module: ULTIMATE_CAPABILITIES.cloud_exploits_ultimate
+     Class: CloudPlatform
+     Expertise: GRANDMASTER | Authority: 9.0
+     Operations: aws_maximum_privilege_escalation
+
+  2. prom_azure_ad_attack_ultimate
+     Description: Ultimate Azure AD attack
+     Module: ULTIMATE_CAPABILITIES.cloud_exploits_ultimate
+     Class: CloudPlatform
+     Expertise: GRANDMASTER | Authority: 9.0
+     Operations: azure_ultimate_active_directory_attack
+
+  3. prom_bgp_hijacking_ultimate
+     Description: Ultimate BGP hijacking
+     Module: ULTIMATE_CAPABILITIES.network_exploitation_ultimate
+     Class: NetworkPlatform
+     Expertise: GRANDMASTER | Authority: 9.0
+     Operations: bgp_maximum_hijacking
+
+  4. prom_dns_corruption_ultimate
+     Description: Ultimate DNS corruption
+     Module: ULTIMATE_CAPABILITIES.network_exploitation_ultimate
+     Class: NetworkPlatform
+     Expertise: GRANDMASTER | Authority: 9.0
+     Operations: dns_advanced_corruption
+
+  5. prom_eigrp_attack_ultimate
+     Description: Ultimate EIGRP attack
+     Module: ULTIMATE_CAPABILITIES.network_exploitation_ultimate
+     Class: NetworkPlatform
+     Expertise: GRANDMASTER | Authority: 9.0
+     Operations: eigrp_advanced_protocol_attack
+
+  6. prom_face_recognition_defeat_ultimate
+     Description: Ultimate face recognition defeat
+     Module: ULTIMATE_CAPABILITIES.biometric_bypass_ultimate
+     Class: MaximumThreatLevel
+     Expertise: GRANDMASTER | Authority: 9.0
+     Operations: face_recognition_elite_defeat
+
+  7. prom_fingerprint_bypass_ultimate
+     Description: Ultimate fingerprint bypass
+     Module: ULTIMATE_CAPABILITIES.biometric_bypass_ultimate
+     Class: MaximumThreatLevel
+     Expertise: GRANDMASTER | Authority: 9.0
+     Operations: fingerprint_ultimate_bypass
+
+  8. prom_gcp_privilege_escalation_ultimate
+     Description: Ultimate GCP privilege escalation
+     Module: ULTIMATE_CAPABILITIES.cloud_exploits_ultimate
+     Class: CloudPlatform
+     Expertise: GRANDMASTER | Authority: 9.0
+     Operations: gcp_maximum_privilege_escalation
+
+  9. prom_iris_scanner_defeat_ultimate
+     Description: Ultimate iris scanner defeat
+     Module: ULTIMATE_CAPABILITIES.biometric_bypass_ultimate
+     Class: MaximumThreatLevel
+     Expertise: GRANDMASTER | Authority: 9.0
+     Operations: iris_scanner_national_defeat
+
+ 10. prom_kubernetes_compromise_ultimate
+     Description: Ultimate Kubernetes compromise
+     Module: ULTIMATE_CAPABILITIES.cloud_exploits_ultimate
+     Class: CloudPlatform
+     Expertise: GRANDMASTER | Authority: 9.0
+     Operations: kubernetes_ultimate_compromise
+
+ 11. prom_ospf_manipulation_ultimate
+     Description: Ultimate OSPF manipulation
+     Module: ULTIMATE_CAPABILITIES.network_exploitation_ultimate
+     Class: NetworkPlatform
+     Expertise: GRANDMASTER | Authority: 9.0
+     Operations: ospf_ultimate_protocol_manipulation
+
+ 12. prom_serverless_exploitation_ultimate
+     Description: Ultimate serverless exploitation
+     Module: ULTIMATE_CAPABILITIES.cloud_exploits_ultimate
+     Class: CloudPlatform
+     Expertise: GRANDMASTER | Authority: 9.0
+     Operations: serverless_ultimate_exploitation
+
+ 13. prom_voice_cloning_ultimate
+     Description: Ultimate voice cloning
+     Module: ULTIMATE_CAPABILITIES.biometric_bypass_ultimate
+     Class: MaximumThreatLevel
+     Expertise: GRANDMASTER | Authority: 9.0
+     Operations: voice_cloning_maximum
+================================================================================
+📦 BASIC TOOL (10 tools)
+================================================================================
+
+  1. prom_anti_disassembly
+     Description: anti_disassembly operation
+     Module: tools.evasion
+     Class: EvasionTechniques
+     Expertise: EXPERT | Authority: 9.0
+     Operations: anti_disassembly
+
+  2. prom_detect_sandbox
+     Description: detect_sandbox operation
+     Module: tools.evasion
+     Class: EvasionTechniques
+     Expertise: EXPERT | Authority: 9.0
+     Operations: detect_sandbox
+
+  3. prom_encrypt
+     Description: encrypt operation
+     Module: tools.evasion
+     Class: EvasionTechniques
+     Expertise: EXPERT | Authority: 9.0
+     Operations: encrypt
+
+  4. prom_payload_format
+     Description: Format and encode payload for delivery
+     Module: tools.payloads
+     Class: PayloadGenerator
+     Expertise: EXPERT | Authority: 9.0
+     Operations: format_payload
+
+  5. prom_payload_generate
+     Description: Generate offensive payloads (reverse/bind shells, meterpreter)
+     Module: tools.payloads
+     Class: PayloadGenerator
+     Expertise: EXPERT | Authority: 9.0
+     Operations: generate
+
+  6. prom_generate_decoy_traffic
+     Description: generate_decoy_traffic operation
+     Module: tools.evasion
+     Class: EvasionTechniques
+     Expertise: EXPERT | Authority: 9.0
+     Operations: generate_decoy_traffic
+
+  7. prom_get_statistics
+     Description: get_statistics operation
+     Module: tools.exploits
+     Class: ExploitFramework
+     Expertise: EXPERT | Authority: 9.0
+     Operations: get_statistics
+
+  8. prom_obfuscate
+     Description: obfuscate operation
+     Module: tools.evasion
+     Class: EvasionTechniques
+     Expertise: EXPERT | Authority: 9.0
+     Operations: obfuscate
+
+  9. prom_search_exploits
+     Description: search_exploits operation
+     Module: tools.exploits
+     Class: ExploitFramework
+     Expertise: EXPERT | Authority: 9.0
+     Operations: search_exploits
+
+ 10. prom_sleep_evasion
+     Description: sleep_evasion operation
+     Module: tools.evasion
+     Class: EvasionTechniques
+     Expertise: EXPERT | Authority: 9.0
+     Operations: sleep_evasion
+
+================================================================================
+📊 SUMMARY STATISTICS
+================================================================================
+
+Total Capabilities: 282
+Total Operations: 282
+
+Breakdown by Category:
+   • SPECIALIZED              :  85 tools ( 30.1%)
+   • SECURITY DOMAIN          :  81 tools ( 28.7%)
+   • DIAGNOSTIC               :  66 tools ( 23.4%)
+   • SIGINT                   :  27 tools (  9.6%)
+   • ULTIMATE                 :  13 tools (  4.6%)
+   • BASIC TOOL               :  10 tools (  3.5%)
+
+Breakdown by Expertise Level:
+   • EXPERT         : 269 tools ( 95.4%)
+   • GRANDMASTER    :  13 tools (  4.6%)
+
+Breakdown by Authority Required:
+   • 8.1-10.0 (High)     : 282 tools (100.0%)
+
+================================================================================
+✅ TOOL LIST GENERATION COMPLETE
+================================================================================
+
+🚀 All tools available via MCP protocol
+📝 Use in Claude Desktop via mcp_server.py
+🔧 Configuration: See .claude/mcp.json
+

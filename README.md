@@ -259,6 +259,7 @@ chmod +x scripts/setup.sh
 - [Red Team Playbook](resources/red-team-playbook.md)
 
 ### Cheat Sheets
+- [White Hat vs Black Hat - Ethical Hacking Guide](cheatsheets/white-hat-black-hat.md)
 - [Reverse Shell Cheat Sheet](cheatsheets/reverse-shells.md)
 - [Linux Privilege Escalation](cheatsheets/linux-privesc.md)
 - [Windows Privilege Escalation](cheatsheets/windows-privesc.md)

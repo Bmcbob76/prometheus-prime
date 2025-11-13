@@ -118,3 +118,5 @@ crystals/
 
 # Promethian Vault
 .promethian_vault/
+
+# End of .gitignore

@@ -1,22 +1,87 @@
-﻿# Sensitive data
-*.key
-*.pem
-*_private*
-api_keys.json
-credentials.json
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+*.pyc
+*.pyo
+
+# Virtual Environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
 
 # Logs
 *.log
 logs/
+*.log.*
 sessions/
 
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.egg-info/
-.venv/
-venv/
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# API Keys & Secrets (CRITICAL)
+config/api_keys.json
+config/api_keys.yaml
+api_keys.json
+credentials.json
+credentials/
+.env
+.env.*
+*.key
+*.pem
+*_private*
+secrets/
+
+# Output Files
+output/
+results/
+dumps/
+captures/
+*.pcap
+*.cap
+
+# Compiled
+*.dll
+*.exe
+*.o
+
+# Security Tools Data
+*.hash
+*.wordlist
+wordlists/
+exploits/local/
+modules/cache/
 
 # Research data
 research/malware_samples/
@@ -24,9 +89,32 @@ osint_db/breaches/
 crypto/keys/
 
 # Temporary
+tmp/
+temp/
 *.tmp
 *.bak
-.DS_Store
 ~/
-*.db
+
+# OS
+Thumbs.db
+desktop.ini
+
+# Claude Code
+.claude/
+
+# Node modules (if any)
+node_modules/
+
+# Large ML Models (don't commit to git)
+models/*.bin
+models/*.gguf
+*.safetensors
+*.pt
+*.pth
+
+# Crystal Memory (stored locally, not in git)
+crystals/
+*.crystal
+
+# Promethian Vault
 .promethian_vault/

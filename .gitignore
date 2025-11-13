@@ -83,10 +83,12 @@ wordlists/
 exploits/local/
 modules/cache/
 
-# Research data
-research/malware_samples/
-osint_db/breaches/
-crypto/keys/
+# Security Tools Data
+*.hash
+*.wordlist
+wordlists/
+exploits/local/
+modules/cache/
 
 # Temporary
 tmp/

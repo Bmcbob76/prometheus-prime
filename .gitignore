@@ -20,6 +20,8 @@ wheels/
 .installed.cfg
 *.egg
 MANIFEST
+*.pyc
+*.pyo
 
 # Virtual Environment
 venv/
@@ -27,6 +29,7 @@ env/
 ENV/
 env.bak/
 venv.bak/
+.venv/
 
 # IDEs
 .vscode/
@@ -40,6 +43,7 @@ venv.bak/
 *.log
 logs/
 *.log.*
+sessions/
 
 # Database
 *.db
@@ -49,12 +53,15 @@ logs/
 # API Keys & Secrets (CRITICAL)
 config/api_keys.json
 config/api_keys.yaml
+api_keys.json
+credentials.json
+credentials/
 .env
 .env.*
 *.key
 *.pem
+*_private*
 secrets/
-credentials/
 
 # Output Files
 output/
@@ -65,11 +72,16 @@ captures/
 *.cap
 
 # Compiled
-*.pyc
-*.pyo
 *.dll
 *.exe
 *.o
+
+# Security Tools Data
+*.hash
+*.wordlist
+wordlists/
+exploits/local/
+modules/cache/
 
 # Security Tools Data
 *.hash
@@ -83,7 +95,7 @@ tmp/
 temp/
 *.tmp
 *.bak
-*.swp
+~/
 
 # OS
 Thumbs.db
@@ -105,3 +117,8 @@ models/*.gguf
 # Crystal Memory (stored locally, not in git)
 crystals/
 *.crystal
+
+# Promethian Vault
+.promethian_vault/
+
+# End of .gitignore

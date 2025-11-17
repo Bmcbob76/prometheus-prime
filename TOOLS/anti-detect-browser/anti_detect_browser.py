@@ -451,8 +451,12 @@ class AntiDetectBrowser:
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option('useAutomationExtension', False)
 
-        # WebRTC leak prevention
-        options.add_argument('--disable-webrtc')
+        # WebRTC leak prevention (use prefs instead of invalid --disable-webrtc flag)
+        options.add_experimental_option('prefs', {
+            'webrtc.ip_handling_policy': 'disable_non_proxied_udp',
+            'webrtc.multiple_routes_enabled': False,
+            'webrtc.nonproxied_udp_enabled': False
+        })
 
         # Proxy configuration
         if profile.proxy:

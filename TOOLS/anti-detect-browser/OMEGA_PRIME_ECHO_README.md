@@ -77,7 +77,57 @@ driver.get('https://example.com')
 
 ---
 
-## 🔥 THE 11 UNIFIED MODULES
+## 🦆 UNCENSORED SEARCH ENGINE INTEGRATION
+
+### **NEW: Search with Privacy & Behavioral Mimicry**
+
+OMEGA PRIME ECHO now integrates with **8 uncensored search engines** with human-like search behavior:
+
+```python
+from search_engine_integration import OmegaSearchEngine
+
+# Create search engine
+search = OmegaSearchEngine('duckduckgo')
+
+# Search with human behavior (typing delays, result scanning, clicks)
+stats = search.search_with_behavior(
+    driver,
+    query='privacy tools',
+    click_results=True,
+    max_results_to_check=5
+)
+
+# Multi-engine search (compare across engines)
+results = search.multi_engine_search(
+    driver,
+    query='security research',
+    engines=['duckduckgo', 'brave', 'searx']
+)
+```
+
+### 🔍 Supported Uncensored Search Engines:
+
+- 🦆 **DuckDuckGo** - Privacy-focused, no tracking
+- 🦁 **Brave Search** - Independent index, no tracking
+- 🔍 **SearX** - Open-source metasearch (self-hostable)
+- 🌐 **Startpage** - Google results with privacy
+- 🔐 **Qwant** - European privacy search
+- 🎯 **Mojeek** - Independent crawler, no tracking
+- 🇨🇭 **Swisscows** - Swiss privacy search
+- 🇩🇪 **MetaGer** - German metasearch with Tor
+
+### ⚡ Human Search Behavior:
+
+- Realistic typing delays (1-5 seconds thinking time)
+- Result scanning time (0.5-2 seconds per result)
+- Click probability based on position (35% for #1, 20% for #2)
+- Natural pagination behavior (30% go to page 2)
+- Query refinement (25% refine search)
+- Reading time simulation (3-15 seconds per page)
+
+---
+
+## 🔥 THE 12 UNIFIED MODULES
 
 ### 1️⃣ **Core Browser Engine** (`anti_detect_browser.py`)
 - Canvas, WebGL, Audio fingerprint spoofing
@@ -174,6 +224,13 @@ driver.get('https://example.com')
 - Success rate analytics
 - CAPTCHA solve rate tracking
 - **Result:** Know exactly how effective your evasion is
+
+### 1️⃣2️⃣ **Uncensored Search Engine Integration** (`search_engine_integration.py`)
+- 8 uncensored search engines (DuckDuckGo, Brave, SearX, etc.)
+- Human-like search behavior (typing delays, result scanning)
+- Multi-engine search and comparison
+- Privacy-focused searching
+- **Result:** Search the web with complete privacy and anti-detection
 
 ---
 

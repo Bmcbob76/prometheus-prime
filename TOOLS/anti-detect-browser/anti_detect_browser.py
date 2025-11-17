@@ -126,14 +126,28 @@ class AntiDetectBrowser:
             profiles_dir: Directory to store browser profiles
             driver_path: Path to ChromeDriver/GeckoDriver
         """
-        # Setup logging
+        # Setup logging (cross-platform compatible)
+        handlers = [logging.StreamHandler(sys.stdout)]
+
+        # Try to add file handler if possible
+        try:
+            # Create log directory
+            if sys.platform == 'win32':
+                log_dir = Path(os.getenv('TEMP', 'C:\\Temp')) / 'prometheus-logs'
+            else:
+                log_dir = Path('/var/log/prometheus')
+
+            log_dir.mkdir(parents=True, exist_ok=True)
+            log_file = log_dir / 'anti_detect_browser.log'
+            handlers.append(logging.FileHandler(str(log_file)))
+        except Exception:
+            # If file logging fails, just use console
+            pass
+
         logging.basicConfig(
             level=logging.INFO,
             format='%(asctime)s - ANTI_DETECT - %(levelname)s - %(message)s',
-            handlers=[
-                logging.FileHandler('/var/log/prometheus/anti_detect_browser.log'),
-                logging.StreamHandler(sys.stdout)
-            ]
+            handlers=handlers
         )
         self.logger = logging.getLogger('ANTI_DETECT')
 

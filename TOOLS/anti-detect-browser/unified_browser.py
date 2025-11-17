@@ -232,6 +232,9 @@ class OmegaPrimeEchoBrowser:
             self.logger.debug("Generating TLS/HTTP2 fingerprint...")
 
         browser_fam = browser_family or hardware_profile.browser_family
+        # Map Edge to Chrome (both use Chromium engine)
+        if browser_fam == 'edge':
+            browser_fam = 'chrome'
         tls_http2_profile = BrowserFingerprintProfile(browser_fam)
 
         # Step 5: Create browser session

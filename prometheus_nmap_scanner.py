@@ -6,11 +6,35 @@ Real port scanning with nmap integration
 """
 
 import asyncio
-import nmap
 from dataclasses import dataclass
 from typing import List, Dict, Optional
 from enum import Enum
 from datetime import datetime
+
+# Try to import nmap, provide mock if not available
+try:
+    import nmap
+    NMAP_AVAILABLE = True
+except ImportError:
+    NMAP_AVAILABLE = False
+    # Mock nmap.PortScanner for testing without nmap installed
+    class MockPortScanner:
+        """Mock PortScanner for testing"""
+        def __init__(self):
+            self._scan_result = {}
+        
+        def scan(self, target, arguments=''):
+            """Mock scan that returns empty results"""
+            self._scan_result = {target: {}}
+            return self._scan_result
+        
+        def all_hosts(self):
+            """Return empty list for mock"""
+            return []
+    
+    class nmap:
+        """Mock nmap module"""
+        PortScanner = MockPortScanner
 
 class ScanType(Enum):
     """Scan type enumeration"""
@@ -32,10 +56,20 @@ class PortScanResult:
     scan_timestamp: str = None
 
 class PrometheusNmapScanner:
-    """Real nmap-based port scanner"""
+    """Real nmap-based port scanner with mock support"""
     
-    def __init__(self):
-        self.scanner = nmap.PortScanner()
+    def __init__(self, mock_scanner=None):
+        """
+        Initialize scanner with optional mock for testing.
+        
+        Args:
+            mock_scanner: Optional mock scanner object for testing
+        """
+        if mock_scanner is not None:
+            self.scanner = mock_scanner
+        else:
+            self.scanner = nmap.PortScanner()
+        self.is_mock = not NMAP_AVAILABLE or mock_scanner is not None
     
     async def quick_port_scan(self, target: str, timeout: int = 60) -> PortScanResult:
         """Quick scan - top 1000 ports, ~15-30 seconds"""

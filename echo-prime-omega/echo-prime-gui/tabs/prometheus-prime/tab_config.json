@@ -1,0 +1,32 @@
+{
+  "id": "prometheus_prime",
+  "name": "Prometheus Prime",
+  "icon": "⚔️",
+  "description": "Autonomous Penetration Testing System - Complete Offensive Security Platform",
+  "color": "#ff0000",
+  "order": 1,
+  "enabled": true,
+  "authority_level": 11.0,
+  "routes": {
+    "main": "/tab/prometheus-prime",
+    "api": "/api/prometheus-prime"
+  },
+  "capabilities": [
+    "Full 6-phase autonomous engagement workflow",
+    "11 security domains with 50+ integrated tools",
+    "220,000+ CVE vulnerability database",
+    "50,000+ exploit arsenal with auto-chaining",
+    "Automatic vulnerability assessment and prioritization",
+    "Real-time adaptive tactics and evasion",
+    "Multi-vector attack coordination",
+    "Comprehensive reporting and documentation"
+  ],
+  "stats": {
+    "domains": 11,
+    "tools": 50,
+    "cves": 220000,
+    "exploits": 50000,
+    "active_engagements": 0,
+    "success_rate": "0%"
+  }
+}

@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 ECHO PRIME OMEGA - Master Control</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #000000 0%, #1a0033 50%, #000000 100%);
+            color: #00ff00;
+            overflow: hidden;
+        }
+
+        .master-header {
+            background: rgba(0, 0, 0, 0.95);
+            border-bottom: 3px solid #ff0000;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(255, 0, 0, 0.5);
+        }
+
+        .master-header h1 {
+            color: #ff0000;
+            text-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000;
+            font-size: 3em;
+            margin-bottom: 10px;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000; }
+            50% { text-shadow: 0 0 30px #ff0000, 0 0 60px #ff0000, 0 0 80px #ff0000; }
+        }
+
+        .master-header .subtitle {
+            color: #00ff00;
+            font-size: 1.5em;
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        .status-bar {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px solid #00ff00;
+            flex-wrap: wrap;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 5px;
+        }
+
+        .status-indicator {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #00ff00;
+            box-shadow: 0 0 15px #00ff00;
+            animation: pulse 2s infinite;
+        }
+
+        .status-indicator.sovereign {
+            background: #ff0000;
+            box-shadow: 0 0 15px #ff0000;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.2); }
+        }
+
+        .main-container {
+            display: flex;
+            height: calc(100vh - 200px);
+        }
+
+        .system-tabs {
+            width: 280px;
+            background: rgba(0, 0, 0, 0.95);
+            border-right: 3px solid #00ff00;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .system-tab {
+            padding: 20px;
+            margin: 15px 0;
+            background: rgba(0, 255, 0, 0.05);
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .system-tab:hover {
+            background: rgba(0, 255, 0, 0.2);
+            transform: translateX(10px) scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+        }
+
+        .system-tab.active {
+            background: rgba(255, 0, 0, 0.2);
+            border-color: #ff0000;
+            border-left: 5px solid #ff0000;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.7);
+        }
+
+        .system-tab .icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .system-tab .name {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .system-tab .status {
+            font-size: 0.8em;
+            color: #888;
+        }
+
+        .system-tab .status.operational {
+            color: #00ff00;
+        }
+
+        .system-tab .status.standby {
+            color: #ffaa00;
+        }
+
+        .content-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 30px;
+        }
+
+        .system-panel {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .system-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .panel-header {
+            border-bottom: 3px solid;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .panel-header h2 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .capability-card {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .capability-card:hover {
+            border-color: #ff0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+            transform: scale(1.05);
+        }
+
+        .capability-card h3 {
+            color: #00ff00;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .capability-list {
+            list-style: none;
+        }
+
+        .capability-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #333;
+            color: #888;
+        }
+
+        .capability-list li:before {
+            content: "✓ ";
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        .control-panel {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #00ff00;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .control-panel.sovereign {
+            border-color: #ff0000;
+            background: rgba(255, 0, 0, 0.1);
+        }
+
+        .control-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .control-btn {
+            padding: 20px;
+            background: linear-gradient(135deg, #00ff00 0%, #00aa00 100%);
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        .control-btn:hover {
+            background: linear-gradient(135deg, #ff0000 0%, #aa0000 100%);
+            color: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.7);
+        }
+
+        .control-btn.danger {
+            background: linear-gradient(135deg, #ff0000 0%, #aa0000 100%);
+            color: #fff;
+        }
+
+        .control-btn.danger:hover {
+            background: linear-gradient(135deg, #ff00ff 0%, #aa00aa 100%);
+        }
+
+        .input-group {
+            margin: 20px 0;
+        }
+
+        .input-group label {
+            display: block;
+            color: #00ff00;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.95);
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 1em;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #ff0000;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+        }
+
+        .stats-display {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-card .value {
+            font-size: 3em;
+            color: #ff0000;
+            font-weight: bold;
+            text-shadow: 0 0 10px #ff0000;
+        }
+
+        .stat-card .label {
+            font-size: 1em;
+            color: #888;
+            margin-top: 10px;
+        }
+
+        .execution-log {
+            background: rgba(0, 0, 0, 0.95);
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .execution-log h3 {
+            color: #00ff00;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #00ff00;
+            padding-bottom: 10px;
+        }
+
+        .log-entry {
+            padding: 12px;
+            margin: 8px 0;
+            border-left: 4px solid #00ff00;
+            background: rgba(0, 255, 0, 0.05);
+            border-radius: 5px;
+        }
+
+        .log-entry.error {
+            border-left-color: #ff0000;
+            background: rgba(255, 0, 0, 0.05);
+        }
+
+        .log-entry .timestamp {
+            color: #888;
+            font-size: 0.85em;
+        }
+
+        .log-entry .system-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            background: #00ff00;
+            color: #000;
+            border-radius: 3px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+
+        /* Prometheus Prime embedded iframe */
+        .embedded-iframe {
+            width: 100%;
+            height: calc(100vh - 300px);
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            background: #000;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #00ff00;
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff0000;
+        }
+
+        /* Sovereign override warning */
+        .sovereign-warning {
+            background: rgba(255, 0, 0, 0.2);
+            border: 3px solid #ff0000;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            animation: warningPulse 2s infinite;
+        }
+
+        @keyframes warningPulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
+            50% { box-shadow: 0 0 30px rgba(255, 0, 0, 1); }
+        }
+
+        .sovereign-warning h3 {
+            color: #ff0000;
+            font-size: 2em;
+            text-shadow: 0 0 10px #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="master-header">
+        <h1>🔥 ECHO PRIME OMEGA</h1>
+        <div class="subtitle">Ultimate Security Intelligence Platform | Authority Level: 11.0</div>
+    </div>
+
+    <div class="status-bar">
+        <div class="status-item">
+            <div class="status-indicator" id="system-indicator"></div>
+            <span>System: <span id="active-system">Prometheus Prime</span></span>
+        </div>
+        <div class="status-item">
+            <span>Active Agents: <span id="agent-count">0</span></span>
+        </div>
+        <div class="status-item">
+            <span>Memory Entries: <span id="memory-count">0</span></span>
+        </div>
+        <div class="status-item">
+            <span>Active Engagements: <span id="engagement-count">0</span></span>
+        </div>
+        <div class="status-item">
+            <div class="status-indicator sovereign" id="sovereign-indicator" style="display:none;"></div>
+            <span id="sovereign-status">Sovereign: <span style="color:#888">STANDBY</span></span>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="system-tabs">
+            <div class="system-tab active" data-system="prometheus_prime">
+                <div class="icon">⚔️</div>
+                <div class="name">Prometheus Prime</div>
+                <div class="status operational">OPERATIONAL</div>
+            </div>
+            <div class="system-tab" data-system="omega_swarm">
+                <div class="icon">🐝</div>
+                <div class="name">Omega Swarm Brain</div>
+                <div class="status operational">OPERATIONAL</div>
+            </div>
+            <div class="system-tab" data-system="memory_system">
+                <div class="icon">💾</div>
+                <div class="name">Memory System</div>
+                <div class="status operational">OPERATIONAL</div>
+            </div>
+            <div class="system-tab" data-system="mls_server">
+                <div class="icon">🔐</div>
+                <div class="name">MLS Server</div>
+                <div class="status operational">OPERATIONAL</div>
+            </div>
+            <div class="system-tab" data-system="omniscience">
+                <div class="icon">🧠</div>
+                <div class="name">Omniscience</div>
+                <div class="status operational">OPERATIONAL</div>
+            </div>
+            <div class="system-tab" data-system="sovereign_control" style="border-color: #ff0000;">
+                <div class="icon">👑</div>
+                <div class="name">Sovereign Control</div>
+                <div class="status standby">STANDBY</div>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <!-- Prometheus Prime Panel -->
+            <div class="system-panel active" id="panel-prometheus_prime">
+                <div class="panel-header" style="border-color: #ff0000;">
+                    <h2 style="color: #ff0000;">⚔️ PROMETHEUS PRIME</h2>
+                    <p>Autonomous Penetration Testing System</p>
+                </div>
+
+                <div class="stats-display">
+                    <div class="stat-card">
+                        <div class="value">11</div>
+                        <div class="label">Security Domains</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="value">50+</div>
+                        <div class="label">Tools Available</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="value">220K</div>
+                        <div class="label">CVEs in Database</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="value">11.0</div>
+                        <div class="label">Authority Level</div>
+                    </div>
+                </div>
+
+                <div class="control-panel">
+                    <h3>Quick Actions</h3>
+                    <div class="control-grid">
+                        <button class="control-btn" onclick="launchPrometheusGUI()">
+                            Launch Full GUI
+                        </button>
+                        <button class="control-btn" onclick="startAutonomousEngagement()">
+                            Start Autonomous
+                        </button>
+                        <button class="control-btn" onclick="queryIntelligence()">
+                            Query Intelligence
+                        </button>
+                        <button class="control-btn danger" onclick="emergencyStop()">
+                            Emergency Stop
+                        </button>
+                    </div>
+                </div>
+
+                <div class="capabilities-grid">
+                    <div class="capability-card">
+                        <h3>Core Capabilities</h3>
+                        <ul class="capability-list">
+                            <li>6-phase autonomous engagement</li>
+                            <li>AI decision engine (5 models)</li>
+                            <li>Phoenix auto-healing</li>
+                            <li>Real-time adaptation</li>
+                            <li>Complete audit trail</li>
+                        </ul>
+                    </div>
+                    <div class="capability-card">
+                        <h3>Security Domains</h3>
+                        <ul class="capability-list">
+                            <li>Reconnaissance</li>
+                            <li>Web Application</li>
+                            <li>Network Attacks</li>
+                            <li>Exploitation</li>
+                            <li>Post-Exploitation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Omega Swarm Brain Panel -->
+            <div class="system-panel" id="panel-omega_swarm">
+                <div class="panel-header" style="border-color: #00ff00;">
+                    <h2 style="color: #00ff00;">🐝 OMEGA SWARM BRAIN</h2>
+                    <p>Multi-Agent Swarm Intelligence Coordinator</p>
+                </div>
+
+                <div class="control-panel">
+                    <h3>Swarm Control</h3>
+                    <div class="input-group">
+                        <label>Number of Agents:</label>
+                        <input type="number" id="agent-count-input" value="4" min="1" max="20">
+                    </div>
+                    <div class="control-grid">
+                        <button class="control-btn" onclick="spawnAgents()">
+                            Spawn Agents
+                        </button>
+                        <button class="control-btn" onclick="coordinateSwarm()">
+                            Coordinate Swarm
+                        </button>
+                        <button class="control-btn danger" onclick="terminateSwarm()">
+                            Terminate All
+                        </button>
+                    </div>
+                </div>
+
+                <div class="capabilities-grid">
+                    <div class="capability-card">
+                        <h3>Agent Roles</h3>
+                        <ul class="capability-list">
+                            <li>Reconnaissance Agents</li>
+                            <li>Exploitation Agents</li>
+                            <li>Intelligence Agents</li>
+                            <li>Healing Agents</li>
+                            <li>Decision Agents</li>
+                        </ul>
+                    </div>
+                    <div class="capability-card">
+                        <h3>Swarm Features</h3>
+                        <ul class="capability-list">
+                            <li>Parallel execution</li>
+                            <li>Dynamic task allocation</li>
+                            <li>Collective intelligence</li>
+                            <li>Self-organization</li>
+                            <li>Fault tolerance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Memory System Panel -->
+            <div class="system-panel" id="panel-memory_system">
+                <div class="panel-header" style="border-color: #00aaff;">
+                    <h2 style="color: #00aaff;">💾 MEMORY SYSTEM</h2>
+                    <p>Persistent Knowledge & Intelligence Storage</p>
+                </div>
+
+                <div class="control-panel">
+                    <h3>Memory Operations</h3>
+                    <div class="control-grid">
+                        <button class="control-btn" onclick="storeMemory()">
+                            Store Data
+                        </button>
+                        <button class="control-btn" onclick="queryMemory()">
+                            Query Database
+                        </button>
+                        <button class="control-btn" onclick="exportMemory()">
+                            Export Data
+                        </button>
+                    </div>
+                </div>
+
+                <div class="capabilities-grid">
+                    <div class="capability-card">
+                        <h3>Storage Categories</h3>
+                        <ul class="capability-list">
+                            <li>Engagement history</li>
+                            <li>Vulnerabilities found</li>
+                            <li>Swarm intelligence</li>
+                            <li>Sovereign sessions</li>
+                            <li>System analytics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MLS Server Panel -->
+            <div class="system-panel" id="panel-mls_server">
+                <div class="panel-header" style="border-color: #ffaa00;">
+                    <h2 style="color: #ffaa00;">🔐 MLS SERVER</h2>
+                    <p>Multi-Level Security Authorization</p>
+                </div>
+
+                <div class="control-panel">
+                    <h3>Authorization Check</h3>
+                    <div class="input-group">
+                        <label>User ID:</label>
+                        <input type="text" id="mls-user" placeholder="SOVEREIGN-001">
+                    </div>
+                    <div class="input-group">
+                        <label>Security Level:</label>
+                        <select id="mls-level">
+                            <option value="11">11.0 - SOVEREIGN</option>
+                            <option value="10">10.0 - TOP SECRET</option>
+                            <option value="8">8.0 - SECRET</option>
+                            <option value="5">5.0 - CONFIDENTIAL</option>
+                        </select>
+                    </div>
+                    <div class="control-grid">
+                        <button class="control-btn" onclick="checkAuthorization()">
+                            Check Authorization
+                        </button>
+                        <button class="control-btn" onclick="generateBloodlineKey()">
+                            Generate Bloodline Key
+                        </button>
+                    </div>
+                </div>
+
+                <div class="capabilities-grid">
+                    <div class="capability-card">
+                        <h3>Security Levels</h3>
+                        <ul class="capability-list">
+                            <li>0 - Unclassified</li>
+                            <li>5 - Confidential</li>
+                            <li>8 - Secret</li>
+                            <li>10 - Top Secret</li>
+                            <li>11.0 - Sovereign</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Omniscience Panel -->
+            <div class="system-panel" id="panel-omniscience">
+                <div class="panel-header" style="border-color: #aa00ff;">
+                    <h2 style="color: #aa00ff;">🧠 OMNISCIENCE INTELLIGENCE</h2>
+                    <p>Complete Security Intelligence Database</p>
+                </div>
+
+                <div class="stats-display">
+                    <div class="stat-card">
+                        <div class="value">220K</div>
+                        <div class="label">CVE Database</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="value">50K</div>
+                        <div class="label">Exploits</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="value">600+</div>
+                        <div class="label">MITRE Techniques</div>
+                    </div>
+                </div>
+
+                <div class="control-panel">
+                    <h3>Intelligence Query</h3>
+                    <div class="input-group">
+                        <label>Query Type:</label>
+                        <select id="query-type">
+                            <option>CVE Search</option>
+                            <option>Exploit Database</option>
+                            <option>MITRE ATT&CK</option>
+                            <option>Service Fingerprint</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Search Term:</label>
+                        <input type="text" id="search-term" placeholder="apache, CVE-2023-1234, etc.">
+                    </div>
+                    <div class="control-grid">
+                        <button class="control-btn" onclick="searchOmniscience()">
+                            Search Intelligence
+                        </button>
+                        <button class="control-btn" onclick="analyzeTarget()">
+                            Analyze Target
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sovereign Control Panel -->
+            <div class="system-panel" id="panel-sovereign_control">
+                <div class="panel-header" style="border-color: #ff00ff;">
+                    <h2 style="color: #ff00ff;">👑 SOVEREIGN CONTROL</h2>
+                    <p>Authority Level 11.0 Override System</p>
+                </div>
+
+                <div class="sovereign-warning">
+                    <h3>⚠️ WARNING ⚠️</h3>
+                    <p style="color: #ff0000; font-size: 1.2em; margin-top: 10px;">
+                        Sovereign Override bypasses ALL safety protocols.<br>
+                        Advisory system remains active.<br>
+                        Complete audit trail maintained.<br>
+                        Use only with proper authorization.
+                    </p>
+                </div>
+
+                <div class="control-panel sovereign">
+                    <h3>Sovereign Authentication</h3>
+                    <div class="input-group">
+                        <label>Sovereign ID:</label>
+                        <input type="text" id="sovereign-id" placeholder="SOVEREIGN-001">
+                    </div>
+                    <div class="input-group">
+                        <label>Credentials:</label>
+                        <input type="password" id="sovereign-creds" placeholder="Enter credentials">
+                    </div>
+                    <div class="input-group">
+                        <label>Biometric Data:</label>
+                        <input type="text" id="sovereign-bio" placeholder="Biometric hash">
+                    </div>
+                    <div class="control-grid">
+                        <button class="control-btn danger" onclick="activateSovereign()">
+                            ACTIVATE SOVEREIGN OVERRIDE
+                        </button>
+                        <button class="control-btn" onclick="deactivateSovereign()">
+                            Deactivate Override
+                        </button>
+                    </div>
+                </div>
+
+                <div class="capabilities-grid">
+                    <div class="capability-card">
+                        <h3>Override Capabilities</h3>
+                        <ul class="capability-list">
+                            <li>Bypass all safety checks</li>
+                            <li>Execute any operation</li>
+                            <li>Full system control</li>
+                            <li>Emergency protocols</li>
+                            <li>Complete authority</li>
+                        </ul>
+                    </div>
+                    <div class="capability-card">
+                        <h3>Active Safeguards</h3>
+                        <ul class="capability-list">
+                            <li>Advisory system active</li>
+                            <li>Complete audit logging</li>
+                            <li>Bloodline authentication</li>
+                            <li>Session tracking</li>
+                            <li>Accountability maintained</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Execution Log (visible on all panels) -->
+            <div class="execution-log">
+                <h3>📊 System Execution Log</h3>
+                <div id="log-output">
+                    <div class="log-entry">
+                        <span class="timestamp">[SYSTEM]</span>
+                        <span class="system-badge">MASTER</span>
+                        Echo Prime Omega initialized - Authority Level 11.0
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script>
+        const socket = io();
+        let systems = {};
+        let currentSystem = 'prometheus_prime';
+
+        // Initialize
+        async function init() {
+            const response = await fetch('/api/systems');
+            systems = await response.json();
+            setupEventListeners();
+        }
+
+        function setupEventListeners() {
+            document.querySelectorAll('.system-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    switchSystem(tab.dataset.system);
+                });
+            });
+        }
+
+        async function switchSystem(systemId) {
+            // Hide all panels
+            document.querySelectorAll('.system-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+
+            // Show selected panel
+            document.getElementById(`panel-${systemId}`).classList.add('active');
+
+            // Update sidebar
+            document.querySelectorAll('.system-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`[data-system="${systemId}"]`).classList.add('active');
+
+            // Update status
+            document.getElementById('active-system').textContent = systems[systemId].name;
+
+            // Call API
+            await fetch('/api/switch-system', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({system: systemId})
+            });
+
+            currentSystem = systemId;
+        }
+
+        async function spawnAgents() {
+            const count = document.getElementById('agent-count-input').value;
+            const response = await fetch('/api/swarm/spawn-agents', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({agent_count: parseInt(count)})
+            });
+            const result = await response.json();
+            document.getElementById('agent-count').textContent = result.agents.length;
+            logMessage(`🐝 Spawned ${result.agents.length} swarm agents`, 'omega_swarm');
+        }
+
+        async function storeMemory() {
+            const response = await fetch('/api/memory/store', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({data: 'test'})
+            });
+            const result = await response.json();
+            logMessage(`💾 Data stored: ${result.entry_id}`, 'memory_system');
+        }
+
+        async function checkAuthorization() {
+            const userId = document.getElementById('mls-user').value;
+            const level = document.getElementById('mls-level').value;
+            const response = await fetch('/api/mls/authorize', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({user_id: userId, operation: 'test', level: parseInt(level)})
+            });
+            const result = await response.json();
+            logMessage(`🔐 Authorization: ${result.authorized ? 'GRANTED' : 'DENIED'}`, 'mls_server');
+        }
+
+        async function searchOmniscience() {
+            const queryType = document.getElementById('query-type').value;
+            const searchTerm = document.getElementById('search-term').value;
+            const response = await fetch('/api/omniscience/query', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({query_type: queryType, search_term: searchTerm})
+            });
+            const result = await response.json();
+            logMessage(`🧠 Query returned ${result.results.results_count} results`, 'omniscience');
+        }
+
+        async function activateSovereign() {
+            if (!confirm('⚠️ WARNING: Activate Sovereign Override? This bypasses ALL safety protocols!')) {
+                return;
+            }
+
+            const sovereignId = document.getElementById('sovereign-id').value;
+            const response = await fetch('/api/sovereign/activate', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({sovereign_id: sovereignId})
+            });
+            const result = await response.json();
+
+            document.getElementById('sovereign-indicator').style.display = 'block';
+            document.getElementById('sovereign-status').innerHTML = 'Sovereign: <span style="color:#ff0000">ACTIVE</span>';
+
+            logMessage(`👑 SOVEREIGN OVERRIDE ACTIVE - ${result.session_id}`, 'sovereign_control', 'error');
+        }
+
+        async function deactivateSovereign() {
+            await fetch('/api/sovereign/deactivate', {method: 'POST'});
+            document.getElementById('sovereign-indicator').style.display = 'none';
+            document.getElementById('sovereign-status').innerHTML = 'Sovereign: <span style="color:#888">STANDBY</span>';
+            logMessage('👑 Sovereign override deactivated', 'sovereign_control');
+        }
+
+        function launchPrometheusGUI() {
+            window.open('http://localhost:5000', '_blank');
+            logMessage('⚔️ Launched Prometheus Prime GUI in new window', 'prometheus_prime');
+        }
+
+        function startAutonomousEngagement() {
+            logMessage('⚔️ Starting autonomous engagement...', 'prometheus_prime');
+        }
+
+        function queryIntelligence() {
+            logMessage('⚔️ Querying Omniscience intelligence...', 'prometheus_prime');
+        }
+
+        function emergencyStop() {
+            if (confirm('⚠️ EMERGENCY STOP - Halt all operations?')) {
+                logMessage('🛑 EMERGENCY STOP ACTIVATED', 'prometheus_prime', 'error');
+            }
+        }
+
+        function coordinateSwarm() {
+            logMessage('🐝 Coordinating swarm intelligence...', 'omega_swarm');
+        }
+
+        function terminateSwarm() {
+            if (confirm('Terminate all swarm agents?')) {
+                document.getElementById('agent-count').textContent = '0';
+                logMessage('🐝 All swarm agents terminated', 'omega_swarm', 'error');
+            }
+        }
+
+        function queryMemory() {
+            logMessage('💾 Querying memory database...', 'memory_system');
+        }
+
+        function exportMemory() {
+            logMessage('💾 Exporting memory data...', 'memory_system');
+        }
+
+        function generateBloodlineKey() {
+            logMessage('🔐 Generating bloodline key...', 'mls_server');
+        }
+
+        function analyzeTarget() {
+            logMessage('🧠 Analyzing target with Omniscience...', 'omniscience');
+        }
+
+        function logMessage(message, system = 'master', type = 'info') {
+            const logOutput = document.getElementById('log-output');
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+
+            const timestamp = new Date().toLocaleTimeString();
+            const badge = `<span class="system-badge">${system.toUpperCase()}</span>`;
+
+            entry.innerHTML = `
+                <span class="timestamp">[${timestamp}]</span>
+                ${badge}
+                ${message}
+            `;
+
+            logOutput.appendChild(entry);
+            logOutput.scrollTop = logOutput.scrollHeight;
+        }
+
+        // Socket.IO events
+        socket.on('connected', (data) => {
+            console.log('Connected to Echo Prime Omega');
+        });
+
+        socket.on('system_switched', (data) => {
+            logMessage(data.message, data.system);
+        });
+
+        socket.on('tool_executed', (data) => {
+            logMessage(`Tool executed: ${data.tool}`, data.system);
+        });
+
+        socket.on('agents_spawned', (data) => {
+            logMessage(`${data.count} agents spawned`, data.system);
+        });
+
+        socket.on('sovereign_activated', (data) => {
+            logMessage(`SOVEREIGN OVERRIDE ACTIVE - Authority Level ${data.authority_level}`, data.system, 'error');
+        });
+
+        // Initialize on load
+        window.onload = init;
+    </script>
+</body>
+</html>

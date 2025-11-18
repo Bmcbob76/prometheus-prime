@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ config.name }} - Comprehensive Control Interface</title>
+    <style>
+        :root {
+            --primary-color: #ff0000;
+            --bg-dark: #0a0a0a;
+            --bg-darker: #050505;
+            --bg-panel: #1a1a1a;
+            --text-primary: #00ff00;
+            --text-secondary: #00cc00;
+            --border-color: #440000;
+            --hover-color: #ff3333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, var(--bg-darker) 0%, #1a0000 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ==================== HEADER ==================== */
+        .main-header {
+            background: linear-gradient(135deg, var(--bg-darker) 0%, #330000 100%);
+            border-bottom: 3px solid var(--primary-color);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(255,0,0,0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .main-header h1 {
+            font-size: 2.8em;
+            color: var(--primary-color);
+            text-shadow: 0 0 20px var(--primary-color), 0 0 40px var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .main-header .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1em;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px;
+            background: var(--bg-panel);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-indicator {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .status-indicator.active {
+            background: #00ff00;
+            box-shadow: 0 0 15px #00ff00;
+        }
+
+        .status-indicator.autonomous {
+            background: #ff0000;
+            box-shadow: 0 0 15px #ff0000;
+        }
+
+        .status-indicator.inactive {
+            background: #666;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* ==================== LAYOUT ==================== */
+        .container {
+            display: flex;
+            height: calc(100vh - 200px);
+        }
+
+        /* Domain Sidebar */
+        .domain-sidebar {
+            width: 280px;
+            background: var(--bg-darker);
+            border-right: 2px solid var(--primary-color);
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .domain-tab {
+            padding: 15px;
+            margin: 10px 0;
+            background: linear-gradient(135deg, rgba(255,0,0,0.1) 0%, rgba(255,0,0,0.2) 100%);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .domain-tab:hover {
+            background: linear-gradient(135deg, rgba(255,0,0,0.3) 0%, rgba(255,0,0,0.4) 100%);
+            border-color: var(--primary-color);
+            transform: translateX(10px);
+            box-shadow: 0 0 20px rgba(255,0,0,0.4);
+        }
+
+        .domain-tab.active {
+            background: linear-gradient(135deg, rgba(255,0,0,0.4) 0%, rgba(255,0,0,0.5) 100%);
+            border-left: 5px solid var(--primary-color);
+            box-shadow: 0 0 25px rgba(255,0,0,0.6);
+        }
+
+        .domain-tab .icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        .domain-tab .name {
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        .domain-tab .tool-count {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-color);
+            color: #000;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .domain-content {
+            display: none;
+        }
+
+        .domain-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .domain-header {
+            background: linear-gradient(135deg, var(--bg-panel) 0%, #330000 100%);
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .domain-header h2 {
+            font-size: 2.2em;
+            color: var(--primary-color);
+            text-shadow: 0 0 15px var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .domain-header .description {
+            color: var(--text-secondary);
+            font-size: 1.1em;
+        }
+
+        /* Tool Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 20px;
+        }
+
+        /* Tool Card */
+        .tool-card {
+            background: linear-gradient(135deg, var(--bg-panel) 0%, var(--bg-darker) 100%);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .tool-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 25px rgba(255,0,0,0.4);
+            transform: translateY(-5px);
+        }
+
+        .tool-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tool-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .tool-name:hover {
+            text-decoration: underline;
+        }
+
+        .ai-guidance-btn {
+            background: linear-gradient(135deg, #0066ff 0%, #0044cc 100%);
+            border: none;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .ai-guidance-btn:hover {
+            background: linear-gradient(135deg, #0088ff 0%, #0066ff 100%);
+            box-shadow: 0 0 15px rgba(0,102,255,0.6);
+        }
+
+        .tool-command {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        /* Tool Controls */
+        .tool-controls {
+            margin-top: 15px;
+        }
+
+        .control-group {
+            margin-bottom: 15px;
+        }
+
+        .control-group label {
+            display: block;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+        }
+
+        .control-group input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            background: var(--bg-darker);
+            border: 2px solid var(--border-color);
+            border-radius: 5px;
+            color: var(--text-primary);
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s ease;
+        }
+
+        .control-group input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(255,0,0,0.3);
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .option-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            background: var(--bg-darker);
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option-toggle:hover {
+            background: rgba(255,0,0,0.1);
+            border-color: var(--primary-color);
+        }
+
+        .option-toggle input[type="checkbox"] {
+            cursor: pointer;
+        }
+
+        .option-toggle label {
+            cursor: pointer;
+            margin: 0;
+            font-size: 0.85em;
+        }
+
+        .execute-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #cc0000 100%);
+            border: none;
+            color: #fff;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .execute-btn:hover {
+            background: linear-gradient(135deg, #ff3333 0%, #ff0000 100%);
+            box-shadow: 0 0 20px rgba(255,0,0,0.6);
+            transform: scale(1.02);
+        }
+
+        .execute-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 300px;
+            background-color: #000;
+            color: var(--text-primary);
+            text-align: left;
+            border: 2px solid var(--primary-color);
+            border-radius: 6px;
+            padding: 15px;
+            position: absolute;
+            z-index: 1000;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -150px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.9em;
+            box-shadow: 0 0 20px rgba(255,0,0,0.5);
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Popup Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: modalFadeIn 0.3s;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, var(--bg-darker) 0%, #1a0000 100%);
+            border: 3px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 0 50px rgba(255,0,0,0.6);
+            animation: modalSlideIn 0.3s;
+        }
+
+        @keyframes modalSlideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .modal-header h3 {
+            font-size: 1.8em;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .close-btn {
+            background: transparent;
+            border: none;
+            color: var(--primary-color);
+            font-size: 2em;
+            cursor: pointer;
+            line-height: 1;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #ff6666;
+            transform: rotate(90deg);
+        }
+
+        .modal-section {
+            margin: 20px 0;
+        }
+
+        .modal-section h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .modal-section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .code-block {
+            background: var(--bg-darker);
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+
+        .ai-suggestion {
+            background: linear-gradient(135deg, rgba(0,102,255,0.1) 0%, rgba(0,102,255,0.2) 100%);
+            border-left: 4px solid #0066ff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        /* Activity Log Sidebar */
+        .activity-sidebar {
+            width: 350px;
+            background: var(--bg-darker);
+            border-left: 2px solid var(--primary-color);
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .activity-sidebar h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .log-entry {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.85em;
+            transition: all 0.2s ease;
+        }
+
+        .log-entry:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(255,0,0,0.3);
+        }
+
+        .log-entry .timestamp {
+            color: #666;
+            font-size: 0.8em;
+        }
+
+        .log-entry .tool-name-log {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .log-entry .target {
+            color: var(--text-secondary);
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-darker);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--hover-color);
+        }
+
+        /* Control Panel (Top Bar) */
+        .control-panel {
+            background: var(--bg-panel);
+            border-bottom: 2px solid var(--border-color);
+            padding: 15px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .control-panel-btn {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, rgba(255,0,0,0.3) 0%, rgba(255,0,0,0.5) 100%);
+            border: 2px solid var(--primary-color);
+            color: var(--text-primary);
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .control-panel-btn:hover {
+            background: var(--primary-color);
+            box-shadow: 0 0 15px rgba(255,0,0,0.6);
+        }
+
+        /* Search Bar */
+        .search-container {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 10px;
+            background: var(--bg-darker);
+            border: 2px solid var(--border-color);
+            border-radius: 5px;
+            color: var(--text-primary);
+            font-family: 'Courier New', monospace;
+        }
+
+        .search-container input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(255,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Header -->
+    <div class="main-header">
+        <h1>⚔️ {{ config.name }}</h1>
+        <p class="subtitle">{{ config.description }}</p>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="status-item">
+            <span class="status-indicator inactive" id="status-indicator"></span>
+            <span id="status-text">IDLE</span>
+        </div>
+        <div class="status-item">
+            <span>Domains: <strong id="domain-count">{{ domains|length }}</strong></span>
+        </div>
+        <div class="status-item">
+            <span>Tools: <strong id="tool-count">Loading...</strong></span>
+        </div>
+        <div class="status-item">
+            <span>Active: <strong id="active-count">0</strong></span>
+        </div>
+    </div>
+
+    <!-- Control Panel -->
+    <div class="control-panel">
+        <button class="control-panel-btn" onclick="startSystem()">▶️ Start System</button>
+        <button class="control-panel-btn" onclick="stopSystem()">⏹️ Stop System</button>
+        <button class="control-panel-btn" onclick="showAutonomousModal()">🤖 Autonomous Mode</button>
+        <button class="control-panel-btn" onclick="refreshStatus()">🔄 Refresh</button>
+        <div class="search-container">
+            <input type="text" id="search-tools" placeholder="🔍 Search tools..." onkeyup="searchTools()">
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Domain Sidebar -->
+        <div class="domain-sidebar">
+            <h3 style="color: var(--primary-color); margin-bottom: 20px; text-shadow: 0 0 10px var(--primary-color);">SECURITY DOMAINS</h3>
+            {% for domain_id, domain in domains.items() %}
+            <div class="domain-tab" onclick="switchDomain('{{ domain_id }}')" data-domain="{{ domain_id }}">
+                <span class="icon">{{ domain.icon }}</span>
+                <span class="name">{{ domain.name }}</span>
+                <span class="tool-count">{{ domain.tools|length }}</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            {% for domain_id, domain in domains.items() %}
+            <div class="domain-content" id="domain-{{ domain_id }}" data-domain="{{ domain_id }}">
+                <div class="domain-header">
+                    <h2>{{ domain.icon }} {{ domain.name }}</h2>
+                    <p class="description">{{ domain.description }}</p>
+                </div>
+
+                <div class="tools-grid">
+                    {% for tool in domain.tools %}
+                    <div class="tool-card" data-tool-id="{{ tool.id }}" data-tool-name="{{ tool.name }}">
+                        <div class="tool-card-header">
+                            <div class="tooltip">
+                                <span class="tool-name" onclick="showToolDetails('{{ tool.id }}', '{{ domain_id }}')">
+                                    {{ tool.name }}
+                                </span>
+                                <span class="tooltiptext">
+                                    <strong>{{ tool.name }}</strong><br><br>
+                                    <strong>Command:</strong> {{ tool.command }}<br><br>
+                                    <strong>AI Guidance:</strong> {{ tool.ai_guidance }}
+                                </span>
+                            </div>
+                            <button class="ai-guidance-btn" onclick="showGuidance('{{ tool.id }}')">
+                                🤖 AI Help
+                            </button>
+                        </div>
+
+                        <div class="tool-command">{{ tool.command }}</div>
+
+                        <div class="tool-controls">
+                            {% if tool.requires_target %}
+                            <div class="control-group">
+                                <label for="target-{{ tool.id }}">Target (IP/Domain/Network):</label>
+                                <input type="text" id="target-{{ tool.id }}" placeholder="192.168.1.0/24 or target.example.com">
+                            </div>
+                            {% endif %}
+
+                            {% if tool.options %}
+                            <div class="control-group">
+                                <label>Options:</label>
+                                <div class="options-grid">
+                                    {% for option in tool.options %}
+                                    <div class="option-toggle">
+                                        <input type="checkbox" id="opt-{{ tool.id }}-{{ loop.index }}" value="{{ option }}">
+                                        <label for="opt-{{ tool.id }}-{{ loop.index }}">{{ option }}</label>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            <button class="execute-btn" onclick="executeTool('{{ tool.id }}', '{{ domain_id }}')">
+                                ⚡ EXECUTE TOOL
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Activity Log Sidebar -->
+        <div class="activity-sidebar">
+            <h3>📋 EXECUTION LOG</h3>
+            <div id="activity-log"></div>
+        </div>
+    </div>
+
+    <!-- AI Guidance Modal -->
+    <div id="guidance-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🤖 AI GUIDANCE</h3>
+                <button class="close-btn" onclick="closeModal('guidance-modal')">&times;</button>
+            </div>
+            <div id="guidance-content"></div>
+        </div>
+    </div>
+
+    <!-- Tool Details Modal -->
+    <div id="tool-details-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🔧 TOOL DETAILS</h3>
+                <button class="close-btn" onclick="closeModal('tool-details-modal')">&times;</button>
+            </div>
+            <div id="tool-details-content"></div>
+        </div>
+    </div>
+
+    <!-- Autonomous Mode Modal -->
+    <div id="autonomous-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🤖 AUTONOMOUS ENGAGEMENT</h3>
+                <button class="close-btn" onclick="closeModal('autonomous-modal')">&times;</button>
+            </div>
+            <div class="modal-section">
+                <h4>Target Configuration</h4>
+                <div class="control-group">
+                    <label>Target (IP/Domain/Network):</label>
+                    <input type="text" id="autonomous-target" placeholder="192.168.1.0/24">
+                </div>
+                <div class="control-group">
+                    <label>Engagement Depth:</label>
+                    <select id="autonomous-depth" style="width: 100%; padding: 10px; background: var(--bg-darker); border: 2px solid var(--border-color); color: var(--text-primary); border-radius: 5px;">
+                        <option value="quick">Quick Scan</option>
+                        <option value="standard">Standard Assessment</option>
+                        <option value="full" selected>Full Engagement (6 Phases)</option>
+                        <option value="comprehensive">Comprehensive + Deep Analysis</option>
+                    </select>
+                </div>
+                <button class="execute-btn" onclick="startAutonomous()">
+                    🎯 START AUTONOMOUS ENGAGEMENT
+                </button>
+                <button class="execute-btn" onclick="stopAutonomous()" style="background: linear-gradient(135deg, #666 0%, #444 100%); margin-top: 10px;">
+                    ⏹️ STOP AUTONOMOUS
+                </button>
+            </div>
+            <div class="modal-section">
+                <h4>6-Phase Autonomous Workflow</h4>
+                {% for phase_num, phase in phases.items() %}
+                <div style="padding: 10px; margin: 5px 0; background: var(--bg-panel); border-left: 3px solid var(--primary-color); border-radius: 3px;">
+                    <strong>Phase {{ phase_num }}:</strong> {{ phase.icon }} {{ phase.name }}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script>
+        const CONFIG = {{ config|tojson }};
+        const DOMAINS = {{ domains|tojson }};
+        const socket = io();
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set first domain as active
+            const firstDomain = Object.keys(DOMAINS)[0];
+            switchDomain(firstDomain);
+
+            // Calculate total tools
+            let totalTools = 0;
+            for (const domain in DOMAINS) {
+                totalTools += DOMAINS[domain].tools.length;
+            }
+            document.getElementById('tool-count').textContent = totalTools;
+
+            addLog('🎯 Prometheus Prime initialized', 'success');
+            addLog(`⚡ ${Object.keys(DOMAINS).length} security domains loaded`, 'info');
+            addLog(`💣 ${totalTools} tools available`, 'info');
+
+            refreshStatus();
+        });
+
+        // Switch Domain
+        function switchDomain(domainId) {
+            // Deactivate all domains
+            document.querySelectorAll('.domain-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.domain-tab').forEach(el => el.classList.remove('active'));
+
+            // Activate selected domain
+            document.getElementById(`domain-${domainId}`).classList.add('active');
+            document.querySelector(`.domain-tab[data-domain="${domainId}"]`).classList.add('active');
+        }
+
+        // Execute Tool
+        async function executeTool(toolId, domainId) {
+            const target = document.getElementById(`target-${toolId}`)?.value || '';
+            const options = [];
+
+            // Collect selected options
+            document.querySelectorAll(`[id^="opt-${toolId}-"]:checked`).forEach(checkbox => {
+                options.push(checkbox.value);
+            });
+
+            const toolCard = document.querySelector(`[data-tool-id="${toolId}"]`);
+            const toolName = toolCard.getAttribute('data-tool-name');
+
+            try {
+                const response = await fetch(`${CONFIG.routes.main}/api/execute-tool`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        tool_id: toolId,
+                        domain_id: domainId,
+                        target: target,
+                        options: options
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    addLog(`✅ Executing: ${toolName}`, 'success');
+                    if (target) addLog(`🎯 Target: ${target}`, 'info');
+                    if (options.length > 0) addLog(`⚙️ Options: ${options.join(', ')}`, 'info');
+                } else {
+                    addLog(`❌ Failed to execute ${toolName}`, 'error');
+                }
+            } catch (error) {
+                addLog(`❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        // Show AI Guidance
+        function showGuidance(toolId) {
+            fetch(`${CONFIG.routes.main}/api/tool/${toolId}/guidance`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        const content = `
+                            <div class="modal-section">
+                                <h4>Tool: ${data.tool}</h4>
+                                <div class="code-block">${data.command}</div>
+                            </div>
+                            <div class="modal-section">
+                                <h4>AI Guidance</h4>
+                                <div class="ai-suggestion">
+                                    ${data.guidance}
+                                </div>
+                            </div>
+                            ${data.options && data.options.length > 0 ? `
+                            <div class="modal-section">
+                                <h4>Available Options</h4>
+                                <ul style="color: var(--text-secondary); padding-left: 20px;">
+                                    ${data.options.map(opt => `<li>${opt}</li>`).join('')}
+                                </ul>
+                            </div>
+                            ` : ''}
+                        `;
+                        document.getElementById('guidance-content').innerHTML = content;
+                        openModal('guidance-modal');
+                    }
+                })
+                .catch(err => addLog(`❌ Error loading guidance: ${err.message}`, 'error'));
+        }
+
+        // Show Tool Details
+        function showToolDetails(toolId, domainId) {
+            const domain = DOMAINS[domainId];
+            const tool = domain.tools.find(t => t.id === toolId);
+
+            if (tool) {
+                const content = `
+                    <div class="modal-section">
+                        <h4>${tool.name}</h4>
+                        <div class="code-block">${tool.command}</div>
+                    </div>
+                    <div class="modal-section">
+                        <h4>Description</h4>
+                        <div class="ai-suggestion">${tool.ai_guidance}</div>
+                    </div>
+                    <div class="modal-section">
+                        <h4>Configuration</h4>
+                        <p><strong>Requires Target:</strong> ${tool.requires_target ? 'Yes' : 'No'}</p>
+                        ${tool.options && tool.options.length > 0 ? `
+                        <p><strong>Available Options:</strong></p>
+                        <ul style="color: var(--text-secondary); padding-left: 20px;">
+                            ${tool.options.map(opt => `<li>${opt}</li>`).join('')}
+                        </ul>
+                        ` : ''}
+                    </div>
+                `;
+                document.getElementById('tool-details-content').innerHTML = content;
+                openModal('tool-details-modal');
+            }
+        }
+
+        // Modal Controls
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function showAutonomousModal() {
+            openModal('autonomous-modal');
+        }
+
+        // System Controls
+        async function startSystem() {
+            const response = await fetch(`${CONFIG.routes.main}/api/start`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'}
+            });
+            const data = await response.json();
+            if (data.success) {
+                addLog('✅ System activated', 'success');
+                updateStatus(data.state);
+            }
+        }
+
+        async function stopSystem() {
+            const response = await fetch(`${CONFIG.routes.main}/api/stop`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'}
+            });
+            const data = await response.json();
+            if (data.success) {
+                addLog('⏹️ System stopped', 'warning');
+                updateStatus(data.state);
+            }
+        }
+
+        async function startAutonomous() {
+            const target = document.getElementById('autonomous-target').value;
+            const depth = document.getElementById('autonomous-depth').value;
+
+            if (!target) {
+                addLog('⚠️ Please enter a target', 'warning');
+                return;
+            }
+
+            const response = await fetch(`${CONFIG.routes.main}/api/start-autonomous`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ target, depth })
+            });
+            const data = await response.json();
+
+            if (data.success) {
+                addLog(`🤖 Autonomous engagement started: ${target}`, 'success');
+                addLog(`📍 Engagement ID: ${data.engagement_id}`, 'info');
+                closeModal('autonomous-modal');
+                updateStatus(data.state);
+            }
+        }
+
+        async function stopAutonomous() {
+            const response = await fetch(`${CONFIG.routes.main}/api/stop-autonomous`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'}
+            });
+            const data = await response.json();
+
+            if (data.success) {
+                addLog('⏹️ Autonomous engagement stopped', 'warning');
+                closeModal('autonomous-modal');
+                updateStatus(data.state);
+            }
+        }
+
+        async function refreshStatus() {
+            const response = await fetch(`${CONFIG.routes.main}/api/status`);
+            const data = await response.json();
+            if (data.success) {
+                updateStatus(data.state);
+            }
+        }
+
+        // Update Status
+        function updateStatus(state) {
+            const indicator = document.getElementById('status-indicator');
+            const statusText = document.getElementById('status-text');
+
+            if (state.autonomous_mode) {
+                indicator.className = 'status-indicator autonomous';
+                statusText.textContent = 'AUTONOMOUS ENGAGEMENT';
+            } else if (state.active) {
+                indicator.className = 'status-indicator active';
+                statusText.textContent = 'ACTIVE';
+            } else {
+                indicator.className = 'status-indicator inactive';
+                statusText.textContent = 'IDLE';
+            }
+        }
+
+        // Activity Log
+        function addLog(message, type = 'info') {
+            const log = document.getElementById('activity-log');
+            const timestamp = new Date().toLocaleTimeString();
+
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.innerHTML = `
+                <div class="timestamp">[${timestamp}]</div>
+                <div class="message">${message}</div>
+            `;
+
+            log.insertBefore(entry, log.firstChild);
+
+            // Keep only last 50 entries
+            while (log.children.length > 50) {
+                log.removeChild(log.lastChild);
+            }
+        }
+
+        // Search Tools
+        function searchTools() {
+            const query = document.getElementById('search-tools').value.toLowerCase();
+            const toolCards = document.querySelectorAll('.tool-card');
+
+            toolCards.forEach(card => {
+                const toolName = card.getAttribute('data-tool-name').toLowerCase();
+                if (toolName.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // WebSocket Events
+        socket.on('connect', () => {
+            addLog('🔌 Connected to Master GUI', 'success');
+            socket.emit(`${CONFIG.id}_connect`, {});
+        });
+
+        socket.on(`${CONFIG.id}_update`, (data) => {
+            if (data.data && data.data.event) {
+                const event = data.data.event;
+                if (event === 'tool_started' && data.data.execution) {
+                    addLog(`⚡ Started: ${data.data.execution.tool_name}`, 'info');
+                }
+            }
+            if (data.state) {
+                updateStatus(data.state);
+            }
+        });
+
+        // Close modals on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+            }
+        });
+
+        // Close modal on background click
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

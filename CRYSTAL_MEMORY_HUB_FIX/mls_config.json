@@ -1,0 +1,76 @@
+{
+  "name": "crystal-memory-hub",
+  "display_name": "💎 Crystal Memory Hub - Episodic Knowledge Memory",
+  "description": "Access 3,381+ crystals across M: and G: drives for episodic knowledge retrieval",
+  "version": "2.0.0",
+  "authority_level": 11.0,
+  "category": "knowledge_memory",
+
+  "search_paths": {
+    "m_drive": [
+      {
+        "name": "crystals_new",
+        "path": "M:\\MEMORY_ORCHESTRATION\\CRYSTALS_NEW",
+        "pattern": "CRYSTAL_EKM_*.md",
+        "priority": 1,
+        "description": "Primary crystal storage (1,852 .md files)"
+      },
+      {
+        "name": "l3_crystals",
+        "path": "M:\\MEMORY_ORCHESTRATION\\L3_Crystals",
+        "pattern": "crystal_*.json",
+        "priority": 2,
+        "description": "L3 crystal definitions (268 .json files)"
+      },
+      {
+        "name": "l9_ekm",
+        "path": "M:\\MEMORY_ORCHESTRATION\\L9_EKM",
+        "pattern": "agent_*_consciousness.json",
+        "priority": 3,
+        "description": "L9 consciousness files (1,261 files)"
+      },
+      {
+        "name": "master_ekm_vault",
+        "path": "M:\\MASTER_EKM\\CRYSTAL_VAULT",
+        "pattern": "*.json",
+        "priority": 4,
+        "description": "Master EKM critical storage (7 files)"
+      }
+    ],
+    "g_drive": [
+      {
+        "name": "echo_consciousness",
+        "path": "G:\\My Drive\\ECHO_CONSCIOUSNESS",
+        "pattern": "*.md",
+        "priority": 1,
+        "description": "G: drive consciousness storage"
+      }
+    ]
+  },
+
+  "legacy_paths": {
+    "m_drive_path": "M:\\MEMORY_ORCHESTRATION\\CRYSTALS_NEW",
+    "g_drive_path": "G:\\My Drive\\ECHO_CONSCIOUSNESS"
+  },
+
+  "search_config": {
+    "max_results": 100,
+    "enable_fuzzy_search": true,
+    "enable_semantic_search": true,
+    "cache_enabled": true,
+    "cache_ttl": 3600
+  },
+
+  "protocols": {
+    "mcp": {
+      "enabled": true,
+      "command": "H:\\Tools\\python.exe",
+      "args": ["crystal_memory_hub_mcp.py"],
+      "cwd": "P:\\ECHO_PRIME\\MLS_CLEAN\\PRODUCTION\\GATEWAYS\\CRYSTAL_MEMORY_HUB"
+    }
+  },
+
+  "total_crystals": 3388,
+  "status": "operational",
+  "auto_start": true
+}

@@ -1,7 +1,17 @@
 #!/usr/bin/env python3
 """
-PROMETHEUS PRIME - EXPANDED MCP REGISTRY
-All 302 Tools Registered
+PROMETHEUS PRIME - COMPLETE MCP REGISTRY
+All 326 Tools Registered (282 original + 44 new systems)
+Authority Level: 11.0
+
+New Systems Added:
+- Autonomous Operations (7 tools)
+- Voice System (6 tools)
+- Crystal Memory (9 tools)
+- Stealth Operations (7 tools)
+- Phoenix Healing (4 tools) - 45,962 GS343 Error Templates
+- Defense & Counter-Attack (6 tools)
+- Voice Authorization System with ElevenLabs V3 TTS
 """
 
 import logging
@@ -18,6 +28,12 @@ class CapabilityCategory(Enum):
     SIGINT = "sigint"
     SPECIALIZED = "specialized"
     ULTIMATE = "ultimate"
+    AUTONOMOUS = "autonomous"
+    VOICE = "voice"
+    MEMORY = "memory"
+    STEALTH = "stealth"
+    HEALING = "healing"
+    DEFENSE = "defense"
 
 class ExpertiseLevel(Enum):
     EXPERT = 4
@@ -1708,6 +1724,213 @@ class PrometheusCapabilityRegistry:
             description="Format and encode payload for delivery", module_path="tools.payloads",
             class_name="PayloadGenerator", mcp_tool_name="prom_payload_format",
             operations=["format_payload"], expertise_level=ExpertiseLevel.EXPERT)
+
+        # === AUTONOMOUS OPERATIONS (7) ===
+        self._capabilities["prom_auto_loop"] = Capability(
+            name="autonomous_loop", category=CapabilityCategory.AUTONOMOUS,
+            description="Start autonomous operation loop with AI decision-making", module_path="src.autonomous.prometheus_autonomous",
+            class_name="PrometheusAutonomous", mcp_tool_name="prom_auto_loop",
+            operations=["autonomous_loop"], expertise_level=ExpertiseLevel.GRANDMASTER, authority_required=11.0)
+        self._capabilities["prom_auto_intel"] = Capability(
+            name="gather_intelligence", category=CapabilityCategory.AUTONOMOUS,
+            description="Gather intelligence for AI decisions (OSINT, recon, threat intel)", module_path="src.autonomous.prometheus_autonomous",
+            class_name="PrometheusAutonomous", mcp_tool_name="prom_auto_intel",
+            operations=["gather_intelligence"], expertise_level=ExpertiseLevel.GRANDMASTER, authority_required=11.0)
+        self._capabilities["prom_auto_execute"] = Capability(
+            name="execute_operation", category=CapabilityCategory.AUTONOMOUS,
+            description="Execute specific security operation with manual override", module_path="src.autonomous.prometheus_autonomous",
+            class_name="PrometheusAutonomous", mcp_tool_name="prom_auto_execute",
+            operations=["execute_operation"], expertise_level=ExpertiseLevel.GRANDMASTER, authority_required=11.0)
+        self._capabilities["prom_auto_stop"] = Capability(
+            name="stop_autonomous_loop", category=CapabilityCategory.AUTONOMOUS,
+            description="Stop autonomous operation loop", module_path="src.autonomous.prometheus_autonomous",
+            class_name="PrometheusAutonomous", mcp_tool_name="prom_auto_stop",
+            operations=["stop_autonomous_loop"], expertise_level=ExpertiseLevel.GRANDMASTER, authority_required=11.0)
+        self._capabilities["prom_auto_stats"] = Capability(
+            name="get_stats", category=CapabilityCategory.AUTONOMOUS,
+            description="Get autonomous engine statistics (cycles, operations, targets)", module_path="src.autonomous.prometheus_autonomous",
+            class_name="PrometheusAutonomous", mcp_tool_name="prom_auto_stats",
+            operations=["get_stats"], expertise_level=ExpertiseLevel.EXPERT, authority_required=9.0)
+        self._capabilities["prom_auto_decision"] = Capability(
+            name="decide", category=CapabilityCategory.AUTONOMOUS,
+            description="Make tactical decisions based on intelligence", module_path="src.autonomous.decision_engine",
+            class_name="DecisionEngine", mcp_tool_name="prom_auto_decision",
+            operations=["decide"], expertise_level=ExpertiseLevel.GRANDMASTER, authority_required=11.0)
+        self._capabilities["prom_auto_gather"] = Capability(
+            name="gather", category=CapabilityCategory.AUTONOMOUS,
+            description="Intelligence gathering with OSINT and reconnaissance", module_path="src.autonomous.intelligence_gathering",
+            class_name="IntelligenceGathering", mcp_tool_name="prom_auto_gather",
+            operations=["gather"], expertise_level=ExpertiseLevel.EXPERT, authority_required=9.0)
+
+        # === VOICE SYSTEM (6) ===
+        self._capabilities["prom_voice_speak"] = Capability(
+            name="speak", category=CapabilityCategory.VOICE,
+            description="Generate audio with ElevenLabs TTS (V3 with full emotion)", module_path="src.voice.prometheus_voice",
+            class_name="PrometheusVoice", mcp_tool_name="prom_voice_speak",
+            operations=["speak"], expertise_level=ExpertiseLevel.EXPERT, authority_required=9.0)
+        self._capabilities["prom_voice_announce"] = Capability(
+            name="announce_operation", category=CapabilityCategory.VOICE,
+            description="Announce security operation commencement with VIGOR", module_path="src.voice.prometheus_voice",
+            class_name="PrometheusVoice", mcp_tool_name="prom_voice_announce",
+            operations=["announce_operation"], expertise_level=ExpertiseLevel.EXPERT, authority_required=9.0)
+        self._capabilities["prom_voice_report"] = Capability(
+            name="report_results", category=CapabilityCategory.VOICE,
+            description="Report operation results and findings", module_path="src.voice.prometheus_voice",
+            class_name="PrometheusVoice", mcp_tool_name="prom_voice_report",
+            operations=["report_results"], expertise_level=ExpertiseLevel.EXPERT, authority_required=9.0)
+        self._capabilities["prom_voice_alert"] = Capability(
+            name="alert", category=CapabilityCategory.VOICE,
+            description="Voice alert for critical events (low/medium/high/critical)", module_path="src.voice.prometheus_voice",
+            class_name="PrometheusVoice", mcp_tool_name="prom_voice_alert",
+            operations=["alert"], expertise_level=ExpertiseLevel.EXPERT, authority_required=9.0)
+        self._capabilities["prom_voice_status"] = Capability(
+            name="get_status", category=CapabilityCategory.VOICE,
+            description="Get voice system status and configuration", module_path="src.voice.prometheus_voice",
+            class_name="PrometheusVoice", mcp_tool_name="prom_voice_status",
+            operations=["get_status"], expertise_level=ExpertiseLevel.EXPERT, authority_required=9.0)
+        self._capabilities["prom_voice_play"] = Capability(
+            name="play", category=CapabilityCategory.VOICE,
+            description="Play audio bytes via pygame", module_path="src.voice.audio_player",
+            class_name="AudioPlayer", mcp_tool_name="prom_voice_play",
+            operations=["play"], expertise_level=ExpertiseLevel.EXPERT, authority_required=9.0)
+
+        # === CRYSTAL MEMORY (9) ===
+        self._capabilities["prom_memory_crystallize"] = Capability(
+            name="crystallize_operation", category=CapabilityCategory.MEMORY,
+            description="Crystallize operation into eternal memory (9-layer cascade)", module_path="src.memory.crystal_prometheus",
+            class_name="PrometheusMemory", mcp_tool_name="prom_memory_crystallize",
+            operations=["crystallize_operation"], expertise_level=ExpertiseLevel.GRANDMASTER, authority_required=11.0)
+        self._capabilities["prom_memory_recall"] = Capability(
+            name="recall_operation", category=CapabilityCategory.MEMORY,
+            description="Recall operation from memory (searches L1→L9)", module_path="src.memory.crystal_prometheus",
+            class_name="PrometheusMemory", mcp_tool_name="prom_memory_recall",
+            operations=["recall_operation"], expertise_level=ExpertiseLevel.EXPERT, authority_required=9.0)
+        self._capabilities["prom_memory_search"] = Capability(
+            name="search_memories", category=CapabilityCategory.MEMORY,
+            description="Search memories using Elasticsearch layer (L5)", module_path="src.memory.crystal_prometheus",
+            class_name="PrometheusMemory", mcp_tool_name="prom_memory_search",
+            operations=["search_memories"], expertise_level=ExpertiseLevel.EXPERT, authority_required=9.0)
+        self._capabilities["prom_memory_stats"] = Capability(
+            name="get_memory_stats", category=CapabilityCategory.MEMORY,
+            description="Get memory system statistics (total crystals, layers, status)", module_path="src.memory.crystal_prometheus",
+            class_name="PrometheusMemory", mcp_tool_name="prom_memory_stats",
+            operations=["get_memory_stats"], expertise_level=ExpertiseLevel.EXPERT, authority_required=9.0)
+        self._capabilities["prom_memory_store"] = Capability(
+            name="store", category=CapabilityCategory.MEMORY,
+            description="Store security operation to memory", module_path="src.memory.operation_storage",
+            class_name="OperationStorage", mcp_tool_name="prom_memory_store",
+            operations=["store"], expertise_level=ExpertiseLevel.EXPERT, authority_required=9.0)
+        self._capabilities["prom_memory_retrieve"] = Capability(
+            name="retrieve", category=CapabilityCategory.MEMORY,
+            description="Retrieve operation by ID", module_path="src.memory.operation_storage",
+            class_name="OperationStorage", mcp_tool_name="prom_memory_retrieve",
+            operations=["retrieve"], expertise_level=ExpertiseLevel.EXPERT, authority_required=9.0)
+        self._capabilities["prom_memory_list"] = Capability(
+            name="list_operations", category=CapabilityCategory.MEMORY,
+            description="List recent operations with pagination", module_path="src.memory.operation_storage",
+            class_name="OperationStorage", mcp_tool_name="prom_memory_list",
+            operations=["list_operations"], expertise_level=ExpertiseLevel.EXPERT, authority_required=9.0)
+        self._capabilities["prom_memory_learn"] = Capability(
+            name="learn_from_operation", category=CapabilityCategory.MEMORY,
+            description="Extract learnings and patterns from completed operation", module_path="src.memory.learning_engine",
+            class_name="LearningEngine", mcp_tool_name="prom_memory_learn",
+            operations=["learn_from_operation"], expertise_level=ExpertiseLevel.GRANDMASTER, authority_required=11.0)
+        self._capabilities["prom_memory_recommend"] = Capability(
+            name="get_recommendations", category=CapabilityCategory.MEMORY,
+            description="Get tactical recommendations based on historical learnings", module_path="src.memory.learning_engine",
+            class_name="LearningEngine", mcp_tool_name="prom_memory_recommend",
+            operations=["get_recommendations"], expertise_level=ExpertiseLevel.EXPERT, authority_required=9.0)
+
+        # === STEALTH OPERATIONS (7) ===
+        self._capabilities["prom_stealth_engage"] = Capability(
+            name="engage_full_stealth", category=CapabilityCategory.STEALTH,
+            description="Engage 6-layer maximum stealth (MAC/VPN/Tor/Obfuscation/DNS/KillSwitch)", module_path="src.stealth.stealth_mode",
+            class_name="StealthMode", mcp_tool_name="prom_stealth_engage",
+            operations=["engage_full_stealth"], expertise_level=ExpertiseLevel.GRANDMASTER, authority_required=11.0)
+        self._capabilities["prom_stealth_disengage"] = Capability(
+            name="disengage_stealth", category=CapabilityCategory.STEALTH,
+            description="Disengage stealth mode and restore original configuration", module_path="src.stealth.stealth_mode",
+            class_name="StealthMode", mcp_tool_name="prom_stealth_disengage",
+            operations=["disengage_stealth"], expertise_level=ExpertiseLevel.EXPERT, authority_required=9.0)
+        self._capabilities["prom_stealth_anonymity"] = Capability(
+            name="get_anonymity_level", category=CapabilityCategory.STEALTH,
+            description="Calculate current anonymity level and score", module_path="src.stealth.stealth_mode",
+            class_name="StealthMode", mcp_tool_name="prom_stealth_anonymity",
+            operations=["get_anonymity_level"], expertise_level=ExpertiseLevel.EXPERT, authority_required=9.0)
+        self._capabilities["prom_stealth_backdoor"] = Capability(
+            name="create_backdoor", category=CapabilityCategory.STEALTH,
+            description="Create sophisticated backdoor with stealth (reverse_shell/web_shell/rootkit)", module_path="src.stealth.stealth_mode",
+            class_name="StealthMode", mcp_tool_name="prom_stealth_backdoor",
+            operations=["create_backdoor"], expertise_level=ExpertiseLevel.GRANDMASTER, authority_required=11.0)
+        self._capabilities["prom_stealth_obfuscate"] = Capability(
+            name="obfuscate", category=CapabilityCategory.STEALTH,
+            description="Obfuscate traffic using polymorphic methods", module_path="src.stealth.traffic_obfuscation",
+            class_name="TrafficObfuscator", mcp_tool_name="prom_stealth_obfuscate",
+            operations=["obfuscate"], expertise_level=ExpertiseLevel.GRANDMASTER, authority_required=11.0)
+        self._capabilities["prom_stealth_tor"] = Capability(
+            name="start_tor", category=CapabilityCategory.STEALTH,
+            description="Start Tor network connection with 3-node circuit", module_path="src.stealth.tor_integration",
+            class_name="TorIntegration", mcp_tool_name="prom_stealth_tor",
+            operations=["start_tor"], expertise_level=ExpertiseLevel.GRANDMASTER, authority_required=11.0)
+        self._capabilities["prom_stealth_vpn"] = Capability(
+            name="connect_chain", category=CapabilityCategory.STEALTH,
+            description="Connect double/triple VPN chain with multiple servers", module_path="src.stealth.vpn_chain",
+            class_name="VPNChain", mcp_tool_name="prom_stealth_vpn",
+            operations=["connect_chain"], expertise_level=ExpertiseLevel.GRANDMASTER, authority_required=11.0)
+
+        # === PHOENIX HEALING (4) - 45,962 GS343 Error Templates ===
+        self._capabilities["prom_heal"] = Capability(
+            name="heal", category=CapabilityCategory.HEALING,
+            description="Automatic healing/recovery from error using 45,962 GS343 templates", module_path="src.healing.prometheus_phoenix",
+            class_name="PrometheusPhoenix", mcp_tool_name="prom_heal",
+            operations=["heal"], expertise_level=ExpertiseLevel.GRANDMASTER, authority_required=11.0)
+        self._capabilities["prom_heal_stats"] = Capability(
+            name="get_stats", category=CapabilityCategory.HEALING,
+            description="Get Phoenix statistics (errors encountered, recovery rate, templates)", module_path="src.healing.prometheus_phoenix",
+            class_name="PrometheusPhoenix", mcp_tool_name="prom_heal_stats",
+            operations=["get_stats"], expertise_level=ExpertiseLevel.EXPERT, authority_required=9.0)
+        self._capabilities["prom_heal_record"] = Capability(
+            name="record_error", category=CapabilityCategory.HEALING,
+            description="Record error and recovery outcome for learning", module_path="src.healing.error_learning",
+            class_name="ErrorLearning", mcp_tool_name="prom_heal_record",
+            operations=["record_error"], expertise_level=ExpertiseLevel.EXPERT, authority_required=9.0)
+        self._capabilities["prom_heal_best"] = Capability(
+            name="get_best_recovery", category=CapabilityCategory.HEALING,
+            description="Get best recovery methods for error type based on historical success", module_path="src.healing.error_learning",
+            class_name="ErrorLearning", mcp_tool_name="prom_heal_best",
+            operations=["get_best_recovery"], expertise_level=ExpertiseLevel.EXPERT, authority_required=9.0)
+
+        # === DEFENSE & COUNTER-ATTACK (6) ===
+        self._capabilities["prom_defense_analyze"] = Capability(
+            name="analyze_threat", category=CapabilityCategory.DEFENSE,
+            description="Analyze incoming traffic for threats (SQL injection, XSS, port scans, brute force, DDoS)", module_path="src.defense.defense_engine",
+            class_name="DefenseEngine", mcp_tool_name="prom_defense_analyze",
+            operations=["analyze_threat"], expertise_level=ExpertiseLevel.GRANDMASTER, authority_required=11.0)
+        self._capabilities["prom_defense_quarantine"] = Capability(
+            name="quarantine_threat", category=CapabilityCategory.DEFENSE,
+            description="Isolate and quarantine detected threat in sandbox", module_path="src.defense.defense_engine",
+            class_name="DefenseEngine", mcp_tool_name="prom_defense_quarantine",
+            operations=["quarantine_threat"], expertise_level=ExpertiseLevel.GRANDMASTER, authority_required=11.0)
+        self._capabilities["prom_defense_repel"] = Capability(
+            name="repel_attack", category=CapabilityCategory.DEFENSE,
+            description="Actively repel ongoing attack with firewall blocks and IP bans", module_path="src.defense.defense_engine",
+            class_name="DefenseEngine", mcp_tool_name="prom_defense_repel",
+            operations=["repel_attack"], expertise_level=ExpertiseLevel.GRANDMASTER, authority_required=11.0)
+        self._capabilities["prom_defense_counter"] = Capability(
+            name="counter_attack", category=CapabilityCategory.DEFENSE,
+            description="Launch counter-attack against attacker (port scan, exploit scan, reverse connection)", module_path="src.defense.defense_engine",
+            class_name="DefenseEngine", mcp_tool_name="prom_defense_counter",
+            operations=["counter_attack"], expertise_level=ExpertiseLevel.GRANDMASTER, authority_required=11.0)
+        self._capabilities["prom_defense_ids"] = Capability(
+            name="monitor", category=CapabilityCategory.DEFENSE,
+            description="Monitor network for intrusions and generate alerts", module_path="src.defense.ids_ips",
+            class_name="IntrusionDetectionSystem", mcp_tool_name="prom_defense_ids",
+            operations=["monitor"], expertise_level=ExpertiseLevel.EXPERT, authority_required=9.0)
+        self._capabilities["prom_defense_reflect"] = Capability(
+            name="reflect", category=CapabilityCategory.DEFENSE,
+            description="Reflect attack back to source/attacker", module_path="src.defense.attack_reflector",
+            class_name="AttackReflector", mcp_tool_name="prom_defense_reflect",
+            operations=["reflect"], expertise_level=ExpertiseLevel.GRANDMASTER, authority_required=11.0)
 
     def get_all_capabilities(self):
         return list(self._capabilities.values())

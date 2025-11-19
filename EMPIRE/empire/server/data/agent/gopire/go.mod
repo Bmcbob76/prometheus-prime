@@ -11,5 +11,5 @@ require (
 
 require (
 	github.com/RIscRIpt/pecoff v0.0.0-20200923152459-a332238caa87 // indirect
-	golang.org/x/text v0.3.7 // indirect
+	golang.org/x/text v0.3.8 // indirect
 )

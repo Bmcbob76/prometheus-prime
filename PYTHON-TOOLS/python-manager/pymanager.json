@@ -1,0 +1,129 @@
+{
+  "default_version": "3.11",
+
+  "versions": {
+    "3.11": "pythons/py311/python.exe",
+    "3.10": "pythons/py310/python.exe",
+    "3.9": "pythons/py39/python.exe",
+    "3.8": "pythons/py38/python.exe",
+    "ml": "pythons/py311/python.exe",
+    "latest": "pythons/py311/python.exe",
+    "legacy": "pythons/py38/python.exe"
+  },
+
+  "blocked_combinations": {
+    "3.14": ["numpy", "scipy", "pandas", "opencv-python", "scikit-learn", "matplotlib"],
+    "3.13": ["tensorflow<2.16", "keras<3.0"],
+    "3.12": ["tensorflow<2.15"]
+  },
+
+  "auto_fixes": {
+    "dependency_blocking": true,
+    "async_event_loop": true,
+    "import_paths": true,
+    "port_conflicts": true,
+    "numpy_compatibility": true
+  },
+
+  "echo_prime_specific": {
+    "gateways_directory": "P:\\ECHO_PRIME\\MLS_CLEAN\\PRODUCTION\\GATEWAYS",
+    "force_python_311": true,
+    "inject_fixes": ["async", "imports", "ports"]
+  },
+
+  "directory_overrides": {
+    "E:\\ECHO_XV4": "3.11",
+    "D:\\LegacyProjects": "3.8",
+    "C:\\ML_Projects": "ml",
+    "P:\\ECHO_PRIME": "3.11",
+    "P:\\ECHO_PRIME\\MLS_CLEAN\\PRODUCTION\\GATEWAYS": "3.11",
+    "X:\\ECHO_PRIME": "3.11"
+  },
+
+  "framework_stacks": {
+    "fastapi_stable": {
+      "python": "3.11",
+      "description": "FastAPI with Pydantic v1 (stable)",
+      "packages": {
+        "fastapi": "==0.104.1",
+        "pydantic": "^1.10.13",
+        "uvicorn": "==0.24.0",
+        "starlette": "==0.27.0",
+        "python-multipart": ">=0.0.6",
+        "python-jose": ">=3.3.0"
+      },
+      "auto_fixes": ["async_event_loop", "import_paths"]
+    },
+    "ml_cuda12": {
+      "python": "3.11",
+      "description": "Machine Learning with CUDA 12.1",
+      "packages": {
+        "torch": "==2.1.0",
+        "numpy": "==1.26.0",
+        "pandas": "==2.1.0",
+        "scikit-learn": ">=1.3.0",
+        "matplotlib": ">=3.7.0"
+      }
+    },
+    "echo_prime_gateway": {
+      "python": "3.11",
+      "description": "ECHO PRIME Gateway Stack",
+      "packages": {
+        "fastapi": "==0.104.1",
+        "pydantic": "^1.10.13",
+        "uvicorn": "==0.24.0",
+        "numpy": "==1.26.0",
+        "requests": ">=2.31.0",
+        "aiohttp": ">=3.9.0",
+        "python-multipart": ">=0.0.6",
+        "colorama": ">=0.4.6"
+      },
+      "auto_fixes": ["async_event_loop", "import_paths", "port_conflicts"]
+    },
+    "data_science": {
+      "python": "3.11",
+      "description": "Data Science Stack",
+      "packages": {
+        "numpy": "==1.26.0",
+        "pandas": "==2.1.0",
+        "scikit-learn": ">=1.3.0",
+        "matplotlib": ">=3.7.0",
+        "seaborn": ">=0.12.0",
+        "jupyter": ">=1.0.0",
+        "ipython": ">=8.12.0"
+      }
+    },
+    "web_scraping": {
+      "python": "3.11",
+      "description": "Web Scraping Stack",
+      "packages": {
+        "requests": ">=2.31.0",
+        "beautifulsoup4": ">=4.12.0",
+        "selenium": ">=4.15.0",
+        "aiohttp": ">=3.9.0",
+        "lxml": ">=4.9.0"
+      }
+    }
+  },
+
+  "verbose": false,
+  "auto_detect": true,
+
+  "_instructions": {
+    "versions": "Map version aliases to Python executable paths (relative to PyManager directory)",
+    "blocked_combinations": "Python versions that should NOT use certain packages",
+    "auto_fixes": "Enable/disable automatic fixes for common issues",
+    "directory_overrides": "Force specific Python version for directories",
+    "framework_stacks": "Pre-configured dependency profiles",
+    "verbose": "Set to true to see routing decisions and auto-fixes",
+    "auto_detect": "Auto-detect Python version from script context"
+  },
+
+  "_usage": {
+    "file_shebang": "Add '#!pymanager:3.11' as first line in script",
+    "directory_version": "Create '.pyversion' file with version number",
+    "aliases": "Use version aliases like 'ml', 'latest', 'legacy' for easier management",
+    "install_stack": "python -m pymanager.profile_manager install <stack_name>",
+    "check_ports": "python -m pymanager.port_manager status"
+  }
+}

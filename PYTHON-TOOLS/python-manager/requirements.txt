@@ -1,0 +1,8 @@
+# PyManager v2.5 Requirements
+# Optional dependencies for enhanced features
+
+# Health monitoring
+psutil>=5.9.0
+
+# Note: All other features work without additional dependencies
+# PyManager core functionality has zero external dependencies

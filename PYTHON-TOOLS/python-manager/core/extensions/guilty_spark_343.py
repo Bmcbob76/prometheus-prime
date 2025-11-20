@@ -16,7 +16,7 @@ Features:
 - Learning capabilities for new error patterns
 - Automatic loading of extended pattern database
 
-Version: 2.0.0 (Expanded Database)
+Version: 3.0.0 (Expanded Database - Phase 2)
 """
 
 import re

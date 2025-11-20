@@ -1,9 +1,10 @@
 """
 PyManager Extensions Package
-ULTIMATE EDITION - 15 Enterprise Modules for v2.5
+ULTIMATE EDITION - 17 Enterprise Modules for v2.6
+Includes Guilty Spark 343 and Phoenix Healer
 """
 
-__version__ = "2.5.0"
+__version__ = "2.6.0"
 
 # Performance & Caching
 from .cache_manager import CacheManager, LRUCache
@@ -39,6 +40,10 @@ from .remote_executor import RemoteExecutor
 
 # AI & Prediction
 from .ai_predictor import AIPredictor
+
+# Error Detection & Healing (v2.6)
+from .guilty_spark_343 import GuildySpark343, ErrorPattern
+from .phoenix_healer import PhoenixHealer, HealingRecord
 
 __all__ = [
     # Performance (v2.1)
@@ -80,4 +85,10 @@ __all__ = [
 
     # AI (v2.5)
     'AIPredictor',
+
+    # Error Detection & Healing (v2.6)
+    'GuildySpark343',
+    'ErrorPattern',
+    'PhoenixHealer',
+    'HealingRecord',
 ]

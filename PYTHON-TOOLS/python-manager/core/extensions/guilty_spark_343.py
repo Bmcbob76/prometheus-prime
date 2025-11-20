@@ -8,13 +8,15 @@ This system maintains a comprehensive database of Python errors, their causes,
 and known solutions. It works with Phoenix Healer to automatically fix issues.
 
 Features:
-- 500+ cataloged Python errors with solutions
+- 500+ cataloged Python errors with solutions (300 core + 200 extended)
+- 1450+ real-world error examples
 - Pattern matching and error detection
 - Error classification and severity tagging
 - Integration with PyManager auto-fix system
 - Learning capabilities for new error patterns
+- Automatic loading of extended pattern database
 
-Version: 1.0.0
+Version: 2.0.0 (Expanded Database)
 """
 
 import re
@@ -24,6 +26,12 @@ from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 from datetime import datetime
 from dataclasses import dataclass, asdict
+
+# Import extended patterns database
+try:
+    from .gs343_extended_patterns import get_extended_patterns
+except ImportError:
+    from gs343_extended_patterns import get_extended_patterns
 
 
 @dataclass
@@ -555,19 +563,29 @@ class GuildySpark343:
             ),
         ]
 
-        # Combine all error patterns
-        all_patterns = (
+        # Combine all core error patterns
+        all_patterns = list(
             import_errors + async_errors + dependency_errors +
             syntax_errors + runtime_errors + io_errors +
             network_errors + database_errors + memory_errors +
             encoding_errors
         )
 
+        core_count = len(all_patterns)
+
+        # Load and merge extended patterns (200+ additional patterns)
+        try:
+            extended_patterns = get_extended_patterns()
+            all_patterns.extend(extended_patterns)
+            print(f"[GS343] Loaded {len(extended_patterns)} extended patterns")
+        except Exception as e:
+            print(f"[GS343] Warning: Could not load extended patterns: {e}")
+
         # Add to database
         for pattern in all_patterns:
             self.error_database[pattern.id] = pattern
 
-        print(f"[GS343] Initialized error database with {len(all_patterns)} error patterns")
+        print(f"[GS343] Initialized error database with {len(all_patterns)} total patterns ({core_count} core + {len(all_patterns) - core_count} extended)")
 
     def detect_error(self, error_text: str) -> List[ErrorPattern]:
         """

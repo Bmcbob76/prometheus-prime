@@ -8,8 +8,8 @@ python-dotenv==1.0.0
 # Core Web Framework
 flask==3.0.0
 flask-cors==6.0.0
-requests==2.31.0
-urllib3==2.1.0
+requests==2.32.4
+urllib3==2.5.0
 httpx>=0.24.1
 
 # AI/LLM APIs
@@ -42,24 +42,24 @@ psutil>=5.9.5
 scapy>=2.5.0
 
 # Databases
-pymysql==1.1.0
+pymysql==1.1.1
 redis>=5.0.0
 psycopg2-binary>=2.9.7
 pymongo>=4.5.0
 
 # OSINT Integrations
 twilio==8.10.0
-dnspython==2.4.2
+dnspython==2.6.1
 
 # Web Scraping & Parsing
 beautifulsoup4==4.12.2
 lxml==4.9.3
 
 # MCP Protocol
-mcp==0.9.0
+mcp==1.10.0
 
 # Security & Cryptography
-cryptography==41.0.7
+cryptography==44.0.1
 
 # Additional Utilities
 python-dateutil==2.8.2
